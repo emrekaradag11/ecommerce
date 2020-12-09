@@ -1,1694 +1,1657 @@
-
 @extends("back.layout")
 @section("content")
 
-    <!-- Main charts -->
-    <div class="row">
-        <div class="col-xl-7">
-
-            <!-- Traffic sources -->
-            <div class="card">
-                <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Traffic sources</h6>
-                    <div class="header-elements">
-                        <div class="form-check form-check-right form-check-switchery form-check-switchery-sm">
-                            <label class="form-check-label">
-                                Live update:
-                                <input type="checkbox" class="form-input-switchery" checked data-fouc>
-                            </label>
-                        </div>
-                    </div>
+    <div class="subheader py-3 py-lg-8  subheader-transparent " id="kt_subheader">
+        <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h2 class="subheader-title text-dark font-weight-bold my-1 mr-3">Dashboard</h2>
                 </div>
-
-                <div class="card-body py-0">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="d-flex align-items-center justify-content-center mb-2">
-                                <a href="#" class="btn bg-transparent border-teal text-teal rounded-round border-2 btn-icon mr-3">
-                                    <i class="icon-plus3"></i>
-                                </a>
-                                <div>
-                                    <div class="font-weight-semibold">New visitors</div>
-                                    <span class="text-muted">2,349 avg</span>
-                                </div>
-                            </div>
-                            <div class="w-75 mx-auto mb-3" id="new-visitors"></div>
-                        </div>
-
-                        <div class="col-sm-4">
-                            <div class="d-flex align-items-center justify-content-center mb-2">
-                                <a href="#" class="btn bg-transparent border-warning-400 text-warning-400 rounded-round border-2 btn-icon mr-3">
-                                    <i class="icon-watch2"></i>
-                                </a>
-                                <div>
-                                    <div class="font-weight-semibold">New sessions</div>
-                                    <span class="text-muted">08:20 avg</span>
-                                </div>
-                            </div>
-                            <div class="w-75 mx-auto mb-3" id="new-sessions"></div>
-                        </div>
-
-                        <div class="col-sm-4">
-                            <div class="d-flex align-items-center justify-content-center mb-2">
-                                <a href="#" class="btn bg-transparent border-indigo-400 text-indigo-400 rounded-round border-2 btn-icon mr-3">
-                                    <i class="icon-people"></i>
-                                </a>
-                                <div>
-                                    <div class="font-weight-semibold">Total online</div>
-                                    <span class="text-muted"><span class="badge badge-mark border-success mr-2"></span> 5,378 avg</span>
-                                </div>
-                            </div>
-                            <div class="w-75 mx-auto mb-3" id="total-online"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="chart position-relative" id="traffic-sources"></div>
             </div>
-            <!-- /traffic sources -->
+            <div class="d-flex align-items-center">
+                <a href="#" class="btn btn-fixed-height btn-white btn-hover-primary font-weight-bold px-2 px-lg-5 mr-2">
+                    <span class="svg-icon svg-icon-success svg-icon-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><polygon points="0 0 24 0 24 24 0 24"/><path d="M18,8 L16,8 C15.4477153,8 15,7.55228475 15,7 C15,6.44771525 15.4477153,6 16,6 L18,6 L18,4 C18,3.44771525 18.4477153,3 19,3 C19.5522847,3 20,3.44771525 20,4 L20,6 L22,6 C22.5522847,6 23,6.44771525 23,7 C23,7.55228475 22.5522847,8 22,8 L20,8 L20,10 C20,10.5522847 19.5522847,11 19,11 C18.4477153,11 18,10.5522847 18,10 L18,8 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/><path d="M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z" fill="#000000" fill-rule="nonzero"/></g></svg>
+                    </span>
+                    New Member
+                </a>
 
-        </div>
-
-        <div class="col-xl-5">
-
-            <!-- Sales stats -->
-            <div class="card">
-                <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Sales statistics</h6>
-                    <div class="header-elements">
-                        <select class="form-control custom-select" id="select_date">
-                            <option value="val1">June, 29 - July, 5</option>
-                            <option value="val2">June, 22 - June 28</option>
-                            <option value="val3" selected>June, 15 - June, 21</option>
-                            <option value="val4">June, 8 - June, 14</option>
-                        </select>
+                <div class="dropdown dropdown-inline" data-toggle="tooltip" title="Quick actions" data-placement="left">
+                    <a href="#" class="btn btn-fixed-height btn-white btn-hover-primary font-weight-bold px-2 px-lg-5 mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="svg-icon svg-icon-success svg-icon-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                 viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><polygon points="0 0 24 0 24 24 0 24"/><path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/><rect fill="#000000" x="6" y="11" width="9" height="2" rx="1"/><rect fill="#000000" x="6" y="15" width="5" height="2" rx="1"/></g></svg>
+                        </span>
+                        New Report
+                    </a>
+                    <div class="dropdown-menu p-0 m-0 dropdown-menu-md dropdown-menu-right">
+                        <ul class="navi navi-hover">
+                            <li class="navi-header font-weight-bold py-4">
+                                <span class="font-size-lg">Choose Label:</span>
+                                <i class="flaticon2-information icon-md text-muted" data-toggle="tooltip" data-placement="right" title="Click to learn more..."></i>
+                            </li>
+                            <li class="navi-separator mb-3 opacity-70"></li>
+                            <li class="navi-item">
+                                <a href="#" class="navi-link">
+                                    <span class="navi-text"><span class="label label-xl label-inline label-light-success">Customer</span></span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a href="#" class="navi-link">
+                                    <span class="navi-text"><span class="label label-xl label-inline label-light-danger">Partner</span></span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a href="#" class="navi-link">
+                                    <span class="navi-text"><span class="label label-xl label-inline label-light-warning">Suplier</span></span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a href="#" class="navi-link">
+                                    <span class="navi-text"><span class="label label-xl label-inline label-light-primary">Member</span></span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a href="#" class="navi-link">
+                                    <span class="navi-text"><span class="label label-xl label-inline label-light-dark">Staff</span></span>
+                                </a>
+                            </li>
+                            <li class="navi-separator mt-3 opacity-70"></li>
+                            <li class="navi-footer py-4">
+                                <a class="btn btn-clean font-weight-bold btn-sm" href="#">
+                                    <i class="ki ki-plus icon-sm"></i>
+                                    Add new
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-
-                <div class="card-body py-0">
-                    <div class="row text-center">
-                        <div class="col-4">
-                            <div class="mb-3">
-                                <h5 class="font-weight-semibold mb-0">5,689</h5>
-                                <span class="text-muted font-size-sm">new orders</span>
-                            </div>
-                        </div>
-
-                        <div class="col-4">
-                            <div class="mb-3">
-                                <h5 class="font-weight-semibold mb-0">32,568</h5>
-                                <span class="text-muted font-size-sm">this month</span>
-                            </div>
-                        </div>
-
-                        <div class="col-4">
-                            <div class="mb-3">
-                                <h5 class="font-weight-semibold mb-0">$23,464</h5>
-                                <span class="text-muted font-size-sm">expected profit</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="chart mb-2" id="app_sales"></div>
-                <div class="chart" id="monthly-sales-stats"></div>
+                <a href="#" class="btn btn-success btn-icon font-weight-bold" data-toggle="modal" data-target="#kt_chat_modal">
+                    <span class="svg-icon svg-icon-lg"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><path d="M16,15.6315789 L16,12 C16,10.3431458 14.6568542,9 13,9 L6.16183229,9 L6.16183229,5.52631579 C6.16183229,4.13107011 7.29290239,3 8.68814808,3 L20.4776218,3 C21.8728674,3 23.0039375,4.13107011 23.0039375,5.52631579 L23.0039375,13.1052632 L23.0206157,17.786793 C23.0215995,18.0629336 22.7985408,18.2875874 22.5224001,18.2885711 C22.3891754,18.2890457 22.2612702,18.2363324 22.1670655,18.1421277 L19.6565168,15.6315789 L16,15.6315789 Z" fill="#000000"/><path d="M1.98505595,18 L1.98505595,13 C1.98505595,11.8954305 2.88048645,11 3.98505595,11 L11.9850559,11 C13.0896254,11 13.9850559,11.8954305 13.9850559,13 L13.9850559,18 C13.9850559,19.1045695 13.0896254,20 11.9850559,20 L4.10078614,20 L2.85693427,21.1905292 C2.65744295,21.3814685 2.34093638,21.3745358 2.14999706,21.1750444 C2.06092565,21.0819836 2.01120804,20.958136 2.01120804,20.8293182 L2.01120804,18.32426 C1.99400175,18.2187196 1.98505595,18.1104045 1.98505595,18 Z M6.5,14 C6.22385763,14 6,14.2238576 6,14.5 C6,14.7761424 6.22385763,15 6.5,15 L11.5,15 C11.7761424,15 12,14.7761424 12,14.5 C12,14.2238576 11.7761424,14 11.5,14 L6.5,14 Z M9.5,16 C9.22385763,16 9,16.2238576 9,16.5 C9,16.7761424 9.22385763,17 9.5,17 L11.5,17 C11.7761424,17 12,16.7761424 12,16.5 C12,16.2238576 11.7761424,16 11.5,16 L9.5,16 Z" fill="#000000" opacity="0.3"/></g></svg></span>
+                </a>
             </div>
-            <!-- /sales stats -->
-
         </div>
     </div>
-    <!-- /main charts -->
-
-
-    <!-- Dashboard content -->
-    <div class="row">
-        <div class="col-xl-8">
-
-            <!-- Marketing campaigns -->
-            <div class="card">
-                <div class="card-header header-elements-sm-inline">
-                    <h6 class="card-title">Marketing campaigns</h6>
-                    <div class="header-elements">
-                        <span class="badge bg-success badge-pill">28 active</span>
-                        <div class="list-icons ml-3">
-                            <div class="dropdown">
-                                <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="#" class="dropdown-item"><i class="icon-sync"></i> Update data</a>
-                                    <a href="#" class="dropdown-item"><i class="icon-list-unordered"></i> Detailed log</a>
-                                    <a href="#" class="dropdown-item"><i class="icon-pie5"></i> Statistics</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="#" class="dropdown-item"><i class="icon-cross3"></i> Clear list</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-body d-sm-flex align-items-sm-center justify-content-sm-between flex-sm-wrap">
-                    <div class="d-flex align-items-center mb-3 mb-sm-0">
-                        <div id="campaigns-donut"></div>
-                        <div class="ml-3">
-                            <h5 class="font-weight-semibold mb-0">38,289 <span class="text-success font-size-sm font-weight-normal"><i class="icon-arrow-up12"></i> (+16.2%)</span></h5>
-                            <span class="badge badge-mark border-success mr-1"></span> <span class="text-muted">May 12, 12:30 am</span>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-center mb-3 mb-sm-0">
-                        <div id="campaign-status-pie"></div>
-                        <div class="ml-3">
-                            <h5 class="font-weight-semibold mb-0">2,458 <span class="text-danger font-size-sm font-weight-normal"><i class="icon-arrow-down12"></i> (-4.9%)</span></h5>
-                            <span class="badge badge-mark border-danger mr-1"></span> <span class="text-muted">Jun 4, 4:00 am</span>
-                        </div>
-                    </div>
-
-                    <div>
-                        <a href="#" class="btn bg-indigo-300"><i class="icon-statistics mr-2"></i> View report</a>
-                    </div>
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table text-nowrap">
-                        <thead>
-                        <tr>
-                            <th>Campaign</th>
-                            <th>Client</th>
-                            <th>Changes</th>
-                            <th>Budget</th>
-                            <th>Status</th>
-                            <th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="table-active table-border-double">
-                            <td colspan="5">Today</td>
-                            <td class="text-right">
-                                <span class="progress-meter" id="today-progress" data-progress="30"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#">
-                                            <img src="{{asset("back/global_assets/images/brands/facebook.png")}}" class="rounded-circle" width="32" height="32" alt="">
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold">Facebook</a>
-                                        <div class="text-muted font-size-sm">
-                                            <span class="badge badge-mark border-blue mr-1"></span>
-                                            02:00 - 03:00
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><span class="text-muted">Mintlime</span></td>
-                            <td><span class="text-success-600"><i class="icon-stats-growth2 mr-2"></i> 2.43%</span></td>
-                            <td><h6 class="font-weight-semibold mb-0">$5,489</h6></td>
-                            <td><span class="badge bg-blue">Active</span></td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-file-stats"></i> View statement</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-file-text2"></i> Edit campaign</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-file-locked"></i> Disable campaign</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-gear"></i> Settings</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#">
-                                            <img src="{{asset("back/global_assets/images/brands/youtube.png")}}" class="rounded-circle" width="32" height="32" alt="">
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold">Youtube videos</a>
-                                        <div class="text-muted font-size-sm">
-                                            <span class="badge badge-mark border-danger mr-1"></span>
-                                            13:00 - 14:00
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><span class="text-muted">CDsoft</span></td>
-                            <td><span class="text-success-600"><i class="icon-stats-growth2 mr-2"></i> 3.12%</span></td>
-                            <td><h6 class="font-weight-semibold mb-0">$2,592</h6></td>
-                            <td><span class="badge bg-danger">Closed</span></td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-file-stats"></i> View statement</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-file-text2"></i> Edit campaign</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-file-locked"></i> Disable campaign</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-gear"></i> Settings</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#">
-                                            <img src="{{asset("back/global_assets/images/brands/spotify.png")}}" class="rounded-circle" width="32" height="32" alt="">
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold">Spotify ads</a>
-                                        <div class="text-muted font-size-sm">
-                                            <span class="badge badge-mark border-grey-400 mr-1"></span>
-                                            10:00 - 11:00
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><span class="text-muted">Diligence</span></td>
-                            <td><span class="text-danger"><i class="icon-stats-decline2 mr-2"></i> - 8.02%</span></td>
-                            <td><h6 class="font-weight-semibold mb-0">$1,268</h6></td>
-                            <td><span class="badge bg-grey-400">On hold</span></td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-file-stats"></i> View statement</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-file-text2"></i> Edit campaign</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-file-locked"></i> Disable campaign</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-gear"></i> Settings</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#">
-                                            <img src="{{asset("back/global_assets/images/brands/twitter.png")}}" class="rounded-circle" width="32" height="32" alt="">
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold">Twitter ads</a>
-                                        <div class="text-muted font-size-sm">
-                                            <span class="badge badge-mark border-grey-400 mr-1"></span>
-                                            04:00 - 05:00
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><span class="text-muted">Deluxe</span></td>
-                            <td><span class="text-success-600"><i class="icon-stats-growth2 mr-2"></i> 2.78%</span></td>
-                            <td><h6 class="font-weight-semibold mb-0">$7,467</h6></td>
-                            <td><span class="badge bg-grey-400">On hold</span></td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-file-stats"></i> View statement</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-file-text2"></i> Edit campaign</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-file-locked"></i> Disable campaign</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-gear"></i> Settings</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr class="table-active table-border-double">
-                            <td colspan="5">Yesterday</td>
-                            <td class="text-right">
-                                <span class="progress-meter" id="yesterday-progress" data-progress="65"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#">
-                                            <img src="{{asset("back/global_assets/images/brands/bing.png")}}" class="rounded-circle" width="32" height="32" alt="">
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold">Bing campaign</a>
-                                        <div class="text-muted font-size-sm">
-                                            <span class="badge badge-mark border-success mr-1"></span>
-                                            15:00 - 16:00
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><span class="text-muted">Metrics</span></td>
-                            <td><span class="text-danger"><i class="icon-stats-decline2 mr-2"></i> - 5.78%</span></td>
-                            <td><h6 class="font-weight-semibold mb-0">$970</h6></td>
-                            <td><span class="badge bg-success-400">Pending</span></td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-file-stats"></i> View statement</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-file-text2"></i> Edit campaign</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-file-locked"></i> Disable campaign</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-gear"></i> Settings</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#">
-                                            <img src="{{asset("back/global_assets/images/brands/amazon.png")}}" class="rounded-circle" width="32" height="32" alt="">
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold">Amazon ads</a>
-                                        <div class="text-muted font-size-sm">
-                                            <span class="badge badge-mark border-danger mr-1"></span>
-                                            18:00 - 19:00
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><span class="text-muted">Blueish</span></td>
-                            <td><span class="text-success-600"><i class="icon-stats-growth2 mr-2"></i> 6.79%</span></td>
-                            <td><h6 class="font-weight-semibold mb-0">$1,540</h6></td>
-                            <td><span class="badge bg-blue">Active</span></td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-file-stats"></i> View statement</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-file-text2"></i> Edit campaign</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-file-locked"></i> Disable campaign</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-gear"></i> Settings</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#">
-                                            <img src="{{asset("back/global_assets/images/brands/dribbble.png")}}" class="rounded-circle" width="32" height="32" alt="">
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold">Dribbble ads</a>
-                                        <div class="text-muted font-size-sm">
-                                            <span class="badge badge-mark border-blue mr-1"></span>
-                                            20:00 - 21:00
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><span class="text-muted">Teamable</span></td>
-                            <td><span class="text-danger"><i class="icon-stats-decline2 mr-2"></i> 9.83%</span></td>
-                            <td><h6 class="font-weight-semibold mb-0">$8,350</h6></td>
-                            <td><span class="badge bg-danger">Closed</span></td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-file-stats"></i> View statement</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-file-text2"></i> Edit campaign</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-file-locked"></i> Disable campaign</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-gear"></i> Settings</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!-- /marketing campaigns -->
-
-
-            <!-- Quick stats boxes -->
+    <div class="d-flex flex-column-fluid">
+        <div class=" container ">
             <div class="row">
-                <div class="col-lg-4">
-
-                    <!-- Members online -->
-                    <div class="card bg-teal-400">
-                        <div class="card-body">
-                            <div class="d-flex">
-                                <h3 class="font-weight-semibold mb-0">3,450</h3>
-                                <span class="badge bg-teal-800 badge-pill align-self-center ml-auto">+53,6%</span>
-                            </div>
-
-                            <div>
-                                Members online
-                                <div class="font-size-sm opacity-75">489 avg</div>
-                            </div>
-                        </div>
-
-                        <div class="container-fluid">
-                            <div id="members-online"></div>
-                        </div>
-                    </div>
-                    <!-- /members online -->
-
-                </div>
-
-                <div class="col-lg-4">
-
-                    <!-- Current server load -->
-                    <div class="card bg-pink-400">
-                        <div class="card-body">
-                            <div class="d-flex">
-                                <h3 class="font-weight-semibold mb-0">49.4%</h3>
-                                <div class="list-icons ml-auto">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-cog3"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-sync"></i> Update data</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-list-unordered"></i> Detailed log</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-pie5"></i> Statistics</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-cross3"></i> Clear list</a>
-                                        </div>
+                <div class="col-xl-4">
+                    <div class="card card-custom bg-radial-gradient-danger gutter-b card-stretch">
+                        <div class="card-header border-0 py-5">
+                            <h3 class="card-title font-weight-bolder text-white">Sales Progress</h3>
+                            <div class="card-toolbar">
+                                <div class="dropdown dropdown-inline">
+                                    <a href="#" class="btn btn-text-white btn-hover-white btn-sm btn-icon border-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ki ki-bold-more-hor"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                        <ul class="navi navi-hover">
+                                            <li class="navi-header pb-1">
+                                                <span class="text-primary text-uppercase font-weight-bold font-size-sm">Add new:</span>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon"><i class="flaticon2-shopping-cart-1"></i></span>
+                                                    <span class="navi-text">Order</span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon"><i class="flaticon2-calendar-8"></i></span>
+                                                    <span class="navi-text">Event</span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon"><i class="flaticon2-graph-1"></i></span>
+                                                    <span class="navi-text">Report</span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon"><i class="flaticon2-rocket-1"></i></span>
+                                                    <span class="navi-text">Post</span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon"><i class="flaticon2-writing"></i></span>
+                                                    <span class="navi-text">File</span>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-
-                            <div>
-                                Current server load
-                                <div class="font-size-sm opacity-75">34.6% avg</div>
-                            </div>
                         </div>
-
-                        <div id="server-load"></div>
-                    </div>
-                    <!-- /current server load -->
-
-                </div>
-
-                <div class="col-lg-4">
-
-                    <!-- Today's revenue -->
-                    <div class="card bg-blue-400">
-                        <div class="card-body">
-                            <div class="d-flex">
-                                <h3 class="font-weight-semibold mb-0">$18,390</h3>
-                                <div class="list-icons ml-auto">
-                                    <a class="list-icons-item" data-action="reload"></a>
+                        <div class="card-body d-flex flex-column p-0">
+                            <div id="kt_mixed_widget_4_chart" style="height: 200px"></div>
+                            <div class="card-spacer bg-white card-rounded flex-grow-1">
+                                <div class="row m-0">
+                                    <div class="col px-8 py-6 mr-8">
+                                        <div class="font-size-sm text-muted font-weight-bold">Average Sale</div>
+                                        <div class="font-size-h4 font-weight-bolder">$650</div>
+                                    </div>
+                                    <div class="col px-8 py-6">
+                                        <div class="font-size-sm text-muted font-weight-bold">Commission</div>
+                                        <div class="font-size-h4 font-weight-bolder">$233,600</div>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col px-8 py-6 mr-8">
+                                        <div class="font-size-sm text-muted font-weight-bold">Annual Taxes</div>
+                                        <div class="font-size-h4 font-weight-bolder">$29,004</div>
+                                    </div>
+                                    <div class="col px-8 py-6">
+                                        <div class="font-size-sm text-muted font-weight-bold">Annual Income</div>
+                                        <div class="font-size-h4 font-weight-bolder">$1,480,00</div>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div>
-                                Today's revenue
-                                <div class="font-size-sm opacity-75">$37,578 avg</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8">
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header border-0 pt-5">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label font-weight-bolder text-dark">Authors Earnings</span>
+                                <span class="text-muted mt-3 font-weight-bold font-size-sm">More than 400+ new members</span>
+                            </h3>
+                            <div class="card-toolbar">
+                                <ul class="nav nav-pills nav-pills-sm nav-dark-75">
+                                    <li class="nav-item">
+                                        <a class="nav-link py-2 px-4" data-toggle="tab"
+                                           href="#kt_tab_pane_3_1">Month</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link py-2 px-4" data-toggle="tab" href="#kt_tab_pane_3_2">Week</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link py-2 px-4 active" data-toggle="tab" href="#kt_tab_pane_3_3">Day</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-
-                        <div id="today-revenue"></div>
+                        <div class="card-body pt-2 pb-0">
+                            <div class="table-responsive">
+                                <table class="table table-borderless table-vertical-center">
+                                    <thead>
+                                    <tr>
+                                        <th class="p-0" style="width: 50px"></th>
+                                        <th class="p-0" style="min-width: 150px"></th>
+                                        <th class="p-0" style="min-width: 120px"></th>
+                                        <th class="p-0" style="min-width: 70px"></th>
+                                        <th class="p-0" style="min-width: 70px"></th>
+                                        <th class="p-0" style="min-width: 50px"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="pl-0">
+                                            <div class="symbol symbol-50 symbol-light mr-2 mt-2">
+                                                <span class="symbol-label"><img src="{{asset("back/assets/media/svg/avatars/001-boy.svg")}}" class="h-75 align-self-end" alt=""/></span>
+                                            </div>
+                                        </td>
+                                        <td class="pl-0">
+                                            <a href="#" class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Brad Simmons</a>
+                                            <span class="text-muted font-weight-bold d-block">Successful Fellas</span>
+                                        </td>
+                                        <td></td>
+                                        <td class="text-right">
+                                            <span class="text-muted font-weight-bold d-block font-size-sm">Paid</span>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$2,000,000</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span class="font-weight-bolder text-primary">+28%</span>
+                                        </td>
+                                        <td class="text-right pr-0">
+                                            <a href="#" class="btn btn-icon btn-light btn-sm">
+                                                <span class="svg-icon svg-icon-md svg-icon-success"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><polygon points="0 0 24 0 24 24 0 24"/><rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1"/><path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/></g></svg></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl-0">
+                                            <div class="symbol symbol-50 symbol-light mr-2 mt-2">
+                                                <span class="symbol-label"><img src="{{asset("back/assets/media/svg/avatars/018-girl-9.svg")}}" class="h-75 align-self-end" alt=""/></span>
+                                            </div>
+                                        </td>
+                                        <td class="pl-0">
+                                            <a href="#" class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Jessie Clarcson</a>
+                                            <span class="text-muted font-weight-bold d-block">HTML, CSS Coding</span>
+                                        </td>
+                                        <td></td>
+                                        <td class="text-right">
+                                            <span class="text-muted font-weight-bold d-block font-size-sm">Paid</span>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$1,200,000</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span class="font-weight-bolder text-warning">+52%</span>
+                                        </td>
+                                        <td class="text-right pr-0">
+                                            <a href="#" class="btn btn-icon btn-light btn-sm">
+                                                <span class="svg-icon svg-icon-md svg-icon-success"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><polygon points="0 0 24 0 24 24 0 24"/><rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1"/><path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/></g></svg></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl-0">
+                                            <div class="symbol symbol-50 symbol-light mr-2 mt-2">
+                                                <span class="symbol-label"><img src="{{asset("back/assets/media/svg/avatars/047-girl-25.svg")}}" class="h-75 align-self-end" alt=""/></span>
+                                            </div>
+                                        </td>
+                                        <td class="pl-0">
+                                            <a href="#" class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Lebron Wayde</a>
+                                            <span class="text-muted font-weight-bold d-block">ReactJS Developer</span>
+                                        </td>
+                                        <td></td>
+                                        <td class="text-right">
+                                            <span class="text-muted font-weight-bold d-block font-size-sm">Paid</span>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$3,400,000</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span class="font-weight-bolder text-danger">-34%</span>
+                                        </td>
+                                        <td class="text-right pr-0">
+                                            <a href="#" class="btn btn-icon btn-light btn-sm">
+                                                <span class="svg-icon svg-icon-md svg-icon-success"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><polygon points="0 0 24 0 24 24 0 24"/><rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1"/><path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/></g></svg></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl-0">
+                                            <div class="symbol symbol-50 symbol-light mr-2 mt-2">
+                                                <span class="symbol-label"><img src="{{asset("back/assets/media/svg/avatars/014-girl-7.svg")}}" class="h-75 align-self-end" alt=""/></span>
+                                            </div>
+                                        </td>
+                                        <td class="pl-0">
+                                            <a href="#" class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Natali Trump</a>
+                                            <span class="text-muted font-weight-bold d-block">UI/UX Designer</span>
+                                        </td>
+                                        <td></td>
+                                        <td class="text-right">
+                                            <span class="text-muted font-weight-bold d-block font-size-sm">Paid</span>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$4,500,000</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span class="font-weight-bolder text-success">+48%</span>
+                                        </td>
+                                        <td class="text-right pr-0">
+                                            <a href="#" class="btn btn-icon btn-light btn-sm">
+                                                <span class="svg-icon svg-icon-md svg-icon-success"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><polygon points="0 0 24 0 24 24 0 24"/><rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1"/><path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/></g></svg></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl-0">
+                                            <div class="symbol symbol-50 symbol-light mr-2 mt-2">
+                                                <span class="symbol-label"><img src="{{asset("back/assets/media/svg/avatars/043-boy-18.svg")}}" class="h-75 align-self-end" alt=""/></span>
+                                            </div>
+                                        </td>
+                                        <td class="pl-0">
+                                            <a href="#" class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Kevin Leonard</a>
+                                            <span class="text-muted font-weight-bold d-block">Art Director</span>
+                                        </td>
+                                        <td></td>
+                                        <td class="text-right">
+                                            <span class="text-muted font-weight-bold d-block font-size-sm">Paid</span>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$35,600,000</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span class="font-weight-bolder text-info">+230%</span>
+                                        </td>
+                                        <td class="text-right pr-0">
+                                            <a href="#" class="btn btn-icon btn-light btn-sm">
+                                                <span class="svg-icon svg-icon-md svg-icon-success"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><polygon points="0 0 24 0 24 24 0 24"/><rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1"/><path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/></g></svg></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /today's revenue -->
-
                 </div>
             </div>
-            <!-- /quick stats boxes -->
-
-
-            <!-- Support tickets -->
-            <div class="card">
-                <div class="card-header header-elements-sm-inline">
-                    <h6 class="card-title">Support tickets</h6>
-                    <div class="header-elements">
-                        <a class="text-default daterange-ranges font-weight-semibold cursor-pointer dropdown-toggle">
-                            <i class="icon-calendar3 mr-2"></i>
-                            <span></span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card-body d-md-flex align-items-md-center justify-content-md-between flex-md-wrap">
-                    <div class="d-flex align-items-center mb-3 mb-md-0">
-                        <div id="tickets-status"></div>
-                        <div class="ml-3">
-                            <h5 class="font-weight-semibold mb-0">14,327 <span class="text-success font-size-sm font-weight-normal"><i class="icon-arrow-up12"></i> (+2.9%)</span></h5>
-                            <span class="badge badge-mark border-success mr-1"></span> <span class="text-muted">Jun 16, 10:00 am</span>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-center mb-3 mb-md-0">
-                        <a href="#" class="btn bg-transparent border-indigo-400 text-indigo-400 rounded-round border-2 btn-icon">
-                            <i class="icon-alarm-add"></i>
-                        </a>
-                        <div class="ml-3">
-                            <h5 class="font-weight-semibold mb-0">1,132</h5>
-                            <span class="text-muted">total tickets</span>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-center mb-3 mb-md-0">
-                        <a href="#" class="btn bg-transparent border-indigo-400 text-indigo-400 rounded-round border-2 btn-icon">
-                            <i class="icon-spinner11"></i>
-                        </a>
-                        <div class="ml-3">
-                            <h5 class="font-weight-semibold mb-0">06:25:00</h5>
-                            <span class="text-muted">response time</span>
-                        </div>
-                    </div>
-
-                    <div>
-                        <a href="#" class="btn bg-teal-400"><i class="icon-statistics mr-2"></i> Report</a>
-                    </div>
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table text-nowrap">
-                        <thead>
-                        <tr>
-                            <th style="width: 50px">Due</th>
-                            <th style="width: 300px;">User</th>
-                            <th>Description</th>
-                            <th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="table-active table-border-double">
-                            <td colspan="3">Active tickets</td>
-                            <td class="text-right">
-                                <span class="badge bg-blue badge-pill">24</span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center">
-                                <h6 class="mb-0">12</h6>
-                                <div class="font-size-sm text-muted line-height-1">hours</div>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#" class="btn bg-teal-400 rounded-round btn-icon btn-sm">
-                                            <span class="letter-icon"></span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold letter-icon-title">Annabelle Doney</a>
-                                        <div class="text-muted font-size-sm"><span class="badge badge-mark border-blue mr-1"></span> Active</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="text-default">
-                                    <div class="font-weight-semibold">[#1183] Workaround for OS X selects printing bug</div>
-                                    <span class="text-muted">Chrome fixed the bug several versions ago, thus rendering this...</span>
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-undo"></i> Quick reply</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-history"></i> Full history</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-checkmark3 text-success"></i> Resolve issue</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-cross2 text-danger"></i> Close issue</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center">
-                                <h6 class="mb-0">16</h6>
-                                <div class="font-size-sm text-muted line-height-1">hours</div>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#">
-                                            <img src="{{asset("back/global_assets/images/demo/users/face15.jpg")}}" class="rounded-circle" width="32" height="32" alt="">
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold">Chris Macintyre</a>
-                                        <div class="text-muted font-size-sm"><span class="badge badge-mark border-blue mr-1"></span> Active</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="text-default">
-                                    <div class="font-weight-semibold">[#1249] Vertically center carousel controls</div>
-                                    <span class="text-muted">Try any carousel control and reduce the screen width below...</span>
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-undo"></i> Quick reply</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-history"></i> Full history</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-checkmark3 text-success"></i> Resolve issue</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-cross2 text-danger"></i> Close issue</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center">
-                                <h6 class="mb-0">20</h6>
-                                <div class="font-size-sm text-muted line-height-1">hours</div>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#" class="btn bg-blue rounded-round btn-icon btn-sm">
-                                            <span class="letter-icon"></span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold letter-icon-title">Robert Hauber</a>
-                                        <div class="text-muted font-size-sm"><span class="badge badge-mark border-blue mr-1"></span> Active</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="text-default">
-                                    <div class="font-weight-semibold">[#1254] Inaccurate small pagination height</div>
-                                    <span class="text-muted">The height of pagination elements is not consistent with...</span>
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-undo"></i> Quick reply</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-history"></i> Full history</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-checkmark3 text-success"></i> Resolve issue</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-cross2 text-danger"></i> Close issue</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center">
-                                <h6 class="mb-0">40</h6>
-                                <div class="font-size-sm text-muted line-height-1">hours</div>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#" class="btn bg-warning-400 rounded-round btn-icon btn-sm">
-                                            <span class="letter-icon"></span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold letter-icon-title">Robert Hauber</a>
-                                        <div class="text-muted font-size-sm"><span class="badge badge-mark border-blue mr-1"></span> Active</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="text-default">
-                                    <div class="font-weight-semibold">[#1184] Round grid column gutter operations</div>
-                                    <span class="text-muted">Left rounds up, right rounds down. should keep everything...</span>
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-undo"></i> Quick reply</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-history"></i> Full history</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-checkmark3 text-success"></i> Resolve issue</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-cross2 text-danger"></i> Close issue</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr class="table-active table-border-double">
-                            <td colspan="3">Resolved tickets</td>
-                            <td class="text-right">
-                                <span class="badge bg-success badge-pill">42</span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center">
-                                <i class="icon-checkmark3 text-success"></i>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#" class="btn bg-success-400 rounded-round btn-icon btn-sm">
-                                            <span class="letter-icon"></span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold letter-icon-title">Alan Macedo</a>
-                                        <div class="text-muted font-size-sm"><span class="badge badge-mark border-success mr-1"></span> Resolved</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="text-default">
-                                    <div>[#1046] Avoid some unnecessary HTML string</div>
-                                    <span class="text-muted">Rather than building a string of HTML and then parsing it...</span>
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-undo"></i> Quick reply</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-history"></i> Full history</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-plus3 text-blue"></i> Unresolve issue</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-cross2 text-danger"></i> Close issue</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center">
-                                <i class="icon-checkmark3 text-success"></i>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#" class="btn bg-pink-400 rounded-round btn-icon btn-sm">
-                                            <span class="letter-icon"></span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold letter-icon-title">Brett Castellano</a>
-                                        <div class="text-muted font-size-sm"><span class="badge badge-mark border-success mr-1"></span> Resolved</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="text-default">
-                                    <div>[#1038] Update json configuration</div>
-                                    <span class="text-muted">The <code>files</code> property is necessary to override the files property...</span>
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-undo"></i> Quick reply</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-history"></i> Full history</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-plus3 text-blue"></i> Unresolve issue</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-cross2 text-danger"></i> Close issue</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center">
-                                <i class="icon-checkmark3 text-success"></i>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#">
-                                            <img src="{{asset("back/global_assets/images/demo/users/face3.jpg")}}" class="rounded-circle" width="32" height="32" alt="">
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold">Roxanne Forbes</a>
-                                        <div class="text-muted font-size-sm"><span class="badge badge-mark border-success mr-1"></span> Resolved</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="text-default">
-                                    <div>[#1034] Tooltip multiple event</div>
-                                    <span class="text-muted">Fix behavior when using tooltips and popovers that are...</span>
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-undo"></i> Quick reply</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-history"></i> Full history</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-plus3 text-blue"></i> Unresolve issue</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-cross2 text-danger"></i> Close issue</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr class="table-active table-border-double">
-                            <td colspan="3">Closed tickets</td>
-                            <td class="text-right">
-                                <span class="badge bg-danger badge-pill">37</span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center">
-                                <i class="icon-cross2 text-danger-400"></i>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#">
-                                            <img src="{{asset("back/global_assets/images/demo/users/face8.jpg")}}" class="rounded-circle" width="32" height="32" alt="">
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold">Mitchell Sitkin</a>
-                                        <div class="text-muted font-size-sm"><span class="badge badge-mark border-danger mr-1"></span> Closed</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="text-default">
-                                    <div>[#1040] Account for static form controls in form group</div>
-                                    <span class="text-muted">Resizes control label's font-size and account for the standard...</span>
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-undo"></i> Quick reply</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-history"></i> Full history</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-plus3 text-blue"></i> Unresolve issue</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-spinner11 text-grey"></i> Reopen issue</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center">
-                                <i class="icon-cross2 text-danger"></i>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#" class="btn bg-brown-400 rounded-round btn-icon btn-sm">
-                                            <span class="letter-icon"></span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold letter-icon-title">Katleen Jensen</a>
-                                        <div class="text-muted font-size-sm"><span class="badge badge-mark border-danger mr-1"></span> Closed</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="text-default">
-                                    <div>[#1038] Proper sizing of form control feedback</div>
-                                    <span class="text-muted">Feedback icon sizing inside a larger/smaller form-group...</span>
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-undo"></i> Quick reply</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-history"></i> Full history</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-plus3 text-blue"></i> Unresolve issue</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-spinner11 text-grey"></i> Reopen issue</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!-- /support tickets -->
-
-
-            <!-- Latest posts -->
-            <div class="card">
-                <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Latest posts</h6>
-                    <div class="header-elements">
-                        <div class="list-icons">
-                            <a class="list-icons-item" data-action="collapse"></a>
-                            <a class="list-icons-item" data-action="reload"></a>
-                            <a class="list-icons-item" data-action="remove"></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-body pb-0">
+            <div class="row">
+                <div class="col-xl-4">
                     <div class="row">
-                        <div class="col-xl-6">
-                            <div class="media flex-column flex-sm-row mt-0 mb-3">
-                                <div class="mr-sm-3 mb-2 mb-sm-0">
-                                    <div class="card-img-actions">
-                                        <a href="#">
-                                            <img src="{{asset("back/global_assets/images/demo/flat/1.png")}}" class="img-fluid img-preview rounded" alt="">
-                                            <span class="card-img-actions-overlay card-img"><i class="icon-play3 icon-2x"></i></span>
-                                        </a>
+                        <div class="col-xl-12">
+                            <div class="card card-custom gutter-b">
+                                <div class="card-body p-0">
+                                    <div class="d-flex align-items-center justify-content-between card-spacer flex-grow-1">
+                                        <span class="symbol symbol-circle symbol-50 symbol-light-danger mr-2">
+                                            <span class="symbol-label">
+                                                <span class="svg-icon svg-icon-xl svg-icon-danger"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><rect fill="#000000" x="4" y="4" width="7" height="7" rx="1.5"/><path d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z" fill="#000000" opacity="0.3"/></g></svg></span>
+                                            </span>
+                                        </span>
+                                        <div class="d-flex flex-column text-right">
+                                            <span class="text-dark-75 font-weight-bolder font-size-h3">750$</span>
+                                            <span class="text-muted font-weight-bold mt-2">Weekly Income</span>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="media-body">
-                                    <h6 class="media-title"><a href="#">Up unpacked friendly</a></h6>
-                                    <ul class="list-inline list-inline-dotted text-muted mb-2">
-                                        <li class="list-inline-item"><i class="icon-book-play mr-2"></i> Video tutorials</li>
-                                    </ul>
-                                    The him father parish looked has sooner. Attachment frequently terminated son hello...
-                                </div>
-                            </div>
-
-                            <div class="media flex-column flex-sm-row mt-0 mb-3">
-                                <div class="mr-sm-3 mb-2 mb-sm-0">
-                                    <div class="card-img-actions">
-                                        <a href="#">
-                                            <img src="{{asset("back/global_assets/images/demo/flat/21.png")}}" class="img-fluid img-preview rounded" alt="">
-                                            <span class="card-img-actions-overlay card-img"><i class="icon-play3 icon-2x"></i></span>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="media-body">
-                                    <h6 class="media-title"><a href="#">It allowance prevailed</a></h6>
-                                    <ul class="list-inline list-inline-dotted text-muted mb-2">
-                                        <li class="list-inline-item"><i class="icon-book-play mr-2"></i> Video tutorials</li>
-                                    </ul>
-                                    Alteration literature to or an sympathize mr imprudence. Of is ferrars subject enjoyed...
+                                    <div id="kt_stats_widget_11_chart" class="card-rounded-bottom" data-color="danger" style="height: 150px"></div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-xl-6">
-                            <div class="media flex-column flex-sm-row mt-0 mb-3">
-                                <div class="mr-sm-3 mb-2 mb-sm-0">
-                                    <div class="card-img-actions">
-                                        <a href="#">
-                                            <img src="{{asset("back/global_assets/images/demo/flat/12.png")}}" class="img-fluid img-preview rounded" alt="">
-                                            <span class="card-img-actions-overlay card-img"><i class="icon-play3 icon-2x"></i></span>
-                                        </a>
+                        <div class="col-xl-12">
+                            <div class="card card-custom gutter-b">
+                                <div class="card-body p-0">
+                                    <div class="d-flex align-items-center justify-content-between card-spacer flex-grow-1">
+                                        <span class="symbol symbol-circle symbol-50 symbol-light-info mr-2">
+                                            <span class="symbol-label">
+                                            <span class="svg-icon svg-icon-xl svg-icon-info"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><path d="M12,4.56204994 L7.76822128,9.6401844 C7.4146572,10.0644613 6.7840925,10.1217854 6.3598156,9.76822128 C5.9355387,9.4146572 5.87821464,8.7840925 6.23177872,8.3598156 L11.2317787,2.3598156 C11.6315738,1.88006147 12.3684262,1.88006147 12.7682213,2.3598156 L17.7682213,8.3598156 C18.1217854,8.7840925 18.0644613,9.4146572 17.6401844,9.76822128 C17.2159075,10.1217854 16.5853428,10.0644613 16.2317787,9.6401844 L12,4.56204994 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/><path d="M3.5,9 L20.5,9 C21.0522847,9 21.5,9.44771525 21.5,10 C21.5,10.132026 21.4738562,10.2627452 21.4230769,10.3846154 L17.7692308,19.1538462 C17.3034221,20.271787 16.2111026,21 15,21 L9,21 C7.78889745,21 6.6965779,20.271787 6.23076923,19.1538462 L2.57692308,10.3846154 C2.36450587,9.87481408 2.60558331,9.28934029 3.11538462,9.07692308 C3.23725479,9.02614384 3.36797398,9 3.5,9 Z M12,17 C13.1045695,17 14,16.1045695 14,15 C14,13.8954305 13.1045695,13 12,13 C10.8954305,13 10,13.8954305 10,15 C10,16.1045695 10.8954305,17 12,17 Z" fill="#000000"/></g></svg></span>
+                                            </span>
+                                        </span>
+                                        <div class="d-flex flex-column text-right">
+                                            <span class="text-dark-75 font-weight-bolder font-size-h3">+259</span>
+                                            <span class="text-muted font-weight-bold mt-2">Sales Change</span>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="media-body">
-                                    <h6 class="media-title"><a href="#">Case read they must</a></h6>
-                                    <ul class="list-inline list-inline-dotted text-muted mb-2">
-                                        <li class="list-inline-item"><i class="icon-book-play mr-2"></i> Video tutorials</li>
-                                    </ul>
-                                    On it differed repeated wandered required in. Then girl neat why yet knew rose spot...
+                                    <div id="kt_stats_widget_10_chart" class="card-rounded-bottom" data-color="info" style="height: 150px"></div>
                                 </div>
                             </div>
-
-                            <div class="media flex-column flex-sm-row mt-0 mb-3">
-                                <div class="mr-sm-3 mb-2 mb-sm-0">
-                                    <div class="card-img-actions">
-                                        <a href="#">
-                                            <img src="{{asset("back/global_assets/images/demo/flat/15.png")}}" class="img-fluid img-preview rounded" alt="">
-                                            <span class="card-img-actions-overlay card-img"><i class="icon-play3 icon-2x"></i></span>
-                                        </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8">
+                    <div class="card card-custom gutter-b card-stretch">
+                        <div class="card-header border-0">
+                            <h3 class="card-title font-weight-bolder text-dark">Market Leaders</h3>
+                            <div class="card-toolbar">
+                                <div class="dropdown dropdown-inline">
+                                    <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ki ki-bold-more-ver"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
+                                        <ul class="navi navi-hover">
+                                            <li class="navi-header font-weight-bold py-4">
+                                                <span class="font-size-lg">Choose Label:</span>
+                                                <i class="flaticon2-information icon-md text-muted" data-toggle="tooltip" data-placement="right" title="Click to learn more..."></i>
+                                            </li>
+                                            <li class="navi-separator mb-3 opacity-70"></li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-text"><span class="label label-xl label-inline label-light-success">Customer</span></span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-text"><span class="label label-xl label-inline label-light-danger">Partner</span></span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-text"><span class="label label-xl label-inline label-light-warning">Suplier</span></span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-text"><span class="label label-xl label-inline label-light-primary">Member</span></span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-text"><span class="label label-xl label-inline label-light-dark">Staff</span></span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-separator mt-3 opacity-70"></li>
+                                            <li class="navi-footer py-4">
+                                                <a class="btn btn-clean font-weight-bold btn-sm" href="#">
+                                                    <i class="ki ki-plus icon-sm"></i>
+                                                    Add new
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
-
-                                <div class="media-body">
-                                    <h6 class="media-title"><a href="#">Too carriage attended</a></h6>
-                                    <ul class="list-inline list-inline-dotted text-muted mb-2">
-                                        <li class="list-inline-item"><i class="icon-book-play mr-2"></i> FAQ section</li>
-                                    </ul>
-                                    Marianne or husbands if at stronger ye. Considered is as middletons uncommonly...
+                            </div>
+                        </div>
+                        <div class="card-body pt-2">
+                            <div class="d-flex flex-wrap align-items-center mb-10">
+                                <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
+                                    <div class="symbol-label" style="background-image: url('{{asset("back/assets/media/stock-600x400/img-17.jpg")}}')"></div>
+                                </div>
+                                <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">
+                                    <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">Cup & Green</a>
+                                    <span class="text-muted font-weight-bold font-size-sm my-1">Local, clean & environmental</span>
+                                    <span class="text-muted font-weight-bold font-size-sm">Created by: <span class="text-primary font-weight-bold">CoreAd</span></span>
+                                </div>
+                                <div class="d-flex align-items-center py-lg-0 py-2">
+                                    <div class="d-flex flex-column text-right">
+                                        <span class="text-dark-75 font-weight-bolder font-size-h4">24,900</span>
+                                        <span class="text-muted font-size-sm font-weight-bolder">votes</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-wrap align-items-center mb-10">
+                                <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
+                                    <div class="symbol-label" style="background-image: url('{{asset("back/assets/media/stock-600x400/img-10.jpg")}}')"></div>
+                                </div>
+                                <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">
+                                    <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">Yellow Background</a>
+                                    <span class="text-muted font-weight-bold font-size-sm my-1">Strong abstract concept</span>
+                                    <span class="text-muted font-weight-bold font-size-sm">Created by: <span class="text-primary font-weight-bold">KeenThemes</span></span>
+                                </div>
+                                <div class="d-flex align-items-center py-lg-0 py-2">
+                                    <div class="d-flex flex-column text-right">
+                                        <span class="text-dark-75 font-weight-bolder font-size-h4">70,380</span>
+                                        <span class="text-muted font-weight-bolder font-size-sm">votes</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-wrap align-items-center mb-10">
+                                <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
+                                    <div class="symbol-label" style="background-image: url('{{asset("back/assets/media/stock-600x400/img-1.jpg")}}')"></div>
+                                </div>
+                                <div class="d-flex flex-column flex-grow-1 pr-3">
+                                    <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">Nike & Blue</a>
+                                    <span class="text-muted font-weight-bold font-size-sm my-1">Footwear overalls</span>
+                                    <span class="text-muted font-weight-bold font-size-sm">Created by: <span class="text-primary font-weight-bold">Invision Inc.</span></span>
+                                </div>
+                                <div class="d-flex align-items-center py-lg-0 py-2">
+                                    <div class="d-flex flex-column text-right">
+                                        <span class="text-dark-75 font-size-h4 font-weight-bolder">7,200</span>
+                                        <span class="text-muted font-size-sm font-weight-bolder">votes</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-wrap align-items-center mb-10">
+                                <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
+                                    <div class="symbol-label" style="background-image: url('{{asset("back/assets/media/stock-600x400/img-9.jpg")}}')"></div>
+                                </div>
+                                <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">
+                                    <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">Desserts platter</a>
+                                    <span class="text-muted font-size-sm font-weight-bold my-1">Food trends & reviews</span>
+                                    <span class="text-muted font-size-sm font-weight-bold">Created by: <span class="text-primary font-weight-bold">Figma Studio</span></span>
+                                </div>
+                                <div class="d-flex align-items-center py-lg-0 py-2">
+                                    <div class="d-flex flex-column text-right">
+                                        <span class="text-dark-75 font-size-h4 font-weight-bolder">36,450</span>
+                                        <span class="text-muted font-size-sm font-weight-bolder">votes</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-wrap align-items-center">
+                                <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
+                                    <div class="symbol-label" style="background-image: url('{{asset("back/assets/media/stock-600x400/img-12.jpg")}}')"></div>
+                                </div>
+                                <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">
+                                    <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">Cup & Green</a>
+                                    <span class="text-muted font-weight-bold font-size-sm my-1">Local, clean & environmental</span>
+                                    <span class="text-muted font-weight-bold font-size-sm">Created by: <span class="text-primary font-weight-bold">CoreAd</span></span>
+                                </div>
+                                <div class="d-flex align-items-center py-lg-0 py-2">
+                                    <div class="d-flex flex-column text-right">
+                                        <span class="text-dark-75 font-weight-bolder font-size-h4">23,900</span>
+                                        <span class="text-muted font-size-sm font-weight-bolder">votes</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- /latest posts -->
-
-        </div>
-
-        <div class="col-xl-4">
-
-            <!-- Progress counters -->
             <div class="row">
-                <div class="col-sm-6">
-
-                    <!-- Available hours -->
-                    <div class="card text-center">
-                        <div class="card-body">
-
-                            <!-- Progress counter -->
-                            <div class="svg-center position-relative" id="hours-available-progress"></div>
-                            <!-- /progress counter -->
-
-
-                            <!-- Bars -->
-                            <div id="hours-available-bars"></div>
-                            <!-- /bars -->
-
+                <div class="col-lg-12 col-xxl-12">
+                    <div class="card card-custom card-stretch gutter-b">
+                        <div class="card-header border-0 py-5">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label font-weight-bolder text-dark">Agents Stats</span>
+                                <span class="text-muted mt-3 font-weight-bold font-size-sm">More than 400+ new members</span>
+                            </h3>
+                            <div class="card-toolbar">
+                                <a href="#" class="btn btn-info font-weight-bolder font-size-sm mr-3">New Arrivals</a>
+                                <a href="#" class="btn btn-danger font-weight-bolder font-size-sm">Create</a>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0 pb-3">
+                            <div class="tab-content">
+                                <div class="table-responsive">
+                                    <table
+                                        class="table table-head-custom table-vertical-center table-head-bg table-borderless">
+                                        <thead>
+                                        <tr class="text-left">
+                                            <th style="min-width: 250px" class="pl-7"><span class="text-dark-75">products</span></th>
+                                            <th style="min-width: 120px">earnings</th>
+                                            <th style="min-width: 100px">comission</th>
+                                            <th style="min-width: 100px">company</th>
+                                            <th style="min-width: 100px">rating</th>
+                                            <th style="min-width: 100px"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="pl-0 py-8">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="symbol symbol-50 symbol-light mr-4">
+                                                        <span class="symbol-label"><img src="{{asset("back/assets/media/svg/avatars/001-boy.svg")}}" class="h-75 align-self-end" alt=""/></span>
+                                                    </div>
+                                                    <div>
+                                                        <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Brad Simmons</a>
+                                                        <span class="text-muted font-weight-bold d-block">HTML, JS, ReactJS</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$8,000,000</span>
+                                                <span class="text-muted font-weight-bold">In Proccess</span>
+                                            </td>
+                                            <td>
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$520</span>
+                                                <span class="text-muted font-weight-bold">Paid</span>
+                                            </td>
+                                            <td>
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Intertico</span>
+                                                <span class="text-muted font-weight-bold">Web, UI/UX Design</span>
+                                            </td>
+                                            <td>
+                                                <img src="{{asset("back/assets/media/logos/stars.png")}}" alt="image" style="width: 5rem"/>
+                                                <span class="text-muted font-weight-bold d-block">Best Rated</span>
+                                            </td>
+                                            <td class="pr-0 text-right">
+                                                <a href="#" class="btn btn-light-success font-weight-bolder font-size-sm">View Offer</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pl-0 py-0">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="symbol symbol-50 symbol-light mr-4">
+                                                        <span class="symbol-label"><img src="{{asset("back/assets/media/svg/avatars/018-girl-9.svg")}}" class="h-75 align-self-end" alt=""/></span>
+                                                    </div>
+                                                    <div>
+                                                        <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Jessie Clarcson</a>
+                                                        <span class="text-muted font-weight-bold d-block">C#, ASP.NET, MS SQL</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$23,000,000</span>
+                                                <span class="text-muted font-weight-bold">Pending</span>
+                                            </td>
+                                            <td>
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$1,600</span>
+                                                <span class="text-muted font-weight-bold">Rejected</span>
+                                            </td>
+                                            <td>
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Agoda</span>
+                                                <span class="text-muted font-weight-bold">Houses & Hotels</span>
+                                            </td>
+                                            <td>
+                                                <img src="{{asset("back/assets/media/logos/stars.png")}}" alt="image" style="width: 5rem"/>
+                                                <span class="text-muted font-weight-bold d-block">Above Average</span>
+                                            </td>
+                                            <td class="pr-0 text-right">
+                                                <a href="#" class="btn btn-light-success font-weight-bolder font-size-sm">View Offer</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pl-0 py-8">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="symbol symbol-50 symbol-light mr-4">
+                                                        <span class="symbol-label"><img src="{{asset("back/assets/media/svg/avatars/047-girl-25.svg")}}" class="h-75 align-self-end" alt=""/></span>
+                                                    </div>
+                                                    <div>
+                                                        <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Lebron Wayde</a>
+                                                        <span class="text-muted font-weight-bold d-block">PHP, Laravel, VueJS</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+$34,000,000
+</span>
+                                                <span class="text-muted font-weight-bold">
+Paid
+</span>
+                                            </td>
+                                            <td>
+<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+$6,700
+</span>
+                                                <span class="text-muted font-weight-bold">
+Paid
+</span>
+                                            </td>
+                                            <td>
+<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+RoadGee
+</span>
+                                                <span class="text-muted font-weight-bold">
+Transportation
+</span>
+                                            </td>
+                                            <td>
+                                                <img src="{{asset("back/assets/media/logos/stars.png")}}" alt="image"
+                                                     style="width: 5rem"/>
+                                                <span class="text-muted font-weight-bold d-block">
+Best Rated
+</span>
+                                            </td>
+                                            <td class="pr-0 text-right">
+                                                <a href="#"
+                                                   class="btn btn-light-success font-weight-bolder font-size-sm">View
+                                                    Offer</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pl-0 py-0">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="symbol symbol-50 symbol-light mr-4">
+                                                        <span class="symbol-label"><img src="{{"back/assets/media/svg/avatars/014-girl-7.svg"}}" class="h-75 align-self-end" alt=""/></span>
+                                                    </div>
+                                                    <div>
+                                                        <a href="#" class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Natali Trump</a>
+                                                        <span class="text-muted font-weight-bold d-block">Python, PostgreSQL, ReactJS</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$2,600,000</span>
+                                                <span class="text-muted font-weight-bold">Paid</span>
+                                            </td>
+                                            <td>
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$14,000</span>
+                                                <span class="text-muted font-weight-bold">Pending</span>
+                                            </td>
+                                            <td>
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">The Hill</span>
+                                                <span class="text-muted font-weight-bold">Insurance</span>
+                                            </td>
+                                            <td>
+                                                <img src="{{asset("back/assets/media/logos/stars.png")}}" alt="image" style="width: 5rem"/>
+                                                <span class="text-muted font-weight-bold d-block">Average</span>
+                                            </td>
+                                            <td class="pr-0  text-right">
+                                                <a href="#" class="btn btn-light-success font-weight-bolder font-size-sm">View Offer</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!-- /available hours -->
-
-                </div>
-
-                <div class="col-sm-6">
-
-                    <!-- Productivity goal -->
-                    <div class="card text-center">
-                        <div class="card-body">
-
-                            <!-- Progress counter -->
-                            <div class="svg-center position-relative" id="goal-progress"></div>
-                            <!-- /progress counter -->
-
-                            <!-- Bars -->
-                            <div id="goal-bars"></div>
-                            <!-- /bars -->
-
-                        </div>
-                    </div>
-                    <!-- /productivity goal -->
-
                 </div>
             </div>
-            <!-- /progress counters -->
-
-
-            <!-- Daily sales -->
-            <div class="card">
-                <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Daily sales stats</h6>
-                    <div class="header-elements">
-                        <span class="font-weight-bold text-danger-600 ml-2">$4,378</span>
-                        <div class="list-icons ml-3">
-                            <div class="dropdown">
-                                <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-cog3"></i></a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="#" class="dropdown-item"><i class="icon-sync"></i> Update data</a>
-                                    <a href="#" class="dropdown-item"><i class="icon-list-unordered"></i> Detailed log</a>
-                                    <a href="#" class="dropdown-item"><i class="icon-pie5"></i> Statistics</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="#" class="dropdown-item"><i class="icon-cross3"></i> Clear list</a>
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="card card-custom  card-stretch gutter-b">
+                        <div class="card-header border-0">
+                            <h3 class="card-title font-weight-bolder text-dark">Notifications</h3>
+                            <div class="card-toolbar">
+                                <div class="dropdown dropdown-inline">
+                                    <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ki ki-bold-more-ver"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
+                                        <ul class="navi">
+                                            <li class="navi-header font-weight-bold py-5">
+                                                <span class="font-size-lg">Add New:</span>
+                                                <i class="flaticon2-information icon-md text-muted" data-toggle="tooltip" data-placement="right" title="Click to learn more..."></i>
+                                            </li>
+                                            <li class="navi-separator mb-3 opacity-70"></li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon"><i class="flaticon2-shopping-cart-1"></i></span>
+                                                    <span class="navi-text">Order</span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon"><i
+                                                            class="navi-icon flaticon2-calendar-8"></i></span>
+                                                    <span class="navi-text">Members</span>
+                                                    <span class="navi-label"><span class="label label-light-danger label-rounded font-weight-bold">3</span></span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon"><i class="navi-icon flaticon2-telegram-logo"></i></span>
+                                                    <span class="navi-text">Project</span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon"><i class="navi-icon flaticon2-new-email"></i></span>
+                                                    <span class="navi-text">Record</span>
+                                                    <span class="navi-label"><span class="label label-light-success label-rounded font-weight-bold">5</span></span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-separator mt-3 opacity-70"></li>
+                                            <li class="navi-footer pt-5 pb-4">
+                                                <a class="btn btn-light-primary font-weight-bolder btn-sm" href="#">More options</a>
+                                                <a class="btn btn-clean font-weight-bold btn-sm d-none" href="#" data-toggle="tooltip" data-placement="right" title="Click to learn more...">Learn more</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="card-body pt-0">
+                            <div class="mb-6">
+                                <div class="d-flex align-items-center flex-grow-1">
+                                    <label class="checkbox checkbox-lg checkbox-lg flex-shrink-0 mr-4">
+                                        <input type="checkbox" value="1"/>
+                                        <span></span>
+                                    </label>
+                                    <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
+                                        <!--begin::Info-->
+                                        <div class="d-flex flex-column align-items-cente py-2 w-75">
+                                            <!--begin::Title-->
+                                            <a href="#"
+                                               class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">
+                                                Daily Standup Meeting
+                                            </a>
+                                            <!--end::Title-->
+                                            <!--begin::Data-->
+                                            <span class="text-muted font-weight-bold">
+Due in 2 Days
+</span>
+                                            <!--end::Data-->
+                                        </div>
+                                        <!--end::Info-->
+                                        <!--begin::Label-->
+                                        <span
+                                            class="label label-lg label-light-primary label-inline font-weight-bold py-4">Approved</span>
+                                        <!--end::Label-->
+                                    </div>
+                                    <!--end::Section-->
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Item-->
+                            <!--begin::Item-->
+                            <div class="mb-6">
+                                <!--begin::Content-->
+                                <div class="d-flex align-items-center flex-grow-1">
+                                    <!--begin::Checkbox-->
+                                    <label class="checkbox checkbox-lg checkbox-lg flex-shrink-0 mr-4">
+                                        <input type="checkbox" value="1"/>
+                                        <span></span>
+                                    </label>
+                                    <!--end::Checkbox-->
+                                    <!--begin::Section-->
+                                    <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
+                                        <!--begin::Info-->
+                                        <div class="d-flex flex-column align-items-cente py-2 w-75">
+                                            <!--begin::Title-->
+                                            <a href="#"
+                                               class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">
+                                                Group Town Hall Meet-up with showcase
+                                            </a>
+                                            <!--end::Title-->
+                                            <!--begin::Data-->
+                                            <span class="text-muted font-weight-bold">
+Due in 2 Days
+</span>
+                                            <!--end::Data-->
+                                        </div>
+                                        <!--end::Info-->
+                                        <!--begin::Label-->
+                                        <span
+                                            class="label label-lg label-light-warning label-inline font-weight-bold py-4">In Progress</span>
+                                        <!--end::Label-->
+                                    </div>
+                                    <!--end::Section-->
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Item-->
+                            <!--begin::Item-->
+                            <div class="mb-6">
+                                <!--begin::Content-->
+                                <div class="d-flex align-items-center flex-grow-1">
+                                    <!--begin::Checkbox-->
+                                    <label class="checkbox checkbox-lg checkbox-lg flex-shrink-0 mr-4">
+                                        <input type="checkbox" value="1"/>
+                                        <span></span>
+                                    </label>
+                                    <!--end::Checkbox-->
+                                    <!--begin::Section-->
+                                    <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
+                                        <!--begin::Info-->
+                                        <div class="d-flex flex-column align-items-cente py-2 w-75">
+                                            <!--begin::Title-->
+                                            <a href="#"
+                                               class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">
+                                                Next sprint planning and estimations
+                                            </a>
+                                            <!--end::Title-->
+                                            <!--begin::Data-->
+                                            <span class="text-muted font-weight-bold">
+Due in 2 Days
+</span>
+                                            <!--end::Data-->
+                                        </div>
+                                        <!--end::Info-->
+                                        <!--begin::Label-->
+                                        <span
+                                            class="label label-lg label-light-success label-inline font-weight-bold py-4">Success</span>
+                                        <!--end::Label-->
+                                    </div>
+                                    <!--end::Section-->
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Item-->
+                            <!--begin::Item-->
+                            <div class="mb-6">
+                                <!--begin::Content-->
+                                <div class="d-flex align-items-center flex-grow-1">
+                                    <!--begin::Checkbox-->
+                                    <label class="checkbox checkbox-lg checkbox-lg flex-shrink-0 mr-4">
+                                        <input type="checkbox" value="1"/>
+                                        <span></span>
+                                    </label>
+                                    <!--end::Checkbox-->
+                                    <!--begin::Section-->
+                                    <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
+                                        <!--begin::Info-->
+                                        <div class="d-flex flex-column align-items-cente py-2 w-75">
+                                            <!--begin::Title-->
+                                            <a href="#"
+                                               class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">
+                                                Sprint delivery and project deployment
+                                            </a>
+                                            <!--end::Title-->
+                                            <!--begin::Data-->
+                                            <span class="text-muted font-weight-bold">
+Due in 2 Days
+</span>
+                                            <!--end::Data-->
+                                        </div>
+                                        <!--end::Info-->
+                                        <!--begin::Label-->
+                                        <span
+                                            class="label label-lg label-light-danger label-inline font-weight-bold py-4">Rejected</span>
+                                        <!--end::Label-->
+                                    </div>
+                                    <!--end::Section-->
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end: Item-->
+                            <!--begin: Item-->
+                            <div class="">
+                                <!--begin::Content-->
+                                <div class="d-flex align-items-center flex-grow-1">
+                                    <!--begin::Checkbox-->
+                                    <label class="checkbox checkbox-lg checkbox-lg flex-shrink-0 mr-4">
+                                        <input type="checkbox" value="1"/>
+                                        <span></span>
+                                    </label>
+                                    <!--end::Checkbox-->
+                                    <!--begin::Section-->
+                                    <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
+                                        <!--begin::Info-->
+                                        <div class="d-flex flex-column align-items-cente py-2 w-75">
+                                            <!--begin::Title-->
+                                            <a href="#"
+                                               class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">
+                                                Data analytics research showcase
+                                            </a>
+                                            <!--end::Title-->
+                                            <!--begin::Data-->
+                                            <span class="text-muted font-weight-bold">
+Due in 2 Days
+</span>
+                                            <!--end::Data-->
+                                        </div>
+                                        <!--end::Info-->
+                                        <!--begin::Label-->
+                                        <span
+                                            class="label label-lg label-light-warning label-inline font-weight-bold py-4">In Progress</span>
+                                        <!--end::Label-->
+                                    </div>
+                                    <!--end::Section-->
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end: Item-->
+                        </div>
+                        <!--end: Card Body-->
                     </div>
+                    <!--end: Card-->
+                    <!--end: List Widget 10-->
                 </div>
-
-                <div class="card-body">
-                    <div class="chart" id="sales-heatmap"></div>
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table text-nowrap">
-                        <thead>
-                        <tr>
-                            <th class="w-100">Application</th>
-                            <th>Time</th>
-                            <th>Price</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#" class="btn bg-primary-400 rounded-round btn-icon btn-sm">
-                                            <span class="letter-icon"></span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold letter-icon-title">Sigma application</a>
-                                        <div class="text-muted font-size-sm"><i class="icon-checkmark3 font-size-sm mr-1"></i> New order</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="text-muted font-size-sm">06:28 pm</span>
-                            </td>
-                            <td>
-                                <h6 class="font-weight-semibold mb-0">$49.90</h6>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#" class="btn bg-danger-400 rounded-round btn-icon btn-sm">
-                                            <span class="letter-icon"></span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold letter-icon-title">Alpha application</a>
-                                        <div class="text-muted font-size-sm"><i class="icon-spinner11 font-size-sm mr-1"></i> Renewal</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="text-muted font-size-sm">04:52 pm</span>
-                            </td>
-                            <td>
-                                <h6 class="font-weight-semibold mb-0">$90.50</h6>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#" class="btn bg-indigo-400 rounded-round btn-icon btn-sm">
-                                            <span class="letter-icon"></span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold letter-icon-title">Delta application</a>
-                                        <div class="text-muted font-size-sm"><i class="icon-lifebuoy font-size-sm mr-1"></i> Support</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="text-muted font-size-sm">01:26 pm</span>
-                            </td>
-                            <td>
-                                <h6 class="font-weight-semibold mb-0">$60.00</h6>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#" class="btn bg-success-400 rounded-round btn-icon btn-sm">
-                                            <span class="letter-icon"></span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold letter-icon-title">Omega application</a>
-                                        <div class="text-muted font-size-sm"><i class="icon-lifebuoy font-size-sm mr-1"></i> Support</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="text-muted font-size-sm">11:46 am</span>
-                            </td>
-                            <td>
-                                <h6 class="font-weight-semibold mb-0">$55.00</h6>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#" class="btn bg-danger-400 rounded-round btn-icon btn-sm">
-                                            <span class="letter-icon"></span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold letter-icon-title">Alpha application</a>
-                                        <div class="text-muted font-size-sm"><i class="icon-spinner11 font-size-sm mr-2"></i> Renewal</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="text-muted font-size-sm">10:29 am</span>
-                            </td>
-                            <td>
-                                <h6 class="font-weight-semibold mb-0">$90.50</h6>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="col-xl-6">
+                    <!--begin::Base Table Widget 1-->
+                    <div class="card card-custom card-stretch gutter-b">
+                        <!--begin::Header-->
+                        <div class="card-header border-0 pt-5">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label font-weight-bolder text-dark">Trending Items</span>
+                                <span
+                                    class="text-muted mt-3 font-weight-bold font-size-sm">More than 400+ new members</span>
+                            </h3>
+                            <div class="card-toolbar">
+                                <ul class="nav nav-pills nav-pills-sm nav-dark-75">
+                                    <li class="nav-item">
+                                        <a class="nav-link py-2 px-4" data-toggle="tab"
+                                           href="#kt_tab_pane_1_1">Month</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link py-2 px-4" data-toggle="tab" href="#kt_tab_pane_1_2">Week</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link py-2 px-4 active" data-toggle="tab" href="#kt_tab_pane_1_3">Day</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--end::Header-->
+                        <!--begin::Body-->
+                        <div class="card-body pt-2 pb-0">
+                            <!--begin::Table-->
+                            <div class="table-responsive">
+                                <table class="table table-borderless table-vertical-center">
+                                    <thead>
+                                    <tr>
+                                        <th class="p-0 w-50px"></th>
+                                        <th class="p-0 min-w-200px"></th>
+                                        <th class="p-0 min-w-100px"></th>
+                                        <th class="p-0 min-w-40px"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="pl-0 py-5">
+                                            <div class="symbol symbol-50 symbol-light mr-2">
+<span class="symbol-label">
+<img src="assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt=""/>
+</span>
+                                            </div>
+                                        </td>
+                                        <td class="pl-0">
+                                            <a href="#"
+                                               class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Top
+                                                Authors</a>
+                                            <span class="text-muted font-weight-bold d-block">Successful Fellas</span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex flex-column w-100 mr-2">
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+<span class="text-muted mr-2 font-size-sm font-weight-bold">
+65%
+</span>
+                                                    <span class="text-muted font-size-sm font-weight-bold">
+Progress
+</span>
+                                                </div>
+                                                <div class="progress progress-xs w-100">
+                                                    <div class="progress-bar bg-danger" role="progressbar"
+                                                         style="width: 65%;" aria-valuenow="50" aria-valuemin="0"
+                                                         aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right pr-0">
+                                            <a href="#" class="btn btn-icon btn-light btn-sm">
+<span class="svg-icon svg-icon-md svg-icon-success">
+<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+     viewBox="0 0 24 24" version="1.1">
+<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+   <polygon points="0 0 24 0 24 24 0 24"/>
+   <rect fill="#000000" opacity="0.3"
+         transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5"
+         width="2" height="14" rx="1"/>
+   <path
+       d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
+       fill="#000000" fill-rule="nonzero"
+       transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/>
+</g>
+</svg>
+    <!--end::Svg Icon-->
+</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="pl-0 py-5">
+                                            <div class="symbol symbol-50 symbol-light mr-2">
+<span class="symbol-label">
+<img src="assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center" alt=""/>
+</span>
+                                            </div>
+                                        </th>
+                                        <td class="pl-0">
+                                            <a href="#"
+                                               class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Popular
+                                                Authors</a>
+                                            <span class="text-muted font-weight-bold d-block">Most Successful</span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex flex-column w-100 mr-2">
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+<span class="text-muted mr-2 font-size-sm font-weight-bold">
+83%
+</span>
+                                                    <span class="text-muted font-size-sm font-weight-bold">
+Progress
+</span>
+                                                </div>
+                                                <div class="progress progress-xs w-100">
+                                                    <div class="progress-bar bg-success" role="progressbar"
+                                                         style="width: 83%;" aria-valuenow="50" aria-valuemin="0"
+                                                         aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right pr-0">
+                                            <a href="#" class="btn btn-icon btn-light btn-sm">
+<span class="svg-icon svg-icon-md svg-icon-success">
+<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+     viewBox="0 0 24 24" version="1.1">
+<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+   <polygon points="0 0 24 0 24 24 0 24"/>
+   <rect fill="#000000" opacity="0.3"
+         transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5"
+         width="2" height="14" rx="1"/>
+   <path
+       d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
+       fill="#000000" fill-rule="nonzero"
+       transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/>
+</g>
+</svg>
+    <!--end::Svg Icon-->
+</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="pl-0 py-5">
+                                            <div class="symbol symbol-50 symbol-light mr-2">
+<span class="symbol-label">
+<img src="assets/media/svg/misc/003-puzzle.svg" class="h-50 align-self-center" alt=""/>
+</span>
+                                            </div>
+                                        </th>
+                                        <td class="pl-0">
+                                            <a href="#"
+                                               class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">New
+                                                Users</a>
+                                            <span class="text-muted font-weight-bold d-block">Awesome Users</span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex flex-column w-100 mr-2">
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+<span class="text-muted mr-2 font-size-sm font-weight-bold">
+47%
+</span>
+                                                    <span class="text-muted font-size-sm font-weight-bold">
+Progress
+</span>
+                                                </div>
+                                                <div class="progress progress-xs w-100">
+                                                    <div class="progress-bar bg-primary" role="progressbar"
+                                                         style="width: 47%;" aria-valuenow="50" aria-valuemin="0"
+                                                         aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right pr-0">
+                                            <a href="#" class="btn btn-icon btn-light btn-sm">
+<span class="svg-icon svg-icon-md svg-icon-success">
+<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+     viewBox="0 0 24 24" version="1.1">
+<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+   <polygon points="0 0 24 0 24 24 0 24"/>
+   <rect fill="#000000" opacity="0.3"
+         transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5"
+         width="2" height="14" rx="1"/>
+   <path
+       d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
+       fill="#000000" fill-rule="nonzero"
+       transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/>
+</g>
+</svg>
+    <!--end::Svg Icon-->
+</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="pl-0 py-5">
+                                            <div class="symbol symbol-50 symbol-light mr-2">
+<span class="symbol-label">
+<img src="assets/media/svg/misc/005-bebo.svg" class="h-50 align-self-center" alt=""/>
+</span>
+                                            </div>
+                                        </th>
+                                        <td class="py-6 pl-0">
+                                            <a href="#"
+                                               class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Active
+                                                Customers</a>
+                                            <span class="text-muted font-weight-bold d-block">Best Customers</span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex flex-column w-100 mr-2">
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+<span class="text-muted mr-2 font-size-sm font-weight-bold">
+71%
+</span>
+                                                    <span class="text-muted font-size-sm font-weight-bold">
+Progress
+</span>
+                                                </div>
+                                                <div class="progress progress-xs w-100">
+                                                    <div class="progress-bar bg-danger" role="progressbar"
+                                                         style="width: 71%;" aria-valuenow="50" aria-valuemin="0"
+                                                         aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right pr-0">
+                                            <a href="#" class="btn btn-icon btn-light btn-sm">
+<span class="svg-icon svg-icon-md svg-icon-success">
+<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+     viewBox="0 0 24 24" version="1.1">
+<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+   <polygon points="0 0 24 0 24 24 0 24"/>
+   <rect fill="#000000" opacity="0.3"
+         transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5"
+         width="2" height="14" rx="1"/>
+   <path
+       d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
+       fill="#000000" fill-rule="nonzero"
+       transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/>
+</g>
+</svg>
+    <!--end::Svg Icon-->
+</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="pl-0 py-5">
+                                            <div class="symbol symbol-50 symbol-light mr-2">
+<span class="symbol-label">
+<img src="assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center" alt=""/>
+</span>
+                                            </div>
+                                        </th>
+                                        <td class="pl-0">
+                                            <a href="#"
+                                               class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Bestseller
+                                                Theme</a>
+                                            <span class="text-muted font-weight-bold d-block">Amazing Templates</span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex flex-column w-100 mr-2">
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+<span class="text-muted mr-2 font-size-sm font-weight-bold">
+50%
+</span>
+                                                    <span class="text-muted font-size-sm font-weight-bold">
+Progress
+</span>
+                                                </div>
+                                                <div class="progress progress-xs w-100">
+                                                    <div class="progress-bar bg-info" role="progressbar"
+                                                         style="width: 50%;" aria-valuenow="50" aria-valuemin="0"
+                                                         aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right pr-0">
+                                            <a href="#" class="btn btn-icon btn-light btn-sm">
+<span class="svg-icon svg-icon-md svg-icon-success">
+<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+     viewBox="0 0 24 24" version="1.1">
+<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+   <polygon points="0 0 24 0 24 24 0 24"/>
+   <rect fill="#000000" opacity="0.3"
+         transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5"
+         width="2" height="14" rx="1"/>
+   <path
+       d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
+       fill="#000000" fill-rule="nonzero"
+       transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/>
+</g>
+</svg>
+    <!--end::Svg Icon-->
+</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--end::Table-->
+                        </div>
+                    </div>
+                    <!--end::Base Table Widget 1-->
                 </div>
             </div>
-            <!-- /daily sales -->
-
-
-            <!-- My messages -->
-            <div class="card">
-                <div class="card-header header-elements-inline">
-                    <h6 class="card-title">My messages</h6>
-                    <div class="header-elements">
-                        <span><i class="icon-history text-warning mr-2"></i> Jul 7, 10:30</span>
-                        <span class="badge bg-success align-self-start ml-3">Online</span>
-                    </div>
-                </div>
-
-                <!-- Numbers -->
-                <div class="card-body py-0">
-                    <div class="row text-center">
-                        <div class="col-4">
-                            <div class="mb-3">
-                                <h5 class="font-weight-semibold mb-0">2,345</h5>
-                                <span class="text-muted font-size-sm">this week</span>
+            <!--end::Row-->
+            <!--begin::Row-->
+            <div class="row">
+                <div class="col-lg-4">
+                    <!--begin::List Widget 8-->
+                    <div class="card card-custom card-stretch gutter-b">
+                        <!--begin::Header-->
+                        <div class="card-header border-0">
+                            <h3 class="card-title font-weight-bolder text-dark">Trends</h3>
+                            <div class="card-toolbar">
+                                <div class="dropdown dropdown-inline">
+                                    <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="ki ki-bold-more-ver"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                        <!--begin::Navigation-->
+                                        <ul class="navi navi-hover">
+                                            <li class="navi-header pb-1">
+                                                <span class="text-primary text-uppercase font-weight-bold font-size-sm">Add new:</span>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon"><i
+                                                            class="flaticon2-shopping-cart-1"></i></span>
+                                                    <span class="navi-text">Order</span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon"><i class="flaticon2-calendar-8"></i></span>
+                                                    <span class="navi-text">Event</span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon"><i class="flaticon2-graph-1"></i></span>
+                                                    <span class="navi-text">Report</span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon"><i class="flaticon2-rocket-1"></i></span>
+                                                    <span class="navi-text">Post</span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon"><i class="flaticon2-writing"></i></span>
+                                                    <span class="navi-text">File</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <!--end::Navigation-->
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="col-4">
-                            <div class="mb-3">
-                                <h5 class="font-weight-semibold mb-0">3,568</h5>
-                                <span class="text-muted font-size-sm">this month</span>
+                        <!--end::Header-->
+                        <!--begin::Body-->
+                        <div class="card-body pt-0">
+                            <!--begin::Item-->
+                            <div class="mb-10">
+                                <!--begin::Section-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Symbol-->
+                                    <div class="symbol symbol-45 symbol-light mr-5">
+<span class="symbol-label">
+<img src="assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt=""/>
+</span>
+                                    </div>
+                                    <!--end::Symbol-->
+                                    <!--begin::Text-->
+                                    <div class="d-flex flex-column flex-grow-1">
+                                        <a href="#"
+                                           class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1">Top
+                                            Authors</a>
+                                        <span class="text-muted font-weight-bold">5 day ago</span>
+                                    </div>
+                                    <!--end::Text-->
+                                </div>
+                                <!--end::Section-->
+                                <!--begin::Desc-->
+                                <p class="text-dark-50 m-0 pt-5 font-weight-normal">
+                                    A brief write up about the top Authors that
+                                    fits within this section
+                                </p>
+                                <!--end::Desc-->
+                            </div>
+                            <!--end::Item-->
+                            <!--begin::Item-->
+                            <div class="mb-10">
+                                <!--begin::Section-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Symbol-->
+                                    <div class="symbol symbol-45 symbol-light mr-5">
+<span class="symbol-label">
+<img src="assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center" alt=""/>
+</span>
+                                    </div>
+                                    <!--end::Symbol-->
+                                    <!--begin::Text-->
+                                    <div class="d-flex flex-column flex-grow-1">
+                                        <a href="#"
+                                           class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1">Popular
+                                            Authors</a>
+                                        <span class="text-muted font-weight-bold">5 day ago</span>
+                                    </div>
+                                    <!--end::Text-->
+                                </div>
+                                <!--end::Section-->
+                                <!--begin::Desc-->
+                                <p class="text-dark-50 m-0 pt-5 font-weight-normal">
+                                    A brief write up about the Popular Authors that
+                                    fits within this section
+                                </p>
+                                <!--end::Desc-->
+                            </div>
+                            <!--end::Item-->
+                            <!--begin::Item-->
+                            <div class="">
+                                <!--begin::Section-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Symbol-->
+                                    <div class="symbol symbol-45 symbol-light mr-5">
+<span class="symbol-label">
+<img src="assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center" alt=""/>
+</span>
+                                    </div>
+                                    <!--end::Symbol-->
+                                    <!--begin::Text-->
+                                    <div class="d-flex flex-column flex-grow-1">
+                                        <a href="#"
+                                           class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1">New
+                                            Users</a>
+                                        <span class="text-muted font-weight-bold">5 day ago</span>
+                                    </div>
+                                    <!--end::Text-->
+                                </div>
+                                <!--end::Section-->
+                                <!--begin::Desc-->
+                                <p class="text-dark-50 m-0 pt-5 font-weight-normal">
+                                    A brief write up about the New Users that
+                                    fits within this section
+                                </p>
+                                <!--end::Desc-->
+                            </div>
+                            <!--end::Item-->
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                    <!--end: Card-->
+                    <!--end::List Widget 8-->
+                </div>
+                <div class="col-lg-8">
+                    <!--begin::Base Table Widget 2-->
+                    <div class="card card-custom card-stretch gutter-b">
+                        <!--begin::Header-->
+                        <div class="card-header border-0 pt-5">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label font-weight-bolder text-dark">New Arrivals</span>
+                                <span
+                                    class="text-muted mt-3 font-weight-bold font-size-sm">More than 400+ new members</span>
+                            </h3>
+                            <div class="card-toolbar">
+                                <ul class="nav nav-pills nav-pills-sm nav-dark-75">
+                                    <li class="nav-item">
+                                        <a class="nav-link py-2 px-4" data-toggle="tab"
+                                           href="#kt_tab_pane_2_1">Month</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link py-2 px-4" data-toggle="tab" href="#kt_tab_pane_2_2">Week</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link py-2 px-4 active" data-toggle="tab" href="#kt_tab_pane_2_3">Day</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-
-                        <div class="col-4">
-                            <div class="mb-3">
-                                <h5 class="font-weight-semibold mb-0">32,693</h5>
-                                <span class="text-muted font-size-sm">all messages</span>
+                        <!--end::Header-->
+                        <!--begin::Body-->
+                        <div class="card-body pt-2 pb-0">
+                            <!--begin::Table-->
+                            <div class="table-responsive">
+                                <table class="table table-borderless table-vertical-center">
+                                    <thead>
+                                    <tr>
+                                        <th class="p-0" style="width: 50px"></th>
+                                        <th class="p-0" style="min-width: 150px"></th>
+                                        <th class="p-0" style="min-width: 140px"></th>
+                                        <th class="p-0" style="min-width: 120px"></th>
+                                        <th class="p-0" style="min-width: 40px"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="pl-0 py-5">
+                                            <div class="symbol symbol-50 symbol-light mr-2">
+<span class="symbol-label">
+<img src="assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt=""/>
+</span>
+                                            </div>
+                                        </td>
+                                        <td class="pl-0">
+                                            <a href="#"
+                                               class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Top
+                                                Authors</a>
+                                            <span class="text-muted font-weight-bold d-block">Successful Fellas</span>
+                                        </td>
+                                        <td class="text-right">
+<span class="text-muted font-weight-bold">
+ReactJs, HTML
+</span>
+                                        </td>
+                                        <td class="text-right">
+<span class="text-muted font-weight-bold">
+4600 Users
+</span>
+                                        </td>
+                                        <td class="text-right pr-0">
+                                            <a href="#" class="btn btn-icon btn-light btn-sm">
+<span class="svg-icon svg-icon-md svg-icon-success">
+<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+     viewBox="0 0 24 24" version="1.1">
+<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+   <polygon points="0 0 24 0 24 24 0 24"/>
+   <rect fill="#000000" opacity="0.3"
+         transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5"
+         width="2" height="14" rx="1"/>
+   <path
+       d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
+       fill="#000000" fill-rule="nonzero"
+       transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/>
+</g>
+</svg>
+    <!--end::Svg Icon-->
+</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl-0 py-5">
+                                            <div class="symbol symbol-50 symbol-light mr-2">
+<span class="symbol-label">
+<img src="assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center" alt=""/>
+</span>
+                                            </div>
+                                        </td>
+                                        <td class="pl-0">
+                                            <a href="#"
+                                               class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Popular
+                                                Authors</a>
+                                            <span class="text-muted font-weight-bold d-block">Most Successful</span>
+                                        </td>
+                                        <td class="text-right">
+<span class="text-muted font-weight-bold">
+Python, MySQL
+</span>
+                                        </td>
+                                        <td class="text-right">
+<span class="text-muted font-weight-bold">
+7200 Users
+</span>
+                                        </td>
+                                        <td class="text-right pr-0">
+                                            <a href="#" class="btn btn-icon btn-light btn-sm">
+<span class="svg-icon svg-icon-md svg-icon-success">
+<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+     viewBox="0 0 24 24" version="1.1">
+<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+   <polygon points="0 0 24 0 24 24 0 24"/>
+   <rect fill="#000000" opacity="0.3"
+         transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5"
+         width="2" height="14" rx="1"/>
+   <path
+       d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
+       fill="#000000" fill-rule="nonzero"
+       transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/>
+</g>
+</svg>
+    <!--end::Svg Icon-->
+</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl-0 py-5">
+                                            <div class="symbol symbol-50 symbol-light mr-2">
+<span class="symbol-label">
+<img src="assets/media/svg/misc/003-puzzle.svg" class="h-50 align-self-center" alt=""/>
+</span>
+                                            </div>
+                                        </td>
+                                        <td class="pl-0">
+                                            <a href="#"
+                                               class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">New
+                                                Users</a>
+                                            <span class="text-muted font-weight-bold d-block">Awesome Users</span>
+                                        </td>
+                                        <td class="text-right">
+<span class="text-muted font-weight-bold">
+Laravel, Metronic
+</span>
+                                        </td>
+                                        <td class="text-right">
+<span class="text-muted font-weight-bold">
+890 Users
+</span>
+                                        </td>
+                                        <td class="text-right pr-0">
+                                            <a href="#" class="btn btn-icon btn-light btn-sm">
+<span class="svg-icon svg-icon-md svg-icon-success">
+<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+     viewBox="0 0 24 24" version="1.1">
+<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+   <polygon points="0 0 24 0 24 24 0 24"/>
+   <rect fill="#000000" opacity="0.3"
+         transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5"
+         width="2" height="14" rx="1"/>
+   <path
+       d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
+       fill="#000000" fill-rule="nonzero"
+       transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/>
+</g>
+</svg>
+    <!--end::Svg Icon-->
+</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl-0 py-5">
+                                            <div class="symbol symbol-50 symbol-light mr-2">
+<span class="symbol-label">
+<img src="assets/media/svg/misc/005-bebo.svg" class="h-50 align-self-center" alt=""/>
+</span>
+                                            </div>
+                                        </td>
+                                        <td class="pl-0">
+                                            <a href="#"
+                                               class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Active
+                                                Customers</a>
+                                            <span class="text-muted font-weight-bold d-block">Best Customers</span>
+                                        </td>
+                                        <td class="text-right">
+<span class="text-muted font-weight-bold">
+AngularJS, C#
+</span>
+                                        </td>
+                                        <td class="text-right">
+<span class="text-muted font-weight-bold">
+6370 Users
+</span>
+                                        </td>
+                                        <td class="text-right pr-0">
+                                            <a href="#" class="btn btn-icon btn-light btn-sm">
+<span class="svg-icon svg-icon-md svg-icon-success">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+     viewBox="0 0 24 24" version="1.1">
+<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+   <polygon points="0 0 24 0 24 24 0 24"/>
+   <rect fill="#000000" opacity="0.3"
+         transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5"
+         width="2" height="14" rx="1"/>
+   <path
+       d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
+       fill="#000000" fill-rule="nonzero"
+       transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/>
+</g>
+</svg>
+</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl-0 py-5">
+                                            <div class="symbol symbol-50 symbol-light mr-2">
+<span class="symbol-label">
+<img src="assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center" alt=""/>
+</span>
+                                            </div>
+                                        </td>
+                                        <td class="pl-0">
+                                            <a href="#"
+                                               class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">Bestseller
+                                                Theme</a>
+                                            <span class="text-muted font-weight-bold d-block">Amazing Templates</span>
+                                        </td>
+                                        <td class="text-right">
+<span class="text-muted font-weight-bold">
+ReactJS, Ruby
+</span>
+                                        </td>
+                                        <td class="text-right">
+<span class="text-muted font-weight-bold">
+354 Users
+</span>
+                                        </td>
+                                        <td class="text-right pr-0">
+                                            <a href="#" class="btn btn-icon btn-light btn-sm">
+<span class="svg-icon svg-icon-md svg-icon-success">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+     viewBox="0 0 24 24" version="1.1">
+<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+   <polygon points="0 0 24 0 24 24 0 24"/>
+   <rect fill="#000000" opacity="0.3"
+         transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5"
+         width="2" height="14" rx="1"/>
+   <path
+       d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
+       fill="#000000" fill-rule="nonzero"
+       transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/>
+</g>
+</svg>
+</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- /numbers -->
-
-
-                <!-- Area chart -->
-                <div id="messages-stats"></div>
-                <!-- /area chart -->
-
-
-                <!-- Tabs -->
-                <ul class="nav nav-tabs nav-tabs-solid nav-justified bg-indigo-400 border-x-0 border-bottom-0 border-top-indigo-300 mb-0">
-                    <li class="nav-item">
-                        <a href="#messages-tue" class="nav-link font-size-sm text-uppercase active" data-toggle="tab">
-                            Tuesday
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#messages-mon" class="nav-link font-size-sm text-uppercase" data-toggle="tab">
-                            Monday
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#messages-fri" class="nav-link font-size-sm text-uppercase" data-toggle="tab">
-                            Friday
-                        </a>
-                    </li>
-                </ul>
-                <!-- /tabs -->
-
-
-                <!-- Tabs content -->
-                <div class="tab-content card-body">
-                    <div class="tab-pane active fade show" id="messages-tue">
-                        <ul class="media-list">
-                            <li class="media">
-                                <div class="mr-3 position-relative">
-                                    <img src="{{asset("back/global_assets/images/demo/users/face10.jpg")}}" class="rounded-circle" width="36" height="36" alt="">
-                                    <span class="badge bg-danger-400 badge-pill badge-float border-2 border-white">8</span>
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="#">James Alexander</a>
-                                        <span class="font-size-sm text-muted">14:58</span>
-                                    </div>
-
-                                    The constitutionally inventoried precariously...
-                                </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="mr-3 position-relative">
-                                    <img src="{{asset("back/global_assets/images/demo/users/face3.jpg")}}" class="rounded-circle" width="36" height="36" alt="">
-                                    <span class="badge bg-danger-400 badge-pill badge-float border-2 border-white">6</span>
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="#">Margo Baker</a>
-                                        <span class="font-size-sm text-muted">12:16</span>
-                                    </div>
-
-                                    Pinched a well more moral chose goodness...
-                                </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="mr-3">
-                                    <img src="{{asset("back/global_assets/images/demo/users/face24.jpg")}}" class="rounded-circle" width="36" height="36" alt="">
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="#">Jeremy Victorino</a>
-                                        <span class="font-size-sm text-muted">09:48</span>
-                                    </div>
-
-                                    Pert thickly mischievous clung frowned well...
-                                </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="mr-3">
-                                    <img src="{{asset("back/global_assets/images/demo/users/face4.jpg")}}" class="rounded-circle" width="36" height="36" alt="">
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="#">Beatrix Diaz</a>
-                                        <span class="font-size-sm text-muted">05:54</span>
-                                    </div>
-
-                                    Nightingale taped hello bucolic fussily cardinal...
-                                </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="mr-3">
-                                    <img src="{{asset("back/global_assets/images/demo/users/face25.jpg")}}" class="rounded-circle" width="36" height="36" alt="">
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="#">Richard Vango</a>
-                                        <span class="font-size-sm text-muted">01:43</span>
-                                    </div>
-
-                                    Amidst roadrunner distantly pompously where...
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="tab-pane fade" id="messages-mon">
-                        <ul class="media-list">
-                            <li class="media">
-                                <div class="mr-3">
-                                    <img src="{{asset("back/global_assets/images/demo/users/face2.jpg")}}" class="rounded-circle" width="36" height="36" alt="">
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="#">Isak Temes</a>
-                                        <span class="font-size-sm text-muted">Tue, 19:58</span>
-                                    </div>
-
-                                    Reasonable palpably rankly expressly grimy...
-                                </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="mr-3">
-                                    <img src="{{asset("back/global_assets/images/demo/users/face7.jpg")}}" class="rounded-circle" width="36" height="36" alt="">
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="#">Vittorio Cosgrove</a>
-                                        <span class="font-size-sm text-muted">Tue, 16:35</span>
-                                    </div>
-
-                                    Arguably therefore more unexplainable fumed...
-                                </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="mr-3">
-                                    <img src="{{asset("back/global_assets/images/demo/users/face18.jpg")}}" class="rounded-circle" width="36" height="36" alt="">
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="#">Hilary Talaugon</a>
-                                        <span class="font-size-sm text-muted">Tue, 12:16</span>
-                                    </div>
-
-                                    Nicely unlike porpoise a kookaburra past more...
-                                </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="mr-3">
-                                    <img src="{{asset("back/global_assets/images/demo/users/face14.jpg")}}" class="rounded-circle" width="36" height="36" alt="">
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="#">Bobbie Seber</a>
-                                        <span class="font-size-sm text-muted">Tue, 09:20</span>
-                                    </div>
-
-                                    Before visual vigilantly fortuitous tortoise...
-                                </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="mr-3">
-                                    <img src="{{asset("back/global_assets/images/demo/users/face8.jpg")}}" class="rounded-circle" width="36" height="36" alt="">
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="#">Walther Laws</a>
-                                        <span class="font-size-sm text-muted">Tue, 03:29</span>
-                                    </div>
-
-                                    Far affecting more leered unerringly dishonest...
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="tab-pane fade" id="messages-fri">
-                        <ul class="media-list">
-                            <li class="media">
-                                <div class="mr-3">
-                                    <img src="{{asset("back/global_assets/images/demo/users/face15.jpg")}}" class="rounded-circle" width="36" height="36" alt="">
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="#">Owen Stretch</a>
-                                        <span class="font-size-sm text-muted">Mon, 18:12</span>
-                                    </div>
-
-                                    Tardy rattlesnake seal raptly earthworm...
-                                </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="mr-3">
-                                    <img src="{{asset("back/global_assets/images/demo/users/face12.jpg")}}" class="rounded-circle" width="36" height="36" alt="">
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="#">Jenilee Mcnair</a>
-                                        <span class="font-size-sm text-muted">Mon, 14:03</span>
-                                    </div>
-
-                                    Since hello dear pushed amid darn trite...
-                                </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="mr-3">
-                                    <img src="{{asset("back/global_assets/images/demo/users/face22.jpg")}}" class="rounded-circle" width="36" height="36" alt="">
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="#">Alaster Jain</a>
-                                        <span class="font-size-sm text-muted">Mon, 13:59</span>
-                                    </div>
-
-                                    Dachshund cardinal dear next jeepers well...
-                                </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="mr-3">
-                                    <img src="{{asset("back/global_assets/images/demo/users/face24.jpg")}}" class="rounded-circle" width="36" height="36" alt="">
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="#">Sigfrid Thisted</a>
-                                        <span class="font-size-sm text-muted">Mon, 09:26</span>
-                                    </div>
-
-                                    Lighted wolf yikes less lemur crud grunted...
-                                </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="mr-3">
-                                    <img src="{{asset("back/global_assets/images/demo/users/face17.jpg")}}" class="rounded-circle" width="36" height="36" alt="">
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="#">Sherilyn Mckee</a>
-                                        <span class="font-size-sm text-muted">Mon, 06:38</span>
-                                    </div>
-
-                                    Less unicorn a however careless husky...
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- /tabs content -->
-
             </div>
-            <!-- /my messages -->
-
-
-            <!-- Daily financials -->
-            <div class="card">
-                <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Daily financials</h6>
-                    <div class="header-elements">
-                        <div class="form-check form-check-inline form-check-right form-check-switchery form-check-switchery-sm">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-input-switchery" id="realtime" checked data-fouc>
-                                Realtime
-                            </label>
-                        </div>
-                        <span class="badge bg-danger-400 badge-pill">+86</span>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div class="chart mb-3" id="bullets"></div>
-
-                    <ul class="media-list">
-                        <li class="media">
-                            <div class="mr-3">
-                                <a href="#" class="btn bg-transparent border-pink text-pink rounded-round border-2 btn-icon"><i class="icon-statistics"></i></a>
-                            </div>
-
-                            <div class="media-body">
-                                Stats for July, 6: <span class="font-weight-semibold">1938</span> orders, <span class="font-weight-semibold text-danger">$4220</span> revenue
-                                <div class="text-muted">2 hours ago</div>
-                            </div>
-
-                            <div class="ml-3 align-self-center">
-                                <a href="#" class="list-icons-item"><i class="icon-more"></i></a>
-                            </div>
-                        </li>
-
-                        <li class="media">
-                            <div class="mr-3">
-                                <a href="#" class="btn bg-transparent border-success text-success rounded-round border-2 btn-icon"><i class="icon-checkmark3"></i></a>
-                            </div>
-
-                            <div class="media-body">
-                                Invoices <a href="#">#4732</a> and <a href="#">#4734</a> have been paid
-                                <div class="text-muted">Dec 18, 18:36</div>
-                            </div>
-
-                            <div class="ml-3 align-self-center">
-                                <a href="#" class="list-icons-item"><i class="icon-more"></i></a>
-                            </div>
-                        </li>
-
-                        <li class="media">
-                            <div class="mr-3">
-                                <a href="#" class="btn bg-transparent border-primary text-primary rounded-round border-2 btn-icon"><i class="icon-alignment-unalign"></i></a>
-                            </div>
-
-                            <div class="media-body">
-                                Affiliate commission for June has been paid
-                                <div class="text-muted">36 minutes ago</div>
-                            </div>
-
-                            <div class="ml-3 align-self-center">
-                                <a href="#" class="list-icons-item"><i class="icon-more"></i></a>
-                            </div>
-                        </li>
-
-                        <li class="media">
-                            <div class="mr-3">
-                                <a href="#" class="btn bg-transparent border-warning-400 text-warning-400 rounded-round border-2 btn-icon"><i class="icon-spinner11"></i></a>
-                            </div>
-
-                            <div class="media-body">
-                                Order <a href="#">#37745</a> from July, 1st has been refunded
-                                <div class="text-muted">4 minutes ago</div>
-                            </div>
-
-                            <div class="ml-3 align-self-center">
-                                <a href="#" class="list-icons-item"><i class="icon-more"></i></a>
-                            </div>
-                        </li>
-
-                        <li class="media">
-                            <div class="mr-3">
-                                <a href="#" class="btn bg-transparent border-teal text-teal rounded-round border-2 btn-icon"><i class="icon-redo2"></i></a>
-                            </div>
-
-                            <div class="media-body">
-                                Invoice <a href="#">#4769</a> has been sent to <a href="#">Robert Smith</a>
-                                <div class="text-muted">Dec 12, 05:46</div>
-                            </div>
-
-                            <div class="ml-3 align-self-center">
-                                <a href="#" class="list-icons-item"><i class="icon-more"></i></a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- /daily financials -->
-
         </div>
     </div>
-    <!-- /dashboard content -->
-
 @endsection

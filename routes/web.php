@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\back\adminController;
+use App\Http\Controllers\back\categoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,9 @@ Route::get('/', function () {
 });
 
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', [adminController::class, 'get_index'])->name("admin.index");;
+Route::group(['as'=>'admin.' , 'prefix' => 'admin'], function () {
+    Route::get('/', [adminController::class, 'get_index'])->name("admin.index");
+
+    //kategori işlemleri buradan yapılıyor.
+    Route::resource('/category', categoryController::class);
 });
