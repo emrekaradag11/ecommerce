@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\back\adminController;
-use App\Http\Controllers\back\categoryController;
+use App\Http\Controllers\back\{adminController,categoryController,brandController,productController,statusController,discountController,productUnitController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +24,22 @@ Route::group(['as'=>'admin.' , 'prefix' => 'admin'], function () {
 
     //kategori işlemleri buradan yapılıyor.
     Route::resource('/category', categoryController::class);
+    Route::post('/categorySortable', [categoryController::class,"sortable"])->name("categorySortable");
+
+    //marka işlemleri buradan yapılıyor.
+    Route::resource('/brand', brandController::class);
+
+    //ürün işlemleri buradan yapılıyor.
+    Route::resource('/product', productController::class);
+
+    //İndirim tipi işlemleri buradan yapılıyor.
+    Route::resource('/discount', discountController::class);
+
+    //İndirim tipi işlemleri buradan yapılıyor.
+    Route::resource('/unit', productUnitController::class);
+
+    //status işlemleri buradan yapılıyor.
+    Route::get('/status', [statusController::class,"index"])->name("statusIndex");
+    Route::post('/addStatusListType', [statusController::class,"addStatusListType"])->name("addStatusListType");
+    Route::post('/addStatusList', [statusController::class,"addStatusList"])->name("addStatusList");
 });

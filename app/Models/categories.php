@@ -63,4 +63,22 @@ class categories extends Model
     {
         return $this->hasMany('App\Models\categories','parent_id','id')->where("status_id" , "!=" , "2");
     }
+
+    //sıralama işlemleri için
+    public function changeOrder($request){
+
+        foreach ($request as $key => $value)
+        {
+            $this->where('id',$value)->update(["ord" => $key]);
+        }
+
+        $noti = array(
+            'message' => "Sıralama Başarılı",
+            'head'=>'İşlem Başarılı',
+            'type' => 'success',
+            'status' => '200'
+        );
+
+        return $noti;
+    }
 }

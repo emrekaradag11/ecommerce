@@ -18,7 +18,6 @@ class CreateProductDtlTable extends Migration
             $table->integer('product_id')->nullable();
             $table->integer('variant_id')->nullable();
             $table->integer('kdv')->nullable();
-            $table->integer('store_id')->nullable();
             $table->integer('shipping_day')->nullable();
             $table->integer('type_id')->nullable();
             $table->string('title')->nullable();

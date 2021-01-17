@@ -34,7 +34,7 @@ class categoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -90,5 +90,15 @@ class categoryController extends Controller
         $categories = new categories();
         $response = $categories->softDelete($id);
         return redirect()->back()->with($response);
+    }
+
+    public function sortable(Request $request){
+
+        if($request->ajax()){
+            $categories = new categories();
+            $response = $categories->changeOrder($request->post("data"));
+        }
+        return $response;
+
     }
 }
