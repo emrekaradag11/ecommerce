@@ -9,7 +9,8 @@
         <div class="card text-left">
             <div class="card-body">
                 <h4 class="card-title mb-2">Genel Bilgiler</h4>
-                <div class="row">
+                <form method="post" action="{{route("admin.product.store")}}" class="row">
+                    @csrf
                     <div class="col-lg-8">
                         <div class="row">
                             <div class="col-lg-3 form-group">
@@ -43,6 +44,9 @@
                                 <label>Para Birimi:</label>
                                 <select name="currency_id" required class="form-control" id="">
                                     <option value="">Seçiniz</option>
+                                    @foreach($currency as $c)
+                                        <option value="{{$c->id}}">{{$c->title}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-12 form-group">
@@ -87,7 +91,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

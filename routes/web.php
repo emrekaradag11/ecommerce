@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\back\{adminController,categoryController,brandController,productController,statusController,discountController,productUnitController};
+use App\Http\Controllers\back\{adminController,categoryController,brandController,productController,statusController,discountController,productUnitController,currencyController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,8 +35,11 @@ Route::group(['as'=>'admin.' , 'prefix' => 'admin'], function () {
     //İndirim tipi işlemleri buradan yapılıyor.
     Route::resource('/discount', discountController::class);
 
-    //İndirim tipi işlemleri buradan yapılıyor.
+    //Ürün Birimi işlemleri buradan yapılıyor.
     Route::resource('/unit', productUnitController::class);
+
+    //Para birimi işlemleri buradan yapılıyor.
+    Route::resource('/currency', currencyController::class);
 
     //status işlemleri buradan yapılıyor.
     Route::get('/status', [statusController::class,"index"])->name("statusIndex");

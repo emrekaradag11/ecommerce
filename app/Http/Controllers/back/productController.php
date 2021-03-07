@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
-use App\Models\{brands, categories, product_units};
+use App\Models\{brands, categories, currency, product_units};
 use Illuminate\Http\Request;
 
 class productController extends Controller
@@ -35,7 +35,9 @@ class productController extends Controller
         $brands = $brands->where("status_id" , "!=" , "2")->get();
         $product_units = new product_units();
         $product_units = $product_units->where("status_id" , "!=" , "2")->get();
-        return view('back.product.create',compact('categories','brands','product_units'));
+        $currency = new currency();
+        $currency = $currency->where("status_id" , "!=" , "2")->get();
+        return view('back.product.create',compact('categories','brands','product_units','currency'));
     }
 
     /**

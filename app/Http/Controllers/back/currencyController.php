@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
-use App\Models\discount_types;
+use App\Models\currency;
 use Illuminate\Http\Request;
 
-class discountController extends Controller
+class currencyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class discountController extends Controller
      */
     public function index()
     {
-        $discountTypes = new discount_types();
-        $data = $discountTypes->where("status_id" , "!=" , "2")->get();
-        return view('back.discount.index',compact("data"));
+        $currency = new currency();
+        $data = $currency->where("status_id" , "!=" , "2")->get();
+        return view('back.currency.index',compact("data"));
     }
 
     /**
@@ -38,8 +38,8 @@ class discountController extends Controller
      */
     public function store(Request $request)
     {
-        $model = new discount_types();
-        $response = $model->setDiscountTypes($request);
+        $model = new currency();
+        $response = $model->setCurrency($request);
         return redirect()->back()->with($response);
     }
 
@@ -74,8 +74,8 @@ class discountController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $model= new discount_types();
-        $response = $model->editDiscountTypes($request,$id);
+        $currency= new currency();
+        $response = $currency->updateCurrency($request,$id);
         return redirect()->back()->with($response);
     }
 

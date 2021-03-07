@@ -87,7 +87,7 @@
     <!-- update Modal-->
     <div class="modal fade" id="brandEditModal" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <form method="post" action="{{url("admin/brand")}}" class="form modal-content">
+            <form method="post" class="form modal-content">
                 @csrf
                 @method("PUT")
                 <div class="modal-header">

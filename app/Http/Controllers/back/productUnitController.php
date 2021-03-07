@@ -74,7 +74,9 @@ class productUnitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $model= new product_units();
+        $response = $model->updateProductUnit($request,$id);
+        return redirect()->back()->with($response);
     }
 
     /**

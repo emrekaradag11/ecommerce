@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" href="{{asset("back/img/favicon.jpg")}}"/>
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet" />
     <link href="{{asset("back/css/lite-purple.min.css")}}" rel="stylesheet" />
+    <link href="{{asset("back/css/toastr.css")}}" rel="stylesheet" />
     <link href="{{asset("back/css/perfect-scrollbar.min.css")}}" rel="stylesheet" />
     <link href="{{asset("back/css/custom.css")}}" rel="stylesheet" />
     @yield("css")
@@ -187,7 +188,8 @@
                 <li class="nav-item"><a href="{{route("admin.product.index")}}"><i class="nav-icon i-Structure"></i><span class="item-name">Ürünler</span></a></li>
                 <li class="nav-item"><a href="{{route("admin.discount.index")}}"><i class="nav-icon i-Arrow-Inside-Gap-45"></i><span class="item-name">İndirimler</span></a></li>
                 <li class="nav-item"><a href="#"><i class="nav-icon i-Align-Right"></i><span class="item-name">Varyantlar</span></a></li>
-                <li class="nav-item"><a href="{{route("admin.unit.index")}}"><i class="nav-icon i-Arrow-Around"></i><span class="item-name">Birimler</span></a></li>
+                <li class="nav-item"><a href="{{route("admin.unit.index")}}"><i class="nav-icon i-Arrow-Around"></i><span class="item-name">Ürün Birimleri</span></a></li>
+                <li class="nav-item"><a href="{{route("admin.currency.index")}}"><i class="nav-icon i-Money-2"></i><span class="item-name">Para Birimleri</span></a></li>
             </ul>
 
         </div>
@@ -337,6 +339,23 @@
 <script src="{{asset("back/js/echarts.min.js")}}"></script>
 <script src="{{asset("back/js/echart.options.min.js")}}"></script>
 <script src="{{asset("back/js/dashboard.v1.script.min.js")}}"></script>
+<script src="{{asset("back/js/toastr.min.js")}}"></script>
 @yield("js")
+
+@if(Session::has("message"))
+    <script>
+        $(document).ready(function () {
+            toastr.{{Session::get('type','info')}}(
+                "{{ Session::get('message') }}",
+                "{{Session::get('head','İşlem Başarılı')}}",
+                {
+                    "progressBar":!0,
+                    "timeOut": "2000",
+                },
+
+            )
+        })
+    </script>
+@endif
 </body>
 </html>
