@@ -11,7 +11,7 @@
                 <h4 class="card-title mb-2">Genel Bilgiler</h4>
                 <form method="post" action="{{route("admin.product.store")}}" class="row">
                     @csrf
-                    <div class="col-lg-8">
+                    <div class="col-xl-8 col-12">
                         <div class="row">
                             <div class="col-lg-3 form-group">
                                 <label>Kategori:</label>
@@ -54,6 +54,20 @@
                                 <input type="text" name="title" class="form-control">
                             </div>
                             <div class="col-lg-6 form-group">
+                                <label>Fiyat:</label>
+                                <input type="text" name="price" class="text-right form-control price_format">
+                            </div>
+                            @foreach($discounts as $d)
+                                <div class="col-lg-6 form-group">
+                                    <label>{{$d->title}}</label>
+                                    <input type="text" name="product_discount[{{$d->id}}]" class="form-control">
+                                </div>
+                            @endforeach
+                            <div class="col-lg-6 form-group">
+                                <label>Kargo Fiyatı:</label>
+                                <input type="text" name="shipping_price" class="form-control">
+                            </div>
+                            <div class="col-lg-6 form-group">
                                 <label>Stok:</label>
                                 <input type="text" name="stock" class="form-control">
                             </div>
@@ -63,7 +77,7 @@
                             </div>
                             <div class="col-lg-6 form-group">
                                 <label>Barkod:</label>
-                                <input type="text" name="product_code" class="form-control">
+                                <input type="text" name="barcode" class="form-control">
                             </div>
                             <div class="col-lg-6 form-group">
                                 <label>Kargo Süresi (Gün):</label>
@@ -85,9 +99,12 @@
                                 <label>Keywords :</label>
                                 <input type="text" name="keywords" class="form-control">
                             </div>
-                            <div class="col-lg-6 form-group">
+                            <div class="col-12 form-group">
                                 <label>Açıklama :</label>
                                 <textarea class="form-control" name="text" id="" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="col-12 form-group text-right">
+                                <button class="btn btn-success">Kaydet</button>
                             </div>
                         </div>
                     </div>

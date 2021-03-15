@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
-use App\Models\{brands, categories, currency, discount_types, product_units, products};
 use Illuminate\Http\Request;
 
-class productController extends Controller
+class userController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +14,7 @@ class productController extends Controller
      */
     public function index()
     {
-        $categories = new categories();
-        $categories = $categories->where("status_id" , "!=" , "2")->get();
-        $brands = new brands();
-        $brands = $brands->where("status_id" , "!=" , "2")->get();
-        return view('back.product.index',compact('categories','brands'));
+        return view('back.user.index');
     }
 
     /**
@@ -29,17 +24,7 @@ class productController extends Controller
      */
     public function create()
     {
-        $categories = new categories();
-        $categories = $categories->where("status_id" , "!=" , "2")->get();
-        $brands = new brands();
-        $brands = $brands->where("status_id" , "!=" , "2")->get();
-        $product_units = new product_units();
-        $product_units = $product_units->where("status_id" , "!=" , "2")->get();
-        $currency = new currency();
-        $currency = $currency->where("status_id" , "!=" , "2")->get();
-        $discount_typesModel = new discount_types();
-        $discounts = $discount_typesModel->where("status_id" , "!=" , "2")->get();
-        return view('back.product.create',compact('categories','brands','product_units','currency','discounts'));
+        return view('back.user.create');
     }
 
     /**
@@ -50,9 +35,7 @@ class productController extends Controller
      */
     public function store(Request $request)
     {
-        $model = new products();
-        $response = $model->setProducts($request);
-        return redirect()->back()->with($response);
+        //
     }
 
     /**

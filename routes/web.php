@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\back\{adminController,categoryController,brandController,productController,statusController,discountController,productUnitController,currencyController};
+use App\Http\Controllers\back\{adminController,categoryController,brandController,productController,statusController,discountController,productUnitController,currencyController,userController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +28,12 @@ Route::group(['as'=>'admin.' , 'prefix' => 'admin'], function () {
 
     //marka işlemleri buradan yapılıyor.
     Route::resource('/brand', brandController::class);
+
+    //admin paneli kullanıcı işlemleri buradan yapılıyor.
+    Route::resource('/user', userController::class)->names([
+        "index" => "user.index",
+        "create" => "user.create",
+    ]);
 
     //ürün işlemleri buradan yapılıyor.
     Route::resource('/product', productController::class);
