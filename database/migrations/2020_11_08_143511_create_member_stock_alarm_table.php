@@ -18,7 +18,7 @@ class CreateMemberStockAlarmTable extends Migration
             $table->integer('product_id')->nullable();
             $table->integer('variant_id')->nullable();
             $table->integer('member_id')->nullable();
-            $table->integer('status_id')->nullable();
+            $table->integer('status_id')->default('1');
             $table->timestamps();
         });
     }

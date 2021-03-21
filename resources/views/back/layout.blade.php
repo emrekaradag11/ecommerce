@@ -12,6 +12,7 @@
     <link href="{{asset("back/css/toastr.css")}}" rel="stylesheet" />
     <link href="{{asset("back/css/perfect-scrollbar.min.css")}}" rel="stylesheet" />
     <link href="{{asset("back/css/custom.css")}}" rel="stylesheet" />
+    <link href="{{asset("back/css/dropify.min.css")}}" rel="stylesheet" />
     @yield("css")
     <script src="{{asset("back/js/jquery-3.3.1.min.js")}}"></script>
     <script src="{{asset("back/js/jquery-ui.min.js")}}"></script>
@@ -164,7 +165,7 @@
                         <div class="dropdown-header">
                             <i class="i-Lock-User mr-1"></i> Timothy Carlson
                         </div>
-                        <a href="{{route("admin.user.index")}}" class="dropdown-item">Account settings</a>
+                        <a href="{{route("admin.users.index")}}" class="dropdown-item">Account settings</a>
                         <a class="dropdown-item">Billing history</a>
                         <a class="dropdown-item" href="signin.html">Sign out</a>
                     </div>
@@ -340,6 +341,7 @@
 <script src="{{asset("back/js/echart.options.min.js")}}"></script>
 <script src="{{asset("back/js/dashboard.v1.script.min.js")}}"></script>
 <script src="{{asset("back/js/toastr.min.js")}}"></script>
+<script src="{{asset("back/js/dropify.min.js")}}"></script>
 @yield("js")
 
 @if(Session::has("message"))
@@ -357,5 +359,23 @@
         })
     </script>
 @endif
+@isset($errors)
+    @foreach($errors->all() as $e)
+        {{$e}}
+        <script>
+            $(document).ready(function () {
+                toastr.error(
+                    "{{ $e }}",
+                    "Hata",
+                    {
+                        "progressBar":!0,
+                        "timeOut": "2000",
+                    },
+
+                )
+            })
+        </script>
+    @endforeach
+@endisset
 </body>
 </html>

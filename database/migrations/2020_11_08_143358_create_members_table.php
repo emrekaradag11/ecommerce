@@ -20,7 +20,7 @@ class CreateMembersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('password')->nullable();
-            $table->integer('status_id')->nullable();
+            $table->integer('status_id')->default('1');
             $table->integer('gender')->nullable();
             $table->integer('sms_notification')->nullable();
             $table->integer('mail_notification')->nullable();

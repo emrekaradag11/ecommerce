@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->integer('brand_id')->nullable();
             $table->integer('category_id')->nullable();
             $table->integer('product_unit_id')->nullable();
-            $table->integer('status_id')->nullable();
+            $table->integer('status_id')->default('1');
             $table->integer('ord')->nullable();
             $table->integer('stock')->nullable();
             $table->integer('currency_id')->nullable();

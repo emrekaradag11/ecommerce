@@ -18,7 +18,7 @@ class CreateProductCommentsTable extends Migration
             $table->integer('product_id')->nullable();
             $table->integer('variant_id')->nullable();
             $table->integer('member_id')->nullable();
-            $table->integer('status_id')->nullable();
+            $table->integer('status_id')->default('1');
             $table->integer('comment_type')->nullable();
             $table->integer('star')->nullable();
             $table->string('comment_title')->nullable();

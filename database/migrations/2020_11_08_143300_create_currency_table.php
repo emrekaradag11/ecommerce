@@ -18,7 +18,7 @@ class CreateCurrencyTable extends Migration
             $table->string('title')->nullable();
             $table->string('short_code')->nullable();
             $table->float('rate')->nullable();
-            $table->integer('status_id')->nullable();
+            $table->integer('status_id')->default('1');
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('title')->nullable();
             $table->integer('parent_id')->nullable();
             $table->integer('type_id')->nullable();
-            $table->integer('status_id')->nullable();
+            $table->integer('status_id')->default('1');
             $table->integer('ord')->nullable();
             $table->timestamps();
         });

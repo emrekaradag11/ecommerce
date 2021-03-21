@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->integer('payment_type_id')->nullable();
             $table->integer('order_type_id')->nullable();
             $table->integer('member_address_id')->nullable();
-            $table->integer('status_id')->nullable();
+            $table->integer('status_id')->default('1');
             $table->integer('currency_id')->nullable();
             $table->integer('store_id')->nullable();
             $table->float('total_price')->nullable();

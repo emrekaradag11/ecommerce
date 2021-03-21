@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
+use App\Models\{user_types,users};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class userController extends Controller
 {
@@ -14,7 +16,11 @@ class userController extends Controller
      */
     public function index()
     {
-        return view('back.user.index');
+        $users = new users();
+        $data = $users->where("status_id" , "!=" , "2")->get();
+        $user_types = new user_types();
+        $user_types_data = $user_types->where("status_id" , "!=" , "2")->get();
+        return view('back.users.index',compact("data","user_types_data"));
     }
 
     /**
@@ -24,7 +30,9 @@ class userController extends Controller
      */
     public function create()
     {
-        return view('back.user.create');
+        $user_types = new user_types();
+        $user_types = $user_types->where("status_id" , "!=" , "2")->get();
+        return view('back.users.create',compact("user_types"));
     }
 
     /**
@@ -35,7 +43,37 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required|max:255',
+                'surname' => 'required|max:255',
+                'email' => 'required|email',
+            ]/*,[
+                'name.required' => __("validation.required" , ["attribute" => __("variable.adi")]),
+                'last-name.required' => __("validation.required" , ["attribute" => __("variable.soyadi")]),
+                'email.required' => __("validation.required" , ["attribute" => __("variable.email")]),
+            ]*/,
+        );
+
+        if($validator->fails())
+            return redirect()->back()->withErrors($validator)->withInput();
+
+        if($request->post("password") != $request->post("repeat-password")){
+
+            $noti = array(
+                'message' => "Parolalar Eşleşmiyor",
+                'head'=>'İşlem Başarısız',
+                'type' => 'error',
+                'status' => '404'
+            );
+            return redirect()->back()->with($noti);
+        }
+
+        $users = new users();
+        $response = $users->set_users($request);
+        return redirect()->route("admin.users.index")->with($response);
     }
 
     /**

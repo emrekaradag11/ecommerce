@@ -16,7 +16,7 @@ class CreateMemberAddressesTable extends Migration
         Schema::create('member_addresses', function (Blueprint $table) {
             $table->id();
             $table->integer('member_id')->nullable();
-            $table->integer('status_id')->nullable();
+            $table->integer('status_id')->default('1');
             $table->integer('country_id')->nullable();
             $table->integer('province_id')->nullable();
             $table->integer('district_id')->nullable();

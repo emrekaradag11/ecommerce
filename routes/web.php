@@ -30,9 +30,10 @@ Route::group(['as'=>'admin.' , 'prefix' => 'admin'], function () {
     Route::resource('/brand', brandController::class);
 
     //admin paneli kullanıcı işlemleri buradan yapılıyor.
-    Route::resource('/user', userController::class)->names([
-        "index" => "user.index",
-        "create" => "user.create",
+    Route::resource('/users', userController::class)->names([
+        "index" => "users.index",
+        "create" => "users.create",
+        "store" => "users.store",
     ]);
 
     //ürün işlemleri buradan yapılıyor.

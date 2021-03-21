@@ -19,6 +19,7 @@ class CreateBanksTable extends Migration
             $table->string('account_number')->nullable();
             $table->string('account_holder')->nullable();
             $table->string('iban_number')->nullable();
+            $table->integer('status_id')->default('1');
             $table->timestamps();
         });
     }
