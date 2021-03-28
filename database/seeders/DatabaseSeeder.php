@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             productUnitsSeeder::class,
             statusListSeeder::class,
             statusListTypesSeeder::class,
+            usersSeeder::class,
         ]);
     }
 }

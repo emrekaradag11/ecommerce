@@ -51,41 +51,37 @@
                             </div>
                             <div class="col-12 form-group">
                                 <label>Ürün Adı:</label>
-                                <input type="text" name="title" class="form-control">
+                                <input type="text" name="title" required class="form-control">
                             </div>
                             <div class="col-lg-6 form-group">
                                 <label>Fiyat:</label>
-                                <input type="text" name="price" class="text-right form-control price_format">
+                                <input type="text" name="price" required class="form-control price_format">
                             </div>
                             @foreach($discounts as $d)
                                 <div class="col-lg-6 form-group">
                                     <label>{{$d->title}}</label>
-                                    <input type="text" name="product_discount[{{$d->id}}]" class="form-control">
+                                    <input type="number" required name="product_discount[{{$d->id}}]" class="form-control">
                                 </div>
                             @endforeach
                             <div class="col-lg-6 form-group">
-                                <label>Kargo Fiyatı:</label>
-                                <input type="text" name="shipping_price" class="form-control">
-                            </div>
-                            <div class="col-lg-6 form-group">
                                 <label>Stok:</label>
-                                <input type="text" name="stock" class="form-control">
+                                <input type="number" name="stock" class="form-control">
                             </div>
                             <div class="col-lg-6 form-group">
                                 <label>Ürün Kodu:</label>
-                                <input type="text" name="product_code" class="form-control">
+                                <input type="text" required name="product_code" class="form-control">
                             </div>
                             <div class="col-lg-6 form-group">
                                 <label>Barkod:</label>
-                                <input type="text" name="barcode" class="form-control">
+                                <input type="number" name="barcode" class="form-control">
                             </div>
                             <div class="col-lg-6 form-group">
                                 <label>Kargo Süresi (Gün):</label>
-                                <input type="text" name="shipping_day" class="form-control">
+                                <input type="number" required name="shipping_day" class="form-control">
                             </div>
                             <div class="col-lg-6 form-group">
                                 <label>Kargo Fiyatı :</label>
-                                <input type="text" name="shipping_price" class="form-control">
+                                <input type="text" required name="shipping_price" class="form-control price_format">
                             </div>
                             <div class="col-lg-6 form-group">
                                 <label>Etiketler :</label>

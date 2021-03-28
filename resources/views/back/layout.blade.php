@@ -160,14 +160,13 @@
             </div>
             <div class="dropdown">
                 <div class="user col align-self-end">
-                    <img src="{{asset("back/img/1.jpg")}}" id="userDropdown" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="{{isset(session("adminUser")->image->img) ?  asset("uploads/" . session("adminUser")->image->img) : null}}" id="userDropdown" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <div class="dropdown-header">
-                            <i class="i-Lock-User mr-1"></i> Timothy Carlson
+                            <i class="i-Lock-User mr-1"></i> {{session("adminUser")->name . " " . session("adminUser")->surname}}
                         </div>
-                        <a href="{{route("admin.users.index")}}" class="dropdown-item">Account settings</a>
-                        <a class="dropdown-item">Billing history</a>
-                        <a class="dropdown-item" href="signin.html">Sign out</a>
+                        <a href="{{route("admin.users.index")}}" class="dropdown-item">Kullanıcı Ayarları</a>
+                        <a href="{{route("admin.logout")}}" class="dropdown-item">Çıkış Yap</a>
                     </div>
                 </div>
             </div>
@@ -342,6 +341,7 @@
 <script src="{{asset("back/js/dashboard.v1.script.min.js")}}"></script>
 <script src="{{asset("back/js/toastr.min.js")}}"></script>
 <script src="{{asset("back/js/dropify.min.js")}}"></script>
+<script src="{{asset("back/js/jquery.priceformat.min.js")}}"></script>
 @yield("js")
 
 @if(Session::has("message"))

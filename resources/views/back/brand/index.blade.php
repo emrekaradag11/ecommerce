@@ -5,8 +5,6 @@
         <button tabindex data-toggle="modal" data-target="#brandModal" class="btn btn-primary btn-rounded">Marka Ekle</button>
     </div>
     <div class="separator-breadcrumb border-top"></div>
-
-
     <div class="card mb-4">
         <div class="card-body">
 
@@ -41,7 +39,6 @@
                 @endforeach
                 </tbody>
             </table>
-
             <form action="" class="d-none js_delete_form" method="POST">
                 @csrf
                 @method('DELETE')

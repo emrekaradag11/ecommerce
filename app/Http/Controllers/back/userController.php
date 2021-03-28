@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\{user_types,users};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {
@@ -47,9 +48,10 @@ class userController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
+                'password' => 'confirmed',
                 'name' => 'required|max:255',
                 'surname' => 'required|max:255',
-                'email' => 'required|email',
+                'email' => 'required|string|email|max:255|unique:users',
             ]/*,[
                 'name.required' => __("validation.required" , ["attribute" => __("variable.adi")]),
                 'last-name.required' => __("validation.required" , ["attribute" => __("variable.soyadi")]),
@@ -59,17 +61,6 @@ class userController extends Controller
 
         if($validator->fails())
             return redirect()->back()->withErrors($validator)->withInput();
-
-        if($request->post("password") != $request->post("repeat-password")){
-
-            $noti = array(
-                'message' => "Parolalar Eşleşmiyor",
-                'head'=>'İşlem Başarısız',
-                'type' => 'error',
-                'status' => '404'
-            );
-            return redirect()->back()->with($noti);
-        }
 
         $users = new users();
         $response = $users->set_users($request);
@@ -95,7 +86,10 @@ class userController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = users::find($id);
+        $user_types = new user_types();
+        $user_types = $user_types->where("status_id" , "!=" , "2")->get();
+        return view('back.users.update',compact("user_types","user"));
     }
 
     /**
@@ -107,7 +101,37 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'password' => 'bail|confirmed',
+            'name' => 'bail|required|string|max:255',
+            'surname' => 'bail|required|string|max:255',
+            'type_id' => 'bail|required',
+        ];
+
+
+        $validator = Validator::make(
+            $request->all(),
+            $rules,
+        );
+
+        if($validator->fails())
+            return redirect()->back()->withErrors($validator)->withInput();
+
+
+        if(!Hash::check($request->default_password,users::find($id)->password)) {
+            $noti = array(
+                'message' => "Mevcut Şifre Hatalı",
+                'head'=>'Hata',
+                'type' => 'error',
+                'status' => '200'
+            );
+            return redirect()->back()->with($noti);
+        }
+
+        $users = new users();
+        $response = $users->edit_users($request,$id);
+
+        return redirect()->route("admin.users.index")->with($response);
     }
 
     /**
@@ -118,6 +142,8 @@ class userController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $users = new users();
+        $response = $users->softDelete($id);
+        return redirect()->back()->with($response);
     }
 }

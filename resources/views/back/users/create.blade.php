@@ -28,8 +28,8 @@
                             <input type="text" name="permissions" id="permissions" class="form-control form-control-solid"/>
                         </div>--}}
                         <div class="form-group col-lg-6">
-                            <label for="type">Kullanıcı Tipi:</label>
-                            <select name="type" id="type" required class="form-control form-control-solid">
+                            <label for="type_id">Kullanıcı Tipi:</label>
+                            <select name="type_id" id="type_id" required class="form-control form-control-solid">
                                 <option value="">Kullanıcı Tipi Seçiniz</option>
                                 @foreach($user_types as $u)
                                     <option value="{{$u->id}}">{{$u->name}}</option>
@@ -38,11 +38,11 @@
                         </div>
                         <div class="form-group col-lg-6">
                             <label for="password">Şifre:</label>
-                            <input type="text" name="password" id="password" class="form-control form-control-solid"/>
+                            <input type="password" name="password" id="password" class="form-control form-control-solid"/>
                         </div>
                         <div class="form-group col-lg-6">
-                            <label for="repeat-password">Şifre Tekrarı:</label>
-                            <input type="text" name="repeat-password" id="repeat-password" class="form-control form-control-solid"/>
+                            <label for="password_confirmation">Şifre Tekrarı:</label>
+                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control form-control-solid"/>
                         </div>
                         <div class="form-group col-12">
                             <label for="img">Görsel:</label>

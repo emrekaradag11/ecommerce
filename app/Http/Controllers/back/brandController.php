@@ -87,7 +87,6 @@ class brandController extends Controller
      */
     public function destroy($id)
     {
-
         $brands = new brands();
         $response = $brands->softDelete($id);
         return redirect()->back()->with($response);

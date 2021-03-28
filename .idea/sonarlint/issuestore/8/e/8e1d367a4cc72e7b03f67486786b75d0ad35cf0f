@@ -1,3 +1,4 @@
 
-fphp:S101	"RRename class "userController" to match the regular expression ^[A-Z][a-zA-Z0-9]*$.(Ί’ƒΆ
-Dphp:S1213"0Add curly braces around the nested statement(s).(Χ»
+mphp:S101"RRename class "userController" to match the regular expression ^[A-Z][a-zA-Z0-9]*$.(Ί’ƒΆ8 ΟΩ…/
+Kphp:S121>"0Add curly braces around the nested statement(s).(ίκ8 ΟΩ…/
+Kphp:S121u"0Add curly braces around the nested statement(s).(ίκ8™γ―¨‡/
