@@ -7,38 +7,39 @@
     <div class="separator-breadcrumb border-top"></div>
     <div class="card mb-4">
         <div class="card-body">
-
-            <table class="table table-bordered" id="customDatatable">
-                <thead>
-                <tr>
-                    <th>Sıra</th>
-                    <th>Başlık</th>
-                    <th>Bağlı Olduğu Ürün Sayısı</th>
-                    <th class="text-right">İşlemler</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($data as $d)
-
-                    @php
-                        $d->route = route("admin.brand.update",$d->id);
-                        $d->deleteRoute = route("admin.brand.destroy",$d->id);
-                    @endphp
+            <div class="table-responsive">
+                <table class="display table table-striped table-bordered datatable table-hover">
+                    <thead>
                     <tr>
-                        <td>{{$loop->index + 1}}</td>
-                        <td>{{$d->title}}</td>
-                        <td>123</td>
-                        <td class="text-right">
-
-                            <a tabindex data-info="{{$d}}" class="btn btn-xs btn-xxs px-3 py-2 btn-facebook js-edit"><i class="nav-icon i-Pen-2"></i></a>
-                            <a tabindex data-info="{{$d}}" class="btn btn-xs btn-xxs px-3 py-2 btn-danger js_delete"><i class="nav-icon i-Close-Window"></i></a>
-                            <a tabindex="" class="btn btn-xs btn-xxs px-3 py-2 btn-info list_item"><i class="nav-icon i-Arrow-Cross"></i></a>
-                            </a>
-                        </td>
+                        <th>Sıra</th>
+                        <th>Başlık</th>
+                        <th>Bağlı Olduğu Ürün Sayısı</th>
+                        <th class="text-right">İşlemler</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($data as $d)
+
+                        @php
+                            $d->route = route("admin.brand.update",$d->id);
+                            $d->deleteRoute = route("admin.brand.destroy",$d->id);
+                        @endphp
+                        <tr>
+                            <td>{{$loop->index + 1}}</td>
+                            <td>{{$d->title}}</td>
+                            <td>123</td>
+                            <td class="text-right">
+
+                                <a tabindex data-info="{{$d}}" class="btn btn-xs btn-xxs px-3 py-2 btn-facebook js-edit"><i class="nav-icon i-Pen-2"></i></a>
+                                <a tabindex data-info="{{$d}}" class="btn btn-xs btn-xxs px-3 py-2 btn-danger js_delete"><i class="nav-icon i-Close-Window"></i></a>
+                                <a tabindex="" class="btn btn-xs btn-xxs px-3 py-2 btn-info list_item"><i class="nav-icon i-Arrow-Cross"></i></a>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
             <form action="" class="d-none js_delete_form" method="POST">
                 @csrf
                 @method('DELETE')

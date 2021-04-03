@@ -20,44 +20,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf9eedc5-7502-4563-bf95-0943fffee7c8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Helpers/helpers.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/adminUserAuth.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeders/usersSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/back/js/jquery.priceformat.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/back/login.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/back/users/update.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/b/0bd532e8da518b686aecc9a8d640ce221cf7e326" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/4/74e75a8b1d14f1cafdb69e87a3fa68aff59de69c" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/4/74e75a8b1d14f1cafdb69e87a3fa68aff59de69c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/e/8e1d367a4cc72e7b03f67486786b75d0ad35cf0f" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/e/8e1d367a4cc72e7b03f67486786b75d0ad35cf0f" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/3/d32f493b868ab29a728ef5c18a134bcf7bd2f6f6" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/back/css/datatables.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/back/js/datatables.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/3/0318da599a1b6a2f19ba940b18c95cb5f6da57b3" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/3/0318da599a1b6a2f19ba940b18c95cb5f6da57b3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/7/3748fd718ee7fb99e838d8ba2d13adda79bcabfb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/7/3748fd718ee7fb99e838d8ba2d13adda79bcabfb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/8/3880a6befdc0819bcccb948c9dc2450a36583ed5" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/8/3880a6befdc0819bcccb948c9dc2450a36583ed5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/b/3b3e7af2372dacd28f9023333a783b8e2a12f475" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/b/3b3e7af2372dacd28f9023333a783b8e2a12f475" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/a/5ad986bec68f158aa81b458d6c3dfcbf7bd0c1c5" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/a/5ad986bec68f158aa81b458d6c3dfcbf7bd0c1c5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/a/6a7504934b87507097dae4b7de5e55838fffba10" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/a/6a7504934b87507097dae4b7de5e55838fffba10" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/6/96ac53ebe0d7b6b6bcce16fcc48a3b5f0ced5c5d" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/6/96ac53ebe0d7b6b6bcce16fcc48a3b5f0ced5c5d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/9/a933aca97aa34f437bd3efd9f10202736c66356e" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/9/a933aca97aa34f437bd3efd9f10202736c66356e" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/9/c952922ad4b5088e1d876ecdc2a54d3ca03bb5fa" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/9/c952922ad4b5088e1d876ecdc2a54d3ca03bb5fa" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/a/da0511f05e614a5ef1fb6a4fdb025a92f9d22bde" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/a/da0511f05e614a5ef1fb6a4fdb025a92f9d22bde" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/3/f3977c3b2e193763cd4df6b857ca3e9b130666fa" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/3/f3977c3b2e193763cd4df6b857ca3e9b130666fa" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/back/adminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/back/adminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/back/brandController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/back/brandController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/helpers.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/back/productController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/back/productController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/back/userController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/back/userController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/product_discount.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/product_discount.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/product_dtl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/product_dtl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/products.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/products.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/users.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_08_143807_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_08_143807_create_products_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_08_143904_create_product_dtl_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_08_143904_create_product_dtl_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_08_144041_create_variants_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/back/css/lite-purple.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/back/css/lite-purple.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/back/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/back/css/custom.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/back/js/script.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/back/js/script.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/tr/validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/tr/validation.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/back/brand/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/back/brand/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/back/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/back/layout.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/back/product/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/back/product/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/back/users/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/back/users/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/back/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/back/users/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/back/product/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/back/product/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +197,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/database/seeders/userTypeTableSeeder.php" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/back/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/back/css" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
@@ -214,10 +205,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\LRVLPROJECT\e-commerce\public\back\css" />
       <recent name="C:\xampp\htdocs\LRVLPROJECT\e-commerce\public\back\js" />
       <recent name="C:\xampp\htdocs\LRVLPROJECT\e-commerce\resources\lang\tr" />
       <recent name="C:\xampp\htdocs\LRVLPROJECT\e-commerce\public\back\fonts" />
-      <recent name="C:\xampp\htdocs\LRVLPROJECT\e-commerce\public\back\css" />
       <recent name="C:\xampp\htdocs\LRVLPROJECT\e-commerce\public\back\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -289,7 +280,10 @@
       <workItem from="1616525193604" duration="4783000" />
       <workItem from="1616530239647" duration="21145000" />
       <workItem from="1616871409603" duration="822000" />
-      <workItem from="1616872261658" duration="12802000" />
+      <workItem from="1616872261658" duration="23616000" />
+      <workItem from="1617042874783" duration="8525000" />
+      <workItem from="1617132471562" duration="5879000" />
+      <workItem from="1617484775367" duration="652000" />
     </task>
     <servers />
   </component>

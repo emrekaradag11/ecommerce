@@ -16,13 +16,14 @@ class product_dtl extends Model
 
         $model = new product_dtl();
         $model->product_id = $id;
-        $model->type_id = "1";
+        $model->type_id = "1"; // ürün ise tipi 1, varyant ise 2
         $model->kdv = $request->post("kdv");
         $model->shipping_day = $request->post("shipping_day");
-        $model->price = $request->post("price");
+        $model->price = databasePriceFormat($request->post("price"));
         $model->stock = $request->post("stock");
-        $model->shipping_price = $request->post("shipping_price");
+        $model->shipping_price = databasePriceFormat($request->post("shipping_price"));
         $model->product_code = $request->post("product_code");
+        $model->currency_id = $request->post("currency_id");
         $model->save();
 
         $noti = array(
@@ -33,5 +34,9 @@ class product_dtl extends Model
         );
 
         return $noti;
+    }
+
+    public function getProductCurrency(){
+        return $this->hasOne("App\Models\currency","id","currency_id");
     }
 }

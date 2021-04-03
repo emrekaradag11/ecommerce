@@ -55,12 +55,12 @@
                             </div>
                             <div class="col-lg-6 form-group">
                                 <label>Fiyat:</label>
-                                <input type="text" name="price" required class="form-control price_format">
+                                <input type="text" name="price" maxlength="18" required class="form-control price_format">
                             </div>
                             @foreach($discounts as $d)
                                 <div class="col-lg-6 form-group">
-                                    <label>{{$d->title}}</label>
-                                    <input type="number" required name="product_discount[{{$d->id}}]" class="form-control">
+                                    <label>{{$d->title}} (%)</label>
+                                    <input type="number" required maxlength="2" name="product_discount[{{$d->id}}]" class="form-control">
                                 </div>
                             @endforeach
                             <div class="col-lg-6 form-group">
@@ -76,12 +76,16 @@
                                 <input type="number" name="barcode" class="form-control">
                             </div>
                             <div class="col-lg-6 form-group">
-                                <label>Kargo Süresi (Gün):</label>
+                                <label>Teslimat Süresi (Gün):</label>
                                 <input type="number" required name="shipping_day" class="form-control">
                             </div>
                             <div class="col-lg-6 form-group">
                                 <label>Kargo Fiyatı :</label>
-                                <input type="text" required name="shipping_price" class="form-control price_format">
+                                <input type="text" maxlength="18" required name="shipping_price" class="form-control price_format">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>KDV:</label>
+                                <input type="number" required name="kdv" class="form-control">
                             </div>
                             <div class="col-lg-6 form-group">
                                 <label>Etiketler :</label>

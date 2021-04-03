@@ -13,6 +13,7 @@
     <link href="{{asset("back/css/perfect-scrollbar.min.css")}}" rel="stylesheet" />
     <link href="{{asset("back/css/custom.css")}}" rel="stylesheet" />
     <link href="{{asset("back/css/dropify.min.css")}}" rel="stylesheet" />
+    <link href="{{asset("back/css/datatables.min.css")}}" rel="stylesheet" />
     @yield("css")
     <script src="{{asset("back/js/jquery-3.3.1.min.js")}}"></script>
     <script src="{{asset("back/js/jquery-ui.min.js")}}"></script>
@@ -342,6 +343,7 @@
 <script src="{{asset("back/js/toastr.min.js")}}"></script>
 <script src="{{asset("back/js/dropify.min.js")}}"></script>
 <script src="{{asset("back/js/jquery.priceformat.min.js")}}"></script>
+<script src="{{asset("back/js/datatables.min.js")}}"></script>
 @yield("js")
 
 @if(Session::has("message"))

@@ -140,3 +140,23 @@ G
 app/Helpers/helpers.php,5\a\5ad986bec68f158aa81b458d6c3dfcbf7bd0c1c5
 B
 app/Models/img.php,0\3\0318da599a1b6a2f19ba940b18c95cb5f6da57b3
+>
+routes/api.php,b\3\b337d07ab0e7d54bf5547a0321a43ecafbd73ec1
+X
+(public/back/js/jquery.priceformat.min.js,b\6\b6506d382d6ae7e9e5fb553f75ae4fa78b65857a
+L
+public/back/js/script.min.js,a\1\a136952bbb47d5de292630407826de418ea830fd
+\
+,resources/views/back/product/index.blade.php,7\6\766c91f006fe9e781702072ad05cc48971f30aa1
+]
+-resources/views/back/product/create.blade.php,4\0\403e9dd552d3aecf1dbd03895b6c9ab12a152548
+G
+app/Models/products.php,8\f\8f47c3d42f2f89815cafef84fabb472694405de6
+J
+app/Models/product_dtl.php,7\b\7b39477bde2f3576b4ca12b0c83b042ffffce290
+_
+/app/Http/Controllers/back/productController.php,9\6\96ee761652f3baf267adadfed9df1982b9665a93
+O
+app/Models/product_discount.php,a\f\afdd8725873cb1918b597424c6ccce36ff5ba0a9
+J
+public/back/css/custom.css,5\8\58eb25d65bb02677d3733fcf9c2a7990a74d48cb

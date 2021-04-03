@@ -15,7 +15,7 @@ return [
 
     'accepted' => ':attribute kabul edilmelidir.',
     'active_url' => ':attribute geçerli bir URL olmalıdır.',
-    'after' => 'The :attribute must be a date after :date.',
+    'after' => ':attribute , :date \'ten sonraki bir tarih olmalıdır.',
     'after_or_equal' => 'The :attribute must be a date after or equal to :date.',
     'alpha' => 'The :attribute may only contain letters.',
     'alpha_dash' => 'The :attribute may only contain letters, numbers, dashes and underscores.',
@@ -29,7 +29,7 @@ return [
         'string' => ':attribute :min - :max arasında karakterden oluşmalıdır.',
         'array' => ':attribute :min - :max arasında nesneye sahip olmalıdır.'
     ],
-    'boolean' => 'The :attribute field must be true or false.',
+    'boolean' => ':attribute alanı Doğru veya Yanlış değeri almalıdır.',
     'confirmed' => ':attribute eşleşmiyor.',
     'date' => ':attribute geçerli bir tarih olmalıdır.',
     'date_equals' => 'The :attribute must be a date equal to :date.',

@@ -16,11 +16,8 @@ class productController extends Controller
      */
     public function index()
     {
-        $categories = new categories();
-        $categories = $categories->where('status_id' , '!=' , '2')->get();
-        $brands = new brands();
-        $brands = $brands->where('status_id' , '!=' , '2')->get();
-        return view('back.product.index',compact('categories','brands'));
+        $products = products::where('status_id' , '=' , '1')->get();
+        return view('back.product.index',compact('products'));
     }
 
     /**
@@ -52,22 +49,43 @@ class productController extends Controller
     public function store(Request $request)
     {
 
-
-        $validator = Validator::make(
-
-            //fiyat için price format validate eklenecek
-            $request->all(),
-            [
-                'category_id' => 'bail|required|numeric',
-                'brand_id' => 'bail|required|numeric',
-                'product_unit_id' => 'bail|required|numeric',
-                'currency_id' => 'bail|required|numeric',
-                'title' => 'required',
-                'price' =>' bail|required',
-                'stock' => 'bail|required|numeric',
-                'product_code' => 'bail|required|unique:product_dtl',
-                'shipping_day' => 'bail|required|numeric',
+        $rules = [
+            'category_id' => 'bail|required|numeric',
+            'brand_id' => 'bail|required|numeric',
+            'product_unit_id' => 'bail|required|numeric',
+            'currency_id' => 'bail|required|numeric',
+            'title' => 'required',
+            'price' => [
+                'bail',
+                'required',
+                'max:18',
+                function($attribute, $value, $fail){
+                    if(!priceFormat($value)){
+                        $fail('The '.$attribute.' is invalid.');
+                    }
+                }
             ],
+            'stock' => 'bail|required|numeric',
+            'product_code' => 'bail|required|unique:product_dtl',
+            'shipping_day' => 'bail|required|numeric',
+        ];
+
+        if(isset($request->shipping_price)){
+            $rules += [
+                'shipping_price' => [
+                'bail',
+                'required',
+                'max:18',
+                function($attribute, $value, $fail){
+                    if(!priceFormat($value)){
+                        $fail('The '.$attribute.' is invalid.');
+                    }
+                }
+            ]];
+        }
+        $validator = Validator::make(
+            $request->all(),
+            $rules,
         );
 
         if($validator->fails())

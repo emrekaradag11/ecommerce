@@ -15,16 +15,17 @@ class CreateProductDtlTable extends Migration
     {
         Schema::create('product_dtl', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id')->nullable();
-            $table->string('product_code')->nullable();
+            $table->integer('product_id');
+            $table->string('product_code');
             $table->integer('variant_id')->nullable();
             $table->integer('kdv')->nullable();
             $table->integer('shipping_day')->nullable();
-            $table->integer('type_id')->nullable();
-            $table->float('price')->nullable();
+            $table->integer('type_id');
+            $table->decimal('price',12,2);
             $table->integer('stock')->nullable();
-            $table->float('shipping_price')->nullable();
+            $table->decimal('shipping_price',12,2);
             $table->json('old_prices')->nullable();
+            $table->integer('currency_id');
             $table->timestamps();
         });
     }

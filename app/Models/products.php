@@ -24,12 +24,14 @@ class products extends Model
         $model->category_id = $request->post("category_id");
         $model->product_unit_id = $request->post("product_unit_id");
         $model->status_id = "1";
-        $model->currency_id = $request->post("currency_id");
         $model->barcode = $request->post("barcode");
         $model->save();
 
         $detail = new product_dtl();
         $detail->setProductsDetail($request,$model->id);
+
+        $discounts = new product_discount();
+        $discounts->setProductsDiscounts($request->product_discount,$model->id);
 
         $noti = array(
             'message' => "İşlem Başarıyla Gerçekleştirildi",
@@ -40,5 +42,18 @@ class products extends Model
 
         return $noti;
     }
+
+    public function getProductCategory(){
+        return $this->hasOne("App\Models\categories","id","category_id");
+    }
+
+    public function getProductBrand(){
+        return $this->hasOne("App\Models\brands","id","brand_id");
+    }
+
+    public function getProductDetail(){
+        return $this->hasOne("App\Models\product_dtl","product_id","id")->where("type_id","=","1");
+    }
+
 
 }
