@@ -1,6 +1,0 @@
-
-aphp:S101"JRename class "brands" to match the regular expression ^[A-Z][a-zA-Z0-9]*$.(èÜƒ–úÿÿÿÿ
-g	php:S1192"TDefine a constant instead of duplicating this literal "Ä°ÅŸlem BaÅŸarÄ±lÄ±" 3 times.(æÂÉ»
-u	php:S1488"]Immediately return this expression instead of assigning it to the temporary variable "$noti".(ôëÄàüÿÿÿÿ
-u	php:S1488"]Immediately return this expression instead of assigning it to the temporary variable "$noti".(ôëÄàüÿÿÿÿ
-u	php:S1488"]Immediately return this expression instead of assigning it to the temporary variable "$noti".(ôëÄàüÿÿÿÿ
