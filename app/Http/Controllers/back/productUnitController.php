@@ -16,8 +16,8 @@ class productUnitController extends Controller
     public function index()
     {
         $product_units = new product_units();
-        $data = $product_units->where("status_id" , "!=" , "2")->get();
-        return view('back.productUnits.index',compact("data"));
+        $data = $product_units->where('status_id' , '!=' , '2')->get();
+        return view('back.productUnits.index',compact('data'));
     }
 
     /**
@@ -38,9 +38,10 @@ class productUnitController extends Controller
      */
     public function store(Request $request)
     {
-        $model = new product_units();
-        $response = $model->setProductUnit($request);
-        return redirect()->back()->with($response);
+        product_units::create($request->except(['_token','_method']));
+        toastr()->success('Başarıyla Eklendi','İşlem Başarılı');
+
+        return redirect()->back();
     }
 
     /**
@@ -74,9 +75,11 @@ class productUnitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $model= new product_units();
-        $response = $model->updateProductUnit($request,$id);
-        return redirect()->back()->with($response);
+
+        product_units::find($id)->update($request->except(['_token','_method']));
+        toastr()->success('Başarıyla Güncellendi','İşlem Başarılı');
+
+        return redirect()->back();
     }
 
     /**

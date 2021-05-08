@@ -12,22 +12,26 @@ class statusController extends Controller
     public function index(){
         $status_list_types = status_list_types::all();
         $status_list = status_list::all();
-        return view('back.status.index' , compact("status_list_types","status_list"));
+        return view('back.status.index' , compact('status_list_types','status_list'));
     }
 
-    public function addStatusListType(Request $request){
+    public function addStatusListType(Request $request)
+    {
 
-        $model = new status_list_types();
-        $response = $model->set_status_list_types($request);
-        return redirect()->back()->with($response);
+        status_list_types::create($request->except(['_token','_method']));
+        toastr()->success('Başarıyla Eklendi','İşlem Başarılı');
+
+        return redirect()->back();
 
     }
 
-    public function addStatusList(Request $request){
+    public function addStatusList(Request $request)
+    {
 
-        $model = new status_list();
-        $response = $model->set_status_list($request);
-        return redirect()->back()->with($response);
+        status_list::create($request->except(['_token','_method']));
+        toastr()->success('Başarıyla Eklendi','İşlem Başarılı');
+
+        return redirect()->back();
 
     }
 }

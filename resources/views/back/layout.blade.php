@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="tr">
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>E-Commerce</title>
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <link rel="icon" type="image/png" href="{{asset("back/img/favicon.jpg")}}"/>
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet" />
     <link href="{{asset("back/css/lite-purple.min.css")}}" rel="stylesheet" />
@@ -14,8 +15,11 @@
     <link href="{{asset("back/css/custom.css")}}" rel="stylesheet" />
     <link href="{{asset("back/css/dropify.min.css")}}" rel="stylesheet" />
     <link href="{{asset("back/css/datatables.min.css")}}" rel="stylesheet" />
+    <link href="{{asset("back/css/dropzone.min.css")}}" rel="stylesheet" />
+    <link href="{{asset("back/css/bootstrap-tagsinput.css")}}" rel="stylesheet" />
+    <link href="{{asset("back/css/select2.min.css")}}" rel="stylesheet" />
     @yield("css")
-    <script src="{{asset("back/js/jquery-3.3.1.min.js")}}"></script>
+    <script src="{{asset("back/js/jquery-3.6.0.min.js")}}"></script>
     <script src="{{asset("back/js/jquery-ui.min.js")}}"></script>
 </head>
 
@@ -161,7 +165,7 @@
             </div>
             <div class="dropdown">
                 <div class="user col align-self-end">
-                    <img src="{{isset(session("adminUser")->image->img) ?  asset("uploads/" . session("adminUser")->image->img) : null}}" id="userDropdown" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="{{(isset(session("adminUser")->image->img) && !empty(session("adminUser")->image->img)) ?  asset("uploads/" . session("adminUser")->image->img) : null}}" id="userDropdown" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <div class="dropdown-header">
                             <i class="i-Lock-User mr-1"></i> {{session("adminUser")->name . " " . session("adminUser")->surname}}
@@ -188,7 +192,7 @@
                 <li class="nav-item"><a href="{{route("admin.brand.index")}}"><i class="nav-icon i-Atom"></i><span class="item-name">Markalar</span></a></li>
                 <li class="nav-item"><a href="{{route("admin.product.index")}}"><i class="nav-icon i-Structure"></i><span class="item-name">Ürünler</span></a></li>
                 <li class="nav-item"><a href="{{route("admin.discount.index")}}"><i class="nav-icon i-Arrow-Inside-Gap-45"></i><span class="item-name">İndirimler</span></a></li>
-                <li class="nav-item"><a href="#"><i class="nav-icon i-Align-Right"></i><span class="item-name">Varyantlar</span></a></li>
+                <li class="nav-item"><a href="{{route("admin.variants.index")}}"><i class="nav-icon i-Align-Right"></i><span class="item-name">Varyantlar</span></a></li>
                 <li class="nav-item"><a href="{{route("admin.unit.index")}}"><i class="nav-icon i-Arrow-Around"></i><span class="item-name">Ürün Birimleri</span></a></li>
                 <li class="nav-item"><a href="{{route("admin.currency.index")}}"><i class="nav-icon i-Money-2"></i><span class="item-name">Para Birimleri</span></a></li>
             </ul>
@@ -333,6 +337,13 @@
         </nav>
     </div>
 </div>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
 <script src="{{asset("back/js/bootstrap.bundle.min.js")}}"></script>
 <script src="{{asset("back/js/perfect-scrollbar.min.js")}}"></script>
 <script src="{{asset("back/js/script.min.js")}}"></script>
@@ -344,26 +355,13 @@
 <script src="{{asset("back/js/dropify.min.js")}}"></script>
 <script src="{{asset("back/js/jquery.priceformat.min.js")}}"></script>
 <script src="{{asset("back/js/datatables.min.js")}}"></script>
+<script src="{{asset("back/js/dropzone.min.js")}}"></script>
+<script src="{{asset("back/js/bootstrap-tagsinput.js")}}"></script>
+<script src="{{asset("back/js/select2.full.min.js")}}"></script>
 @yield("js")
 
-@if(Session::has("message"))
-    <script>
-        $(document).ready(function () {
-            toastr.{{Session::get('type','info')}}(
-                "{{ Session::get('message') }}",
-                "{{Session::get('head','İşlem Başarılı')}}",
-                {
-                    "progressBar":!0,
-                    "timeOut": "2000",
-                },
-
-            )
-        })
-    </script>
-@endif
 @isset($errors)
     @foreach($errors->all() as $e)
-        {{$e}}
         <script>
             $(document).ready(function () {
                 toastr.error(
@@ -379,5 +377,6 @@
         </script>
     @endforeach
 @endisset
+@toastr_render
 </body>
 </html>

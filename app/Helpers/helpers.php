@@ -19,6 +19,17 @@ if (! function_exists('fileUpload')) {
     }
 }
 
+if (! function_exists('deleteImg')) {
+    function deleteImg($img, $path = "uploads")
+    {
+        $deleted = unlink(public_path($path . "\\" . $img));
+        if($deleted)
+            return true;
+        else
+            return false;
+    }
+}
+
 if (! function_exists('databasePriceFormat')) {
     //database'e kaydederken
     function databasePriceFormat($price)

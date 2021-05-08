@@ -18,10 +18,10 @@ class userController extends Controller
     public function index()
     {
         $users = new users();
-        $data = $users->where("status_id" , "!=" , "2")->get();
+        $data = $users->where('status_id' , '!=' , '2')->get();
         $user_types = new user_types();
-        $user_types_data = $user_types->where("status_id" , "!=" , "2")->get();
-        return view('back.users.index',compact("data","user_types_data"));
+        $user_types_data = $user_types->where('status_id' , '!=' , '2')->get();
+        return view('back.users.index',compact('data','user_types_data'));
     }
 
     /**
@@ -32,8 +32,8 @@ class userController extends Controller
     public function create()
     {
         $user_types = new user_types();
-        $user_types = $user_types->where("status_id" , "!=" , "2")->get();
-        return view('back.users.create',compact("user_types"));
+        $user_types = $user_types->where('status_id' , '!=' , '2')->get();
+        return view('back.users.create',compact('user_types'));
     }
 
     /**
@@ -53,18 +53,31 @@ class userController extends Controller
                 'surname' => 'required|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
             ]/*,[
-                'name.required' => __("validation.required" , ["attribute" => __("variable.adi")]),
-                'last-name.required' => __("validation.required" , ["attribute" => __("variable.soyadi")]),
-                'email.required' => __("validation.required" , ["attribute" => __("variable.email")]),
+                'name.required' => __('validation.required' , ['attribute' => __('variable.adi')]),
+                'last-name.required' => __('validation.required' , ['attribute' => __('variable.soyadi')]),
+                'email.required' => __('validation.required' , ['attribute' => __('variable.email')]),
             ]*/,
         );
 
         if($validator->fails())
             return redirect()->back()->withErrors($validator)->withInput();
 
+        $uploadImg = fileUpload($request->file('img'),'uploads',$request->name,'');
+
         $users = new users();
-        $response = $users->set_users($request);
-        return redirect()->route("admin.users.index")->with($response);
+        $users->password = Hash::make($request->password);
+        $users->name = $request->name;
+        $users->surname = $request->surname;
+        $users->email = $request->email;
+        $users->type_id = $request->type_id;
+        $users->save();
+        $users->image()->updateOrCreate(
+            ['img' => $uploadImg]
+        );
+
+        toastr()->success('Başarıyla Eklendi','İşlem Başarılı');
+
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -88,8 +101,8 @@ class userController extends Controller
     {
         $user = users::find($id);
         $user_types = new user_types();
-        $user_types = $user_types->where("status_id" , "!=" , "2")->get();
-        return view('back.users.update',compact("user_types","user"));
+        $user_types = $user_types->where('status_id' , '!=' , '2')->get();
+        return view('back.users.update',compact('user_types','user'));
     }
 
     /**
@@ -119,19 +132,28 @@ class userController extends Controller
 
 
         if(!Hash::check($request->default_password,users::find($id)->password)) {
-            $noti = array(
-                'message' => "Mevcut Şifre Hatalı",
-                'head'=>'Hata',
-                'type' => 'error',
-                'status' => '200'
-            );
-            return redirect()->back()->with($noti);
+            toastr()->error('Mevcut Şifre Hatalı','Hata');
+            return redirect()->back();
         }
 
-        $users = new users();
-        $response = $users->edit_users($request,$id);
+        $users = users::find($id);
+        $users->password = isset($request->password) ? Hash::make($request->password) : $users->password;
+        $users->name = $request->name;
+        $users->surname = $request->surname;
+        $users->email = $request->email;
+        $users->type_id = $request->type_id;
+        $users->save();
+        if($request->file('img')){
+            $uploadImg = fileUpload($request->file('img'),'uploads',$request->name,$users->image->img ?? null);
+            $users->image()->updateOrCreate(
+                [],
+                ['img' => $uploadImg,],
+            );
+        }
 
-        return redirect()->route("admin.users.index")->with($response);
+        toastr()->success('Başarıyla Güncellendi','İşlem Başarılı');
+
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -142,8 +164,14 @@ class userController extends Controller
      */
     public function destroy($id)
     {
-        $users = new users();
-        $response = $users->softDelete($id);
-        return redirect()->back()->with($response);
+        $users = users::find($id);
+        if($users->type_id == '1')
+            toastr()->error('Süper Admin Silinemez','Hata');
+        else{
+            users::find($id)->update(['status_id' => '2']);
+            toastr()->success('Başarıyla Silindi','İşlem Başarılı');
+        }
+
+        return redirect()->back();
     }
 }

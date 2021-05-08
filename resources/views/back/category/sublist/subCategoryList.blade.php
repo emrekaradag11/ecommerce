@@ -1,4 +1,4 @@
-<ul class="list-group customLists">
+<ul class="list-group customLists sortables">
     @foreach($data as $d)
         @php
             $d->route = route("admin.category.update",$d->id);

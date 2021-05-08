@@ -16,8 +16,8 @@ class currencyController extends Controller
     public function index()
     {
         $currency = new currency();
-        $data = $currency->where("status_id" , "!=" , "2")->get();
-        return view('back.currency.index',compact("data"));
+        $data = $currency->where('status_id' , '!=' , '2')->get();
+        return view('back.currency.index',compact('data'));
     }
 
     /**
@@ -38,9 +38,10 @@ class currencyController extends Controller
      */
     public function store(Request $request)
     {
-        $model = new currency();
-        $response = $model->setCurrency($request);
-        return redirect()->back()->with($response);
+        currency::create($request->except(['_token','_method']));
+        toastr()->success('Başarıyla Eklendi','İşlem Başarılı');
+
+        return redirect()->back();
     }
 
     /**
@@ -74,9 +75,10 @@ class currencyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $currency= new currency();
-        $response = $currency->updateCurrency($request,$id);
-        return redirect()->back()->with($response);
+        currency::find($id)->update($request->except(['_token','_method']));
+        toastr()->success('Başarıyla Güncellendi','İşlem Başarılı');
+
+        return redirect()->back();
     }
 
     /**

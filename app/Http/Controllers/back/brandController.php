@@ -16,8 +16,8 @@ class brandController extends Controller
     public function index()
     {
         $brands = new brands();
-        $data = $brands->where("status_id" , "!=" , "2")->get();
-        return view('back.brand.index',compact("data"));
+        $data = $brands->where('status_id' , '!=' , '2')->get();
+        return view('back.brand.index',compact('data'));
     }
 
     /**
@@ -38,9 +38,11 @@ class brandController extends Controller
      */
     public function store(Request $request)
     {
-        $brands = new brands();
-        $response = $brands->set_brands($request);
-        return redirect()->back()->with($response);
+
+        brands::create($request->except(['_token','_method']));
+        toastr()->success('Başarıyla Eklendi','İşlem Başarılı');
+
+        return redirect()->back();
     }
 
     /**
@@ -74,9 +76,11 @@ class brandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $brands = new brands();
-        $response = $brands->updateBrands($request,$id);
-        return redirect()->back()->with($response);
+
+        brands::find($id)->update($request->except(['_token','_method']));
+        toastr()->success('Başarıyla Güncellendi','İşlem Başarılı');
+
+        return redirect()->back();
     }
 
     /**
@@ -87,8 +91,10 @@ class brandController extends Controller
      */
     public function destroy($id)
     {
-        $brands = new brands();
-        $response = $brands->softDelete($id);
-        return redirect()->back()->with($response);
+
+        brands::find($id)->update(['status_id' => '2']);
+        toastr()->success('Başarıyla Silindi','İşlem Başarılı');
+
+        return redirect()->back();
     }
 }

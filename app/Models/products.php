@@ -14,18 +14,7 @@ class products extends Model
 
     public function setProducts($request){
 
-        $model = new products();
-        $model->title = $request->post("title");
-        $model->text = $request->post("text");
-        $model->description = $request->post("description");
-        $model->keywords = $request->post("keywords");
-        $model->tags = $request->post("tags");
-        $model->brand_id = $request->post("brand_id");
-        $model->category_id = $request->post("category_id");
-        $model->product_unit_id = $request->post("product_unit_id");
-        $model->status_id = "1";
-        $model->barcode = $request->post("barcode");
-        $model->save();
+        $model = products::create($request->all());
 
         $detail = new product_dtl();
         $detail->setProductsDetail($request,$model->id);
@@ -33,14 +22,32 @@ class products extends Model
         $discounts = new product_discount();
         $discounts->setProductsDiscounts($request->product_discount,$model->id);
 
-        $noti = array(
-            'message' => "İşlem Başarıyla Gerçekleştirildi",
-            'head'=>'İşlem Başarılı',
-            'type' => 'success',
-            'status' => '200'
-        );
+        return $model;
+    }
 
-        return $noti;
+    public function updateProducts($request,$id){
+
+        $model = products::where("id","=",$id)
+            ->update([
+                "title" => $request->post("title"),
+                "text" => $request->post("text"),
+                "description" => $request->post("description"),
+                "keywords" => $request->keywords,
+                "tags" => $request->tags,
+                "brand_id" => $request->brand_id,
+                "category_id" => $request->category_id,
+                "product_unit_id" => $request->product_unit_id,
+                "status_id" => $request->status_id,
+                "barcode" => $request->barcode,
+            ]);
+
+        $detail = new product_dtl();
+        $detail->updateProductsDetail($request,$id);
+
+        $discounts = new product_discount();
+        $discounts->updateProductsDiscounts($request->product_discount,$id);
+
+        return $model;
     }
 
     public function getProductCategory(){
@@ -54,6 +61,7 @@ class products extends Model
     public function getProductDetail(){
         return $this->hasOne("App\Models\product_dtl","product_id","id")->where("type_id","=","1");
     }
+
 
 
 }

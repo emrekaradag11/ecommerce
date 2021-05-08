@@ -104,7 +104,9 @@
                                 <textarea class="form-control" name="text" id="" cols="30" rows="10"></textarea>
                             </div>
                             <div class="col-12 form-group text-right">
-                                <button class="btn btn-success">Kaydet</button>
+                                <input type="hidden" name="status_id" value="1">
+                                <input type="hidden" name="type_id" value="1">
+                                <button type="submit" class="btn btn-success">Kaydet</button>
                             </div>
                         </div>
                     </div>

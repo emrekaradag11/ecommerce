@@ -10,39 +10,9 @@ class discount_types extends Model
     use HasFactory;
 
     protected $table = "discount_types";
-    protected $guarded  = ["id"];
-
-
-    public function setDiscountTypes($request)
-    {
-
-        discount_types::create($request->except(["_token","_method"]));
-
-        $noti = array(
-            'message' => "Başarıyla Eklendi",
-            'head'=>'İşlem Başarılı',
-            'type' => 'success',
-            'status' => '200'
-        );
-
-        return $noti;
-    }
-
-
-
-    public function editDiscountTypes($request,$id)
-    {
-
-        discount_types::find($id)->update($request->except(["_token","_method"]));
-
-        $noti = array(
-            'message' => "Başarıyla Güncellendi",
-            'head'=>'İşlem Başarılı',
-            'type' => 'success',
-            'status' => '200'
-        );
-
-        return $noti;
-    }
+    protected $fillable = [
+        'title',
+        'status_id',
+    ];
 
 }

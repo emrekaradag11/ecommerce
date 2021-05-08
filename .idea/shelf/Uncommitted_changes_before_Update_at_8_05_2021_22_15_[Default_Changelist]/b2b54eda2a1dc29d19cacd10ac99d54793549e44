@@ -1,0 +1,13 @@
+
+pjavascript:S3776>"TRefactor this function to reduce its Cognitive Complexity from 35 to the 15 allowed.(ÂãŸÂ
+Gjavascript:S3696O"&Expected an error object to be thrown.(‡ÂÓûÿÿÿÿ
+hjavascript:S4138]"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(òØİÛ
+Ojavascript:S1117m".'item' is already declared in the upper scope.(¢¬À‰ùÿÿÿÿ
+qjavascript:S3776„"TRefactor this function to reduce its Cognitive Complexity from 76 to the 15 allowed.(Ã™Éç
+ijavascript:S4138›"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(òØİÛ
+Wjavascript:S1481¥"5Remove the declaration of the unused 'size' variable.(ŸŠÈßúÿÿÿÿ
+Tjavascript:S1854¥"2Remove this useless assignment to variable "size".(ŸŠÈßúÿÿÿÿ
+Wjavascript:S1481Ã"5Remove the declaration of the unused 'size' variable.(ŸŠÈßúÿÿÿÿ
+Tjavascript:S1854Ã"2Remove this useless assignment to variable "size".(ŸŠÈßúÿÿÿÿ
+vjavascript:S3776‰"TRefactor this function to reduce its Cognitive Complexity from 20 to the 15 allowed.(·Ëñûÿÿÿÿ
+>javascript:S2814£"'retVal' is already defined.(›ıŸÀúÿÿÿÿ

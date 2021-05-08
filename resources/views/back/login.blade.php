@@ -24,11 +24,11 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="email">E-Posta Adresiniz</label>
-                                    <input class="form-control form-control-rounded" name="email" id="email" type="email" required>
+                                    <input class="form-control form-control-rounded" value="demo@demo.com" name="email" id="email" type="email" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Şifre</label>
-                                    <input class="form-control form-control-rounded" id="password" name="password" type="password" required>
+                                    <input class="form-control form-control-rounded" value="demo" id="password" name="password" type="password" required>
                                 </div>
                                 <button class="btn btn-rounded btn-primary btn-block mt-2">Giriş Yap</button>
                             </form>

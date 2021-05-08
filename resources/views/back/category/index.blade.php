@@ -140,6 +140,27 @@
             $("#categoryEditModal").modal("show")
         })
 
+
+        $( ".sortables" ).sortable({
+            revert: true,
+            handle: ".list_item",
+            stop: function (event, ui) {
+                let data = $(this).sortable('toArray', {attribute: 'data-content'});
+                $.ajax({
+                    type:"post",
+                    method:"post",
+                    data: {
+                        data : data,
+                    },
+                    url: "{!!route('admin.categorySortable')!!}",
+                    success: function (res) {
+                        console.log(res)
+                    }
+                });
+
+            }
+        });
+
     </script>
 
 

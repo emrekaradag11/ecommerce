@@ -11,13 +11,13 @@ class categoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
         $categories = new categories();
-        $data = $categories->where("parent_id" , "0")->where("status_id" , "!=" , "2")->get();
-        return view('back.category.index',compact("data"));
+        $data = $categories->where('parent_id' , '0')->where('status_id' , '!=' , '2')->orderby("ord")->get();
+        return view('back.category.index',compact('data'));
     }
 
     /**
@@ -38,9 +38,11 @@ class categoryController extends Controller
      */
     public function store(Request $request)
     {
-        $categories = new categories();
-        $response = $categories->set_categories($request);
-        return redirect()->back()->with($response);
+
+        categories::create($request->except(['_token','_method']));
+        toastr()->success('Başarıyla Eklendi','İşlem Başarılı');
+
+        return redirect()->back();
     }
 
     /**
@@ -74,9 +76,11 @@ class categoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $categories = new categories();
-        $response = $categories->updateCategories($request,$id);
-        return redirect()->back()->with($response);
+
+        categories::find($id)->update($request->except(['_token','_method']));
+        toastr()->success('Başarıyla Güncellendi','İşlem Başarılı');
+
+        return redirect()->back();
     }
 
     /**
@@ -87,18 +91,23 @@ class categoryController extends Controller
      */
     public function destroy($id)
     {
-        $categories = new categories();
-        $response = $categories->softDelete($id);
-        return redirect()->back()->with($response);
+        categories::find($id)->update(['status_id' => '2']);
+        toastr()->success('Başarıyla Silindi','İşlem Başarılı');
+
+        return redirect()->back();
     }
 
-    public function sortable(Request $request){
+    public function sortable(Request $request)
+    {
 
         if($request->ajax()){
-            $categories = new categories();
-            $response = $categories->changeOrder($request->post("data"));
+            foreach ($request->post('data') as $key => $value)
+            {
+                categories::where('id',$value)->update(["ord" => $key]);
+            }
+            toastr()->success('Sıralama Başarılı','İşlem Başarılı');
+
         }
-        return $response;
 
     }
 }

@@ -16,8 +16,8 @@ class discountController extends Controller
     public function index()
     {
         $discountTypes = new discount_types();
-        $data = $discountTypes->where("status_id" , "!=" , "2")->get();
-        return view('back.discount.index',compact("data"));
+        $data = $discountTypes->where('status_id' , '!=' , '2')->get();
+        return view('back.discount.index',compact('data'));
     }
 
     /**
@@ -38,9 +38,10 @@ class discountController extends Controller
      */
     public function store(Request $request)
     {
-        $model = new discount_types();
-        $response = $model->setDiscountTypes($request);
-        return redirect()->back()->with($response);
+        discount_types::create($request->except(['_token','_method']));
+        toastr()->success('Başarıyla Eklendi','İşlem Başarılı');
+
+        return redirect()->back();
     }
 
     /**
@@ -74,9 +75,11 @@ class discountController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $model= new discount_types();
-        $response = $model->editDiscountTypes($request,$id);
-        return redirect()->back()->with($response);
+
+        discount_types::find($id)->update($request->except(['_token','_method']));
+        toastr()->success('Başarıyla Güncellendi','İşlem Başarılı');
+
+        return redirect()->back();
     }
 
     /**

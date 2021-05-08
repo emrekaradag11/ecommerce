@@ -16,7 +16,7 @@ class product_dtl extends Model
 
         $model = new product_dtl();
         $model->product_id = $id;
-        $model->type_id = "1"; // ürün ise tipi 1, varyant ise 2
+        $model->type_id = $request->post("type_id"); // ürün ise tipi 1, varyant ise 2
         $model->kdv = $request->post("kdv");
         $model->shipping_day = $request->post("shipping_day");
         $model->price = databasePriceFormat($request->post("price"));
@@ -35,8 +35,56 @@ class product_dtl extends Model
 
         return $noti;
     }
+    public function updateProductsDetail($request,$id){
+
+        $model = product_dtl::where("product_id","=",$id)
+            ->update([
+                "type_id" => $request->post("type_id"),
+                "kdv" => $request->post("kdv"),
+                "shipping_day" => $request->post("shipping_day"),
+                "price" => databasePriceFormat($request->post("price")),
+                "stock" => $request->post("stock"),
+                "shipping_price" => databasePriceFormat($request->post("shipping_price")),
+                "product_code" => $request->post("product_code"),
+                "currency_id" => $request->post("currency_id"),
+            ]);
+
+
+        $noti = array(
+            'message' => "İşlem Başarıyla Gerçekleştirildi",
+            'head'=>'İşlem Başarılı',
+            'type' => 'success',
+            'status' => '200'
+        );
+
+        return $noti;
+    }
 
     public function getProductCurrency(){
         return $this->hasOne("App\Models\currency","id","currency_id");
+    }
+
+    public function image()
+    {
+        return $this->morphMany(img::class, 'imageable')->orderBy("ord");
+    }
+
+    public function setProductImg($request)
+    {
+        $product = product_dtl::find($request->product_id);
+        if($request->file("file")){
+            $uploadImg = fileUpload($request->file("file"),"uploads",$product->getProduct->title,"");
+            $product->image()->create(
+                ['img' => $uploadImg,],
+            );
+        }
+    }
+
+    public function getProduct(){
+        return $this->hasOne("App\Models\products","id","product_id");
+    }
+
+    public function getDiscounts(){
+        return $this->hasMany("App\Models\product_discount","product_id","id");
     }
 }

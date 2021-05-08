@@ -15,12 +15,26 @@ class product_discount extends Model
     public function setProductsDiscounts($discounts, $product_id){
         foreach ($discounts as $k => $d) {
             $model = new product_discount();
-            $type_id = discount_types::where("id","=",$k)->first()->id;
-            $model->type_id = $type_id;
-            $model->status_id = "1";
+            $model->type_id = discount_types::where("id","=",$k)->first()->id;
             $model->product_id = $product_id;
             $model->rate = $d;
             $model->save();
+        }
+    }
+
+    public function updateProductsDiscounts($discounts, $product_id){
+        foreach ($discounts as $k => $d) {
+            $model = new product_discount();
+            $model->
+            updateOrCreate(
+                [
+                    'type_id' => discount_types::where("id","=",$k)->first()->id,
+                ], [
+
+                "type_id" => discount_types::where("id","=",$k)->first()->id,
+                "product_id" => $product_id,
+                "rate" => $d,
+            ]);
         }
     }
 
