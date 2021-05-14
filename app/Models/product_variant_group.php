@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class product_variant_group extends Model
 {
     use HasFactory;
+    protected $table = "product_variant_group";
+    protected $guarded  = ["id"];
+
+    public function getOptions(){
+        return $this->hasMany("App\Models\product_variant_group_option","variant_group_id","id");
+    }
 }

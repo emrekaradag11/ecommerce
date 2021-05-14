@@ -19,9 +19,9 @@ class product_dtl extends Model
         $model->type_id = $request->post("type_id"); // ürün ise tipi 1, varyant ise 2
         $model->kdv = $request->post("kdv");
         $model->shipping_day = $request->post("shipping_day");
-        $model->price = databasePriceFormat($request->post("price"));
+        $model->price = priceFormat($request->post("price"),'2');
         $model->stock = $request->post("stock");
-        $model->shipping_price = databasePriceFormat($request->post("shipping_price"));
+        $model->shipping_price = priceFormat($request->post("shipping_price"),'2');
         $model->product_code = $request->post("product_code");
         $model->currency_id = $request->post("currency_id");
         $model->save();
@@ -42,9 +42,9 @@ class product_dtl extends Model
                 "type_id" => $request->post("type_id"),
                 "kdv" => $request->post("kdv"),
                 "shipping_day" => $request->post("shipping_day"),
-                "price" => databasePriceFormat($request->post("price")),
+                "price" => priceFormat($request->post("price"),'2'),
                 "stock" => $request->post("stock"),
-                "shipping_price" => databasePriceFormat($request->post("shipping_price")),
+                "shipping_price" => priceFormat($request->post("shipping_price"),'2'),
                 "product_code" => $request->post("product_code"),
                 "currency_id" => $request->post("currency_id"),
             ]);
@@ -86,5 +86,9 @@ class product_dtl extends Model
 
     public function getDiscounts(){
         return $this->hasMany("App\Models\product_discount","product_id","id");
+    }
+
+    public function getVariantNames(){
+        return $this->hasone("App\Models\product_variant_group","id","variant_id");
     }
 }

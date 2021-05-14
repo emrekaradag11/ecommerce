@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\back\{adminController,imageController,categoryController,brandController,productController,statusController,discountController,productUnitController,currencyController,userController,variantController};
+use App\Http\Controllers\front\{siteController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\adminUserAuth;
 
@@ -15,9 +16,7 @@ use App\Http\Middleware\adminUserAuth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [siteController::class,'index']);
 
 
 Route::group(['as'=>'admin.' , 'prefix' => 'admin' ], function () {
@@ -62,6 +61,7 @@ Route::middleware(['adminUserAuth'])->group(function () {
 
         Route::get('/product/add-variant/{product_id?}',[productController::class,'addVariant'])->name('product.addvariant');
         Route::post('/product/set-product-variant',[productController::class,'setProductVariant'])->name('product.setProductVariant');
+        Route::post('/product/edit-variant-detail',[productController::class,'editProductVariant'])->name('product.editProductVariant');
 
         Route::resource('/product', productController::class)->names([
             'index' => 'product.index',

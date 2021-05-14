@@ -30,30 +30,23 @@ if (! function_exists('deleteImg')) {
     }
 }
 
-if (! function_exists('databasePriceFormat')) {
-    //database'e kaydederken
-    function databasePriceFormat($price)
-    {
-        if(is_numeric(str_replace([".",","],"",$price))){
-            $price = str_replace([".",","],["","."],$price);
-            $price = number_format($price,2, '.', '');
-            return $price;
-        }else{
-            return false;
-        }
-    }
-}
 
 if (! function_exists('priceFormat')) {
-    //arayüzde görüntülerken
-    function priceFormat($price)
+    function priceFormat($price,$format = '1')
     {
+        //@$format => 1 arayüzde görüntülerken, 2 database'e kaydederken kullanılır
+
         if(is_numeric(str_replace([".",","],"",$price))){
 
-            if(strpos($price,","))
-                $price = str_replace([".",","],["","."],$price);
+            if($format == '1'){
+                if(strpos($price,","))
+                    $price = str_replace([".",","],["","."],$price);
 
-            $price = number_format($price,2, ',', '.');
+                $price = number_format($price,2, ',', '.');
+            }else{
+                $price = str_replace([".",","],["","."],$price);
+                $price = number_format($price,2, '.', '');
+            }
             return $price;
         }else{
             return false;

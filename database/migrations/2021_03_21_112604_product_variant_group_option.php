@@ -15,7 +15,6 @@ class ProductVariantGroupOption extends Migration
     {
         Schema::create('product_variant_group_option', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
             $table->integer('variant_group_id');
             $table->integer('variant_id');
             $table->timestamps();
