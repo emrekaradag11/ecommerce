@@ -213,7 +213,6 @@
                         console.log(res)
                     }
                 });
-
             }
         });
     </script>

@@ -10,55 +10,21 @@ class product_dtl extends Model
     use HasFactory;
 
     protected $table = "product_dtl";
-    protected $guarded  = ["id"];
-
-    public function setProductsDetail($request,$id){
-
-        $model = new product_dtl();
-        $model->product_id = $id;
-        $model->type_id = $request->post("type_id"); // ürün ise tipi 1, varyant ise 2
-        $model->kdv = $request->post("kdv");
-        $model->shipping_day = $request->post("shipping_day");
-        $model->price = priceFormat($request->post("price"),'2');
-        $model->stock = $request->post("stock");
-        $model->shipping_price = priceFormat($request->post("shipping_price"),'2');
-        $model->product_code = $request->post("product_code");
-        $model->currency_id = $request->post("currency_id");
-        $model->save();
-
-        $noti = array(
-            'message' => "İşlem Başarıyla Gerçekleştirildi",
-            'head'=>'İşlem Başarılı',
-            'type' => 'success',
-            'status' => '200'
-        );
-
-        return $noti;
-    }
-    public function updateProductsDetail($request,$id){
-
-        $model = product_dtl::where("product_id","=",$id)
-            ->update([
-                "type_id" => $request->post("type_id"),
-                "kdv" => $request->post("kdv"),
-                "shipping_day" => $request->post("shipping_day"),
-                "price" => priceFormat($request->post("price"),'2'),
-                "stock" => $request->post("stock"),
-                "shipping_price" => priceFormat($request->post("shipping_price"),'2'),
-                "product_code" => $request->post("product_code"),
-                "currency_id" => $request->post("currency_id"),
-            ]);
-
-
-        $noti = array(
-            'message' => "İşlem Başarıyla Gerçekleştirildi",
-            'head'=>'İşlem Başarılı',
-            'type' => 'success',
-            'status' => '200'
-        );
-
-        return $noti;
-    }
+    protected $fillable = [
+        'product_id',
+        'product_code',
+        'variant_code',
+        'variant_group_id',
+        'kdv',
+        'shipping_day',
+        'type_id',
+        'price',
+        'stock',
+        'shipping_price',
+        'old_prices',
+        'currency_id',
+        'barcode',
+    ];
 
     public function getProductCurrency(){
         return $this->hasOne("App\Models\currency","id","currency_id");
@@ -85,10 +51,10 @@ class product_dtl extends Model
     }
 
     public function getDiscounts(){
-        return $this->hasMany("App\Models\product_discount","product_id","id");
+        return $this->hasMany("App\Models\product_discount","product_dtl_id","id");
     }
 
     public function getVariantNames(){
-        return $this->hasone("App\Models\product_variant_group","id","variant_id");
+        return $this->hasone("App\Models\product_variant_group","id","variant_group_id");
     }
 }

@@ -10,7 +10,12 @@ class img extends Model
     use HasFactory;
 
     protected $table = "img";
-    protected $guarded  = ["id"];
+    protected $fillable = [
+        'img',
+        'ord',
+        'imageable_type',
+        'imageable_id',
+    ];
 
 
     public function imageable()

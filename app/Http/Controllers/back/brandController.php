@@ -17,6 +17,7 @@ class brandController extends Controller
     {
         $brands = new brands();
         $data = $brands->where('status_id' , '!=' , '2')->get();
+
         return view('back.brand.index',compact('data'));
     }
 

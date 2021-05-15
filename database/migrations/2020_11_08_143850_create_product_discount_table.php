@@ -16,8 +16,7 @@ class CreateProductDiscountTable extends Migration
         Schema::create('product_discount', function (Blueprint $table) {
             $table->id();
             $table->integer('type_id')->nullable();
-            $table->integer('product_id')->nullable();
-            $table->integer('variant_id')->nullable();
+            $table->integer('product_dtl_id')->nullable();
             $table->float('rate')->nullable();
             $table->float('over_the_amount')->nullable();
             $table->float('price')->nullable();

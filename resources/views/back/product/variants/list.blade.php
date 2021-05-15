@@ -1,7 +1,7 @@
 <form action="{{route('admin.product.editProductVariant')}}" method="post" class="col-12 px-0">
     @csrf
 
-    <table class="display table table-striped table-hover">
+    <table class="display table table-striped table-hover fixedTable">
         <thead>
         <tr>
             <th>Sıra</th>
@@ -10,8 +10,10 @@
             <th>Varyant Kodu</th>
             <th>Varyantlar</th>
             <th>Fiyat</th>
+            <th>Satış Fiyatı</th>
             <th>Stok</th>
             <th>Durum</th>
+            <th>Detaylar</th>
         </tr>
         </thead>
         <tbody>
@@ -38,6 +40,9 @@
                     <input type="text" name="{{$p->id}}[price]" class="form-control price_format" value="{{$p->price ?? priceFormat($p->price)}}" placeholder="Fiyat" name="price" maxlength="18" required >
                 </td>
                 <td>
+                    __xx__
+                </td>
+                <td>
                     <input type="text" name="{{$p->id}}[stock]" class="form-control" value="{{$p->stock ?? $p->stock}}" placeholder="Stok">
                 </td>
                 <td>
@@ -49,7 +54,10 @@
                         <span>Pasif </span>
                         <input type="radio" name="{{$p->id}}[status_id]" {{$p->status_id == '3' ? 'checked' : null}} value="3" ><span class="slider"></span>
                     </label>
-                    <input type="hidden" name="{{$p->id}}[variant_id]" value="{{$p->variant_id}}">
+                    <input type="hidden" name="{{$p->id}}[variant_group_id]" value="{{$p->variant_group_id}}">
+                </td>
+                <td>
+                    <a data-id="{{$p->id}}" tabindex data-toggle="tooltip" data-placement="top" title="Düzenle" class="btn btn-xs btn-xxs px-3 py-2 btn-facebook js-edit"><i class="nav-icon i-Pen-2"></i></a>
                 </td>
             </tr>
         @endforeach
@@ -59,3 +67,4 @@
         <button type="submit" class="btn btn-success">Kaydet</button>
     </div>
 </form>
+

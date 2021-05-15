@@ -212,7 +212,6 @@
                         console.log(res)
                     }
                 });
-
             }
         });
     </script>

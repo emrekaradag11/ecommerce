@@ -25,7 +25,6 @@ class CreateProductsTable extends Migration
             $table->integer('product_unit_id');
             $table->integer('status_id')->default('1');
             $table->integer('ord')->nullable();
-            $table->string('barcode')->nullable();
             $table->timestamps();
         });
     }

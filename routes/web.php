@@ -59,9 +59,12 @@ Route::middleware(['adminUserAuth'])->group(function () {
 
         //ürün işlemleri buradan yapılıyor.
 
-        Route::get('/product/add-variant/{product_id?}',[productController::class,'addVariant'])->name('product.addvariant');
+        Route::get('/product/add-variant/{product_id?}',[productController::class,'addVariant'])->name('product.addVariant');
         Route::post('/product/set-product-variant',[productController::class,'setProductVariant'])->name('product.setProductVariant');
-        Route::post('/product/edit-variant-detail',[productController::class,'editProductVariant'])->name('product.editProductVariant');
+        Route::post('/product/edit-product-variant',[productController::class,'editProductVariant'])->name('product.editProductVariant');
+        Route::get('/product/edit-product-variant-detail/',[productController::class,'editProductVariantDetail'])->name('product.editProductVariantDetail');
+        Route::post('/product/edit-product-variant-detail-post/',[productController::class,'editProductVariantDetailPost'])->name('product.editProductVariantDetailPost');
+
 
         Route::resource('/product', productController::class)->names([
             'index' => 'product.index',

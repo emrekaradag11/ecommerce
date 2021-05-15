@@ -10,45 +10,18 @@ class products extends Model
     use HasFactory;
 
     protected $table = 'products';
-    protected $guarded  = ['id'];
-
-    public function setProducts($request){
-
-        $model = products::create($request->all());
-
-        $detail = new product_dtl();
-        $detail->setProductsDetail($request,$model->id);
-
-        $discounts = new product_discount();
-        $discounts->setProductsDiscounts($request->product_discount,$model->id);
-
-        return $model;
-    }
-
-    public function updateProducts($request,$id){
-
-        $model = products::where('id','=',$id)
-            ->update([
-                'title' => $request->post('title'),
-                'text' => $request->post('text'),
-                'description' => $request->post('description'),
-                'keywords' => $request->keywords,
-                'tags' => $request->tags,
-                'brand_id' => $request->brand_id,
-                'category_id' => $request->category_id,
-                'product_unit_id' => $request->product_unit_id,
-                'status_id' => $request->status_id,
-                'barcode' => $request->barcode,
-            ]);
-
-        $detail = new product_dtl();
-        $detail->updateProductsDetail($request,$id);
-
-        $discounts = new product_discount();
-        $discounts->updateProductsDiscounts($request->product_discount,$id);
-
-        return $model;
-    }
+    protected $fillable = [
+        'title',
+        'text',
+        'description',
+        'keywords',
+        'tags',
+        'brand_id',
+        'category_id',
+        'product_unit_id',
+        'status_id',
+        'ord',
+    ];
 
     public function getProductCategory(){
         return $this->hasOne('App\Models\categories','id','category_id');
@@ -67,7 +40,7 @@ class products extends Model
         if($group == '1'){
             //mevcut tanımlı olan varyantları listelemek ve arayüzde seçili varyantları selected yapmak için çekiliyor.
             $variants = $this->hasMany('App\Models\product_dtl','product_id','id')
-                ->join('product_variant_group', 'product_variant_group.id', '=', 'product_dtl.variant_id')
+                ->join('product_variant_group', 'product_variant_group.id', '=', 'product_dtl.variant_group_id')
                 ->join('product_variant_group_option', 'product_variant_group_option.variant_group_id', '=', 'product_variant_group.id')
                 ->where([
                     ['product_dtl.type_id','=','2'],
@@ -84,7 +57,7 @@ class products extends Model
 
         }else{
             return $this->hasMany('App\Models\product_dtl','product_id','id')
-                ->join('product_variant_group', 'product_variant_group.id', '=', 'product_dtl.variant_id')
+                ->join('product_variant_group', 'product_variant_group.id', '=', 'product_dtl.variant_group_id')
                 ->where([
                     ['product_dtl.type_id','=','2'],
                     ['product_variant_group.status_id','!=','2'],

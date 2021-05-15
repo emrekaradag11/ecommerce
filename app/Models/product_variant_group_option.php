@@ -9,7 +9,10 @@ class product_variant_group_option extends Model
 {
     use HasFactory;
     protected $table = "product_variant_group_option";
-    protected $guarded  = ["id"];
+    protected $fillable = [
+        'variant_group_id',
+        'variant_id',
+    ];
 
 
     public function getName(){

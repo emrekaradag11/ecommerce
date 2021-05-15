@@ -10,5 +10,8 @@ class user_types extends Model
     use HasFactory;
 
     protected $table = "user_types";
-    protected $guarded  = ["id"];
+    protected $fillable = [
+        'name',
+        'status_id',
+    ];
 }

@@ -11,7 +11,16 @@ class users extends Model
     use HasFactory;
 
     protected $table = "users";
-    protected $guarded  = ["id"];
+    protected $fillable = [
+        'name',
+        'surname',
+        'password',
+        'email',
+        'type_id',
+        'status_id',
+        'email_verified_at',
+        'remember_token',
+    ];
 
     public function getUserTypeName()
     {

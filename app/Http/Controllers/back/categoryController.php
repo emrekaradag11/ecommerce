@@ -16,7 +16,7 @@ class categoryController extends Controller
     public function index()
     {
         $categories = new categories();
-        $data = $categories->where('parent_id' , '0')->where('status_id' , '!=' , '2')->orderby("ord")->get();
+        $data = $categories->where('parent_id' , '0')->where('status_id' , '!=' , '2')->orderby('ord')->get();
         return view('back.category.index',compact('data'));
     }
 
@@ -103,7 +103,7 @@ class categoryController extends Controller
         if($request->ajax()){
             foreach ($request->post('data') as $key => $value)
             {
-                categories::where('id',$value)->update(["ord" => $key]);
+                categories::where('id',$value)->update(['ord' => $key]);
             }
             toastr()->success('Sıralama Başarılı','İşlem Başarılı');
 
