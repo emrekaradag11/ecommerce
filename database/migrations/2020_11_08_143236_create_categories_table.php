@@ -21,6 +21,7 @@ class CreateCategoriesTable extends Migration
             $table->integer('status_id')->default('1');
             $table->integer('ord')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

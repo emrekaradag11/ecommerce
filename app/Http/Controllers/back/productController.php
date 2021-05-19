@@ -27,7 +27,7 @@ class productController extends Controller
      */
     public function index()
     {
-        $products = products::whereNotIn('status_id' , ['2'])->get();
+        $products = products::all();
         return view('back.product.index',compact('products'));
     }
 
@@ -38,11 +38,11 @@ class productController extends Controller
      */
     public function create()
     {
-        $categories = categories::where('status_id' , '!=' , '2')->get();
-        $brands = brands::where('status_id' , '!=' , '2')->get();
-        $product_units = product_units::where('status_id' , '!=' , '2')->get();
-        $currency = currency::where('status_id' , '!=' , '2')->get();
-        $discounts = discount_types::where('status_id' , '!=' , '2')->get();
+        $categories = categories::all();
+        $brands = brands::all();
+        $product_units = product_units::all();
+        $currency = currency::all();
+        $discounts = discount_types::all();
         return view('back.product.create',compact('categories','brands','product_units','currency','discounts'));
     }
 
@@ -50,7 +50,7 @@ class productController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -146,16 +146,15 @@ class productController extends Controller
      */
     public function edit($id)
     {
-        $categories = categories::where('status_id' , '!=' , '2')->get();
-        $brands = brands::where('status_id' , '!=' , '2')->get();
-        $product_units = product_units::where('status_id' , '!=' , '2')->get();
-        $currency = currency::where('status_id' , '!=' , '2')->get();
+        $categories = categories::all();
+        $brands = brands::all();
+        $product_units = product_units::all();
+        $currency = currency::all();
         $discounts = discount_types::select('discount_types.id','discount_types.title','product_discount.rate')
             ->leftJoin('product_discount', function($join) use ($id) {
                 $join->on('discount_types.id', '=', 'product_discount.type_id')
                     ->where('product_discount.product_dtl_id' , '=' , $id);
             })
-            ->where('discount_types.status_id' , '!=' , '2')
             ->get();
         $product = products::find($id);
         $pictures = $product->getProductDetail->image;
@@ -167,7 +166,7 @@ class productController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -298,7 +297,7 @@ class productController extends Controller
 
     public function addVariant($product_id)
     {
-        $variants = product_variants::where('parent_id','0')->where('status_id' , '!=' , '2')->get();
+        $variants = product_variants::where('parent_id','0')->get();
         $product = products::findorfail($product_id);
         $product_variants = $product->getProductVariantDetail()->get();
         $avaibleVariants = $product->getProductVariantDetail('1');
@@ -316,10 +315,7 @@ class productController extends Controller
 
             DB::table('product_variant_group')->where([
                 'product_id' => $product_id,
-            ])
-            ->update([
-                'status_id' => '2'
-            ]);
+            ])->delete();
             // varyantları kartezyen çarpım'a soktuk
             $result = [];
             foreach ($data as $key => $values) {
@@ -436,9 +432,8 @@ class productController extends Controller
                 $join->on('discount_types.id', '=', 'product_discount.type_id')
                     ->where('product_discount.product_dtl_id' , '=' , $id);
             })
-            ->where('discount_types.status_id' , '!=' , '2')
             ->get();
-        $currency = currency::where('status_id' , '!=' , '2')->get();
+        $currency = currency::all();
         $pictures = $variant_dtl->image;
         return view('back.product.variants.editDetail',compact('variant_dtl','discounts','currency','pictures'))->render();
 

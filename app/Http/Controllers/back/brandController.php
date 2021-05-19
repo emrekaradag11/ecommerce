@@ -15,9 +15,7 @@ class brandController extends Controller
      */
     public function index()
     {
-        $brands = new brands();
-        $data = $brands->where('status_id' , '!=' , '2')->get();
-
+        $data = brands::all();
         return view('back.brand.index',compact('data'));
     }
 
@@ -73,7 +71,7 @@ class brandController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -93,7 +91,7 @@ class brandController extends Controller
     public function destroy($id)
     {
 
-        brands::find($id)->update(['status_id' => '2']);
+        brands::find($id)->delete();
         toastr()->success('Başarıyla Silindi','İşlem Başarılı');
 
         return redirect()->back();

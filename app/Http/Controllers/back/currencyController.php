@@ -11,12 +11,11 @@ class currencyController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
-        $currency = new currency();
-        $data = $currency->where('status_id' , '!=' , '2')->get();
+        $data = currency::all();
         return view('back.currency.index',compact('data'));
     }
 
@@ -34,7 +33,7 @@ class currencyController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -71,11 +70,11 @@ class currencyController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        currency::find($id)->update($request->except(['_token','_method']));
+        currency::find($id)->delete();
         toastr()->success('Başarıyla Güncellendi','İşlem Başarılı');
 
         return redirect()->back();

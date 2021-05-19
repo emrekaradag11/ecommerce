@@ -4,10 +4,13 @@ namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
 use App\Models\categories;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 
 class categoryController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +18,7 @@ class categoryController extends Controller
      */
     public function index()
     {
-        $categories = new categories();
-        $data = $categories->where('parent_id' , '0')->where('status_id' , '!=' , '2')->orderby('ord')->get();
+        $data = categories::where('parent_id' , '0')->orderby('ord')->get();
         return view('back.category.index',compact('data'));
     }
 
@@ -60,7 +62,7 @@ class categoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function edit($id)
     {
@@ -72,7 +74,7 @@ class categoryController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -87,11 +89,11 @@ class categoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
-        categories::find($id)->update(['status_id' => '2']);
+        categories::find($id)->delete();
         toastr()->success('Başarıyla Silindi','İşlem Başarılı');
 
         return redirect()->back();

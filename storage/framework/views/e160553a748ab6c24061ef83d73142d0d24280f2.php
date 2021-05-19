@@ -26,7 +26,7 @@
                         <tr>
                             <td><?php echo e($loop->index + 1); ?></td>
                             <td><?php echo e($d->title); ?></td>
-                            <td>123</td>
+                            <td><?php echo e($d->totalProduct()); ?></td>
                             <td class="text-right">
 
                                 <a tabindex data-info="<?php echo e($d); ?>" class="btn btn-xs btn-xxs px-3 py-2 btn-facebook js-edit"><i class="nav-icon i-Pen-2"></i></a>

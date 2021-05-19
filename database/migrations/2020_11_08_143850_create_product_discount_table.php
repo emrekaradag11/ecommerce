@@ -23,6 +23,7 @@ class CreateProductDiscountTable extends Migration
             $table->dateTime('start_date')->nullable();
             $table->dateTime('finish_date')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

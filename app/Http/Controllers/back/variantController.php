@@ -15,7 +15,7 @@ class variantController extends Controller
      */
     public function index()
     {
-        $data = product_variants::where('parent_id' , '0')->where('status_id' , '!=' , '2')->get();
+        $data = product_variants::where('parent_id' , '0')->get();
         return view('back.variants.index',compact('data'));
     }
 

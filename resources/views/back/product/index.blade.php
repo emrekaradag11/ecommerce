@@ -25,7 +25,7 @@
                     <tbody>
 
                     @forelse($products as $p)
-                        <tr class="{{$p->status_id == "3" ? "bg-danger text-white" : null}}">
+                        <tr class="{{$p->status_id == "2" ? "bg-danger text-white" : null}}">
                             <td>{{$loop->index + 1}}</td>
                             <td>
                                 <div class="customImg">

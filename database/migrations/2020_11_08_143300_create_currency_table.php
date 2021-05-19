@@ -20,6 +20,7 @@ class CreateCurrencyTable extends Migration
             $table->float('rate')->nullable();
             $table->integer('status_id')->default('1');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

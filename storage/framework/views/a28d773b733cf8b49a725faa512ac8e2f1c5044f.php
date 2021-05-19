@@ -52,7 +52,7 @@
                     </label>
                     <label class="switch switch-danger mr-3 d-block">
                         <span>Pasif </span>
-                        <input type="radio" name="<?php echo e($p->id); ?>[status_id]" <?php echo e($p->status_id == '3' ? 'checked' : null); ?> value="3" ><span class="slider"></span>
+                        <input type="radio" name="<?php echo e($p->id); ?>[status_id]" <?php echo e($p->status_id == '2' ? 'checked' : null); ?> value="2" ><span class="slider"></span>
                     </label>
                     <input type="hidden" name="<?php echo e($p->id); ?>[variant_group_id]" value="<?php echo e($p->variant_group_id); ?>">
                 </td>

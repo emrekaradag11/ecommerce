@@ -24,7 +24,7 @@
                     <tbody>
 
                     <?php $__empty_1 = true; $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                        <tr class="<?php echo e($p->status_id == "3" ? "bg-danger text-white" : null); ?>">
+                        <tr class="<?php echo e($p->status_id == "2" ? "bg-danger text-white" : null); ?>">
                             <td><?php echo e($loop->index + 1); ?></td>
                             <td>
                                 <div class="customImg">

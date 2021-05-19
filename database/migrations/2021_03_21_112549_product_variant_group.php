@@ -19,6 +19,7 @@ class ProductVariantGroup extends Migration
             $table->integer('product_id');
             $table->integer('status_id')->default('1');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -61,7 +61,7 @@
                         <select name="status_id" required class="form-control" id="">
                             <option value="">Seçiniz</option>
                             <option value="1" {{$variant_dtl->getVariantNames->status_id == "1" ? "selected" : null}}>Aktif</option>
-                            <option value="3" {{$variant_dtl->getVariantNames->status_id == "3" ? "selected" : null}}>Pasif</option>
+                            <option value="2" {{$variant_dtl->getVariantNames->status_id == "2" ? "selected" : null}}>Pasif</option>
                         </select>
                     </div>
                     <div class="col-12 form-group text-right">
