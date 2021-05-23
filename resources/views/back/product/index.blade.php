@@ -23,8 +23,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($products as $p)
-                        <tr class="{{$p->status_id == "3" ? "bg-danger text-white" : null}}">
+
+                    @forelse($products as $p)
+                        <tr class="{{$p->status_id == "2" ? "bg-danger text-white" : null}}">
                             <td>{{$loop->index + 1}}</td>
                             <td>
                                 <div class="customImg">
@@ -37,14 +38,16 @@
                             <td>{{priceFormat($p->getProductDetail->price) . " " . $p->getProductDetail->getProductCurrency->short_code}}</td>
                             <td>{{$p->getProductDetail->stock}}</td>
                             <td class="text-right">
-                                <a href="{{route('admin.product.addvariant',$p->id)}}" data-toggle="tooltip" data-placement="top" title="Varyantları Görüntüle" class="btn btn-xs btn-xxs px-3 py-2 btn-facebook text-white"><i class="nav-icon i-Windows-2"></i></a>
+                                <a href="{{route('admin.product.addVariant',$p->id)}}" data-toggle="tooltip" data-placement="top" title="Varyantları Görüntüle" class="btn btn-xs btn-xxs px-3 py-2 btn-facebook text-white"><i class="nav-icon i-Windows-2"></i></a>
                                 <a href="{{route('admin.product.edit',$p->id)}}" data-toggle="tooltip" data-placement="top" title="Düzenle" class="btn btn-xs btn-xxs px-3 py-2 btn-facebook js-edit"><i class="nav-icon i-Pen-2"></i></a>
                                 <a tabindex="" data-toggle="tooltip" data-placement="top" title="Sil" class="btn btn-xs btn-xxs px-3 py-2 btn-danger js_delete"><i class="nav-icon i-Close-Window"></i></a>
                                 <a tabindex="" data-toggle="tooltip" data-placement="top" title="Taşı" class="btn btn-xs btn-xxs px-3 py-2 btn-info list_item"><i class="nav-icon i-Arrow-Cross"></i></a>
-                                </a>
                             </td>
                         </tr>
-                    @endforeach
+
+                    @empty
+
+                    @endforelse
                     </tbody>
                 </table>
             </div>

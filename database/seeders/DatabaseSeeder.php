@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
             statusListSeeder::class,
             statusListTypesSeeder::class,
             usersSeeder::class,
+            brandSeeder::class,
+            variantSeeder::class,
+            categorySeeder::class,
         ]);
     }
 }

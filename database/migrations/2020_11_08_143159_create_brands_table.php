@@ -18,6 +18,7 @@ class CreateBrandsTable extends Migration
             $table->string('title')->nullable();
             $table->integer('status_id')->default('1');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

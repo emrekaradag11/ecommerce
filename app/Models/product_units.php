@@ -10,6 +10,9 @@ class product_units extends Model
     use HasFactory;
 
     protected $table = "product_units";
-    protected $guarded  = ["id"];
+    protected $fillable = [
+        'title',
+        'status_id',
+    ];
 
 }

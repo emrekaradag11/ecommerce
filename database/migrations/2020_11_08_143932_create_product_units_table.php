@@ -18,6 +18,7 @@ class CreateProductUnitsTable extends Migration
             $table->string('title');
             $table->integer('status_id')->default('1');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

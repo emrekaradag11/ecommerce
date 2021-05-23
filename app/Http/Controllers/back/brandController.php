@@ -15,8 +15,7 @@ class brandController extends Controller
      */
     public function index()
     {
-        $brands = new brands();
-        $data = $brands->where('status_id' , '!=' , '2')->get();
+        $data = brands::all();
         return view('back.brand.index',compact('data'));
     }
 
@@ -39,7 +38,13 @@ class brandController extends Controller
     public function store(Request $request)
     {
 
-        brands::create($request->except(['_token','_method']));
+        $brands = brands::create($request->except(['_token','_method']));
+        if($request->file('img')){
+            $uploadImg = fileUpload($request->file('img'),'uploads',$request->title,'');
+            $brands->image()->updateOrCreate(
+                ['img' => $uploadImg]
+            );
+        }
         toastr()->success('Başarıyla Eklendi','İşlem Başarılı');
 
         return redirect()->back();
@@ -72,12 +77,20 @@ class brandController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
 
-        brands::find($id)->update($request->except(['_token','_method']));
+        $brand = brands::find($id)->update($request->except(['_token','_method']));
+
+        if($request->file('img')){
+            $uploadImg = fileUpload($request->file('img'),'uploads',$request->title,$brand->image->img ?? null);
+            brands::find($id)->image()->updateOrCreate(
+                [],
+                ['img' => $uploadImg,],
+            );
+        }
         toastr()->success('Başarıyla Güncellendi','İşlem Başarılı');
 
         return redirect()->back();
@@ -92,7 +105,7 @@ class brandController extends Controller
     public function destroy($id)
     {
 
-        brands::find($id)->update(['status_id' => '2']);
+        brands::find($id)->delete();
         toastr()->success('Başarıyla Silindi','İşlem Başarılı');
 
         return redirect()->back();

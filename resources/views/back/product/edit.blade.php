@@ -94,7 +94,7 @@
                                         <select name="status_id" required class="form-control" id="">
                                             <option value="">Seçiniz</option>
                                             <option value="1" {{$product->status_id == "1" ? "selected" : null}}>Aktif</option>
-                                            <option value="3" {{$product->status_id == "3" ? "selected" : null}}>Pasif</option>
+                                            <option value="2" {{$product->status_id == "2" ? "selected" : null}}>Pasif</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-6 form-group">
@@ -213,7 +213,6 @@
                         console.log(res)
                     }
                 });
-
             }
         });
     </script>

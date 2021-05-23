@@ -18,6 +18,7 @@ class CreateStatusListTable extends Migration
             $table->string('title');
             $table->integer('status_type_id')->default("1");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

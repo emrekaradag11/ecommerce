@@ -17,7 +17,8 @@ class CreateProductDtlTable extends Migration
             $table->id();
             $table->integer('product_id');
             $table->string('product_code');
-            $table->integer('variant_id')->nullable();
+            $table->string('variant_code')->nullable();
+            $table->integer('variant_group_id')->nullable();
             $table->integer('kdv')->nullable();
             $table->integer('shipping_day')->nullable();
             $table->integer('type_id');
@@ -26,6 +27,7 @@ class CreateProductDtlTable extends Migration
             $table->decimal('shipping_price',12,2);
             $table->json('old_prices')->nullable();
             $table->integer('currency_id');
+            $table->string('barcode')->nullable();
             $table->timestamps();
         });
     }

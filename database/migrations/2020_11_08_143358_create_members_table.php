@@ -26,6 +26,7 @@ class CreateMembersTable extends Migration
             $table->integer('mail_notification')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

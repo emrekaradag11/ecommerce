@@ -26,6 +26,16 @@ class currencySeeder extends Seeder
                 "short_code"=>"TRY",
                 "rate"=>"1.00",
             ],
+            [
+                "title"=>"Euro",
+                "short_code"=>"EUR",
+                "rate"=>"9.90",
+            ],
+            [
+                "title"=>"Pound",
+                "short_code"=>"GBP",
+                "rate"=>"11.90",
+            ],
         ];
 
         foreach($data as $d){

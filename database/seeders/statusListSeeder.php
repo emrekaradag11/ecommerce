@@ -18,8 +18,6 @@ class statusListSeeder extends Seeder
             [
                 "title"=>"Aktif"
             ],[
-                "title"=>"Silindi"
-            ],[
                 "title"=>"Pasif"
             ],
         ];

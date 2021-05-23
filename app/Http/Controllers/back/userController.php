@@ -13,26 +13,23 @@ class userController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
-        $users = new users();
-        $data = $users->where('status_id' , '!=' , '2')->get();
-        $user_types = new user_types();
-        $user_types_data = $user_types->where('status_id' , '!=' , '2')->get();
+        $data = users::all();
+        $user_types_data = user_types::all();
         return view('back.users.index',compact('data','user_types_data'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
-        $user_types = new user_types();
-        $user_types = $user_types->where('status_id' , '!=' , '2')->get();
+        $user_types = user_types::all();
         return view('back.users.create',compact('user_types'));
     }
 
@@ -40,7 +37,7 @@ class userController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -95,13 +92,12 @@ class userController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit($id)
     {
         $user = users::find($id);
-        $user_types = new user_types();
-        $user_types = $user_types->where('status_id' , '!=' , '2')->get();
+        $user_types = user_types::all();
         return view('back.users.update',compact('user_types','user'));
     }
 
@@ -110,7 +106,7 @@ class userController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -160,7 +156,7 @@ class userController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
@@ -168,7 +164,7 @@ class userController extends Controller
         if($users->type_id == '1')
             toastr()->error('Süper Admin Silinemez','Hata');
         else{
-            users::find($id)->update(['status_id' => '2']);
+            users::find($id)->delete();
             toastr()->success('Başarıyla Silindi','İşlem Başarılı');
         }
 

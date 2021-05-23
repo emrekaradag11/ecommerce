@@ -24,7 +24,7 @@
     <!-- create Modal-->
     <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <form method="post" action="{{route("admin.category.store")}}" class="form modal-content">
+            <form method="post" action="{{route("admin.category.store")}}" enctype="multipart/form-data" class="form modal-content">
                 @csrf
                 @method("POST")
                 <div class="modal-header">
@@ -59,6 +59,10 @@
                             </label>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="img">Görsel:</label>
+                        <input type="file" name="img" id="img" class="form-control form-control-solid dropify"/>
+                    </div>
                     <div class="form-hidden d-none">
                         <input type="hidden" class="form-control form-control-solid" name="status_id" value="1">
                     </div>
@@ -75,7 +79,7 @@
     <!-- edit Modal-->
     <div class="modal fade" id="categoryEditModal" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <form method="post" action="{{url("admin/category")}}" class="form modal-content">
+            <form method="post" action="{{url("admin/category")}}" enctype="multipart/form-data" class="form modal-content">
                 @csrf
                 @method("PUT")
                 <div class="modal-header">
@@ -110,6 +114,10 @@
                             </label>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="img">Görsel:</label>
+                        <div class="js-img"></div>
+                    </div>
                     <div class="form-hidden d-none">
                         <input type="hidden" class="form-control form-control-solid" name="status_id" value="">
                     </div>
@@ -129,14 +137,19 @@
         })
 
         $(document).on("click",".js-edit",function (){
-            let data;
-            data = $(this).data("info");
+            var data = $(this).data("info");
+            var img = $(this).data("img");
+
             $("#categoryEditModal form")[0].reset();
             $("#categoryEditModal form").attr("action" , data.route);
             $("#categoryEditModal [name='title']").val(data.title)
             $("#categoryEditModal [name='type_id'][value='" + data.type_id + "']").prop("checked",true)
             $("#categoryEditModal [name='parent_id']").val(data.parent_id)
             $("#categoryEditModal [name='status_id']").val(data.status_id)
+            $(".js-img").html('<input type="file" name="img" id="img" class="form-control form-control-solid dropify"/>');
+            var imgElem = $("#categoryEditModal .dropify");
+            dropifyInit(imgElem,img)
+
             $("#categoryEditModal").modal("show")
         })
 

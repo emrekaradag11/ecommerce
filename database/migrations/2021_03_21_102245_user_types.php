@@ -18,6 +18,7 @@ class UserTypes extends Migration
             $table->string("name");
             $table->integer("status_id")->default('1');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

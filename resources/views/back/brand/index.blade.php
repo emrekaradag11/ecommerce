@@ -27,13 +27,11 @@
                         <tr>
                             <td>{{$loop->index + 1}}</td>
                             <td>{{$d->title}}</td>
-                            <td>123</td>
+                            <td>{{$d->totalProduct()}}</td>
                             <td class="text-right">
-
-                                <a tabindex data-info="{{$d}}" class="btn btn-xs btn-xxs px-3 py-2 btn-facebook js-edit"><i class="nav-icon i-Pen-2"></i></a>
+                                <a tabindex data-info="{{$d}}" data-img="{{$d->image ? asset('uploads/' . $d->image()->first()->img) : null}}" class="btn btn-xs btn-xxs px-3 py-2 btn-facebook js-edit"><i class="nav-icon i-Pen-2"></i></a>
                                 <a tabindex data-info="{{$d}}" class="btn btn-xs btn-xxs px-3 py-2 btn-danger js_delete"><i class="nav-icon i-Close-Window"></i></a>
                                 <a tabindex="" class="btn btn-xs btn-xxs px-3 py-2 btn-info list_item"><i class="nav-icon i-Arrow-Cross"></i></a>
-                                </a>
                             </td>
                         </tr>
                     @endforeach
@@ -53,7 +51,7 @@
     <!-- create Modal-->
     <div class="modal fade" id="brandModal" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <form method="post" action="{{route("admin.brand.store")}}" class="form modal-content">
+            <form method="post" action="{{route("admin.brand.store")}}" enctype="multipart/form-data" class="form modal-content">
                 @csrf
                 @method("POST")
                 <div class="modal-header">
@@ -66,6 +64,10 @@
                     <div class="form-group">
                         <label for="title">Marka Adı:</label>
                         <input type="text" name="title" id="title" class="form-control form-control-solid"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="img">Görsel:</label>
+                        <input type="file" name="img" id="img" class="form-control form-control-solid dropify"/>
                     </div>
                     <div class="form-hidden d-none">
                         <input type="hidden" class="form-control form-control-solid" name="status_id" value="1">
@@ -83,7 +85,7 @@
     <!-- update Modal-->
     <div class="modal fade" id="brandEditModal" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <form method="post" class="form modal-content">
+            <form method="post" enctype="multipart/form-data" class="form modal-content">
                 @csrf
                 @method("PUT")
                 <div class="modal-header">
@@ -96,6 +98,10 @@
                     <div class="form-group">
                         <label for="title">Marka Adı:</label>
                         <input type="text" name="title" id="title" class="form-control form-control-solid"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="img">Görsel:</label>
+                        <div class="js-img"></div>
                     </div>
                     <div class="form-hidden d-none">
                         <input type="hidden" class="form-control form-control-solid" name="status_id" value="1">
@@ -119,12 +125,17 @@
         })
 
         $(document).on("click",".js-edit",function (){
-            let data;
-            data = $(this).data("info");
+            let data = $(this).data("info");
+            var img = $(this).data("img");
             $("#brandEditModal form")[0].reset();
             $("#brandEditModal form").attr("action" , data.route);
             $("#brandEditModal [name='title']").val(data.title)
             $("#brandEditModal [name='status_id']").val(data.status_id)
+            $(".js-img").html('<input type="file" name="img" id="img" class="form-control form-control-solid dropify"/>');
+            setTimeout(function (){
+                var imgElem = $("#brandEditModal .dropify");
+                dropifyInit(imgElem,img)
+            },100)
             $("#brandEditModal").modal("show")
         })
 

@@ -9,6 +9,9 @@ class status_list extends Model
 {
     use HasFactory;
     protected $table = "status_list";
-    protected $guarded  = ["id"];
+    protected $fillable = [
+        'title',
+        'status_type_id',
+    ];
 
 }

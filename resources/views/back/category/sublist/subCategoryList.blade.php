@@ -8,7 +8,7 @@
             <div class="d-flex align-items-center justify-content-between customListElement">
                 <strong>{{$d->title}}</strong>
                 <div>
-                    <a tabindex data-info="{{$d}}" class="btn btn-xs btn-xxs px-3 py-2 btn-facebook js-edit"><i class="nav-icon i-Pen-2"></i></a>
+                    <a tabindex data-info="{{$d}}" data-img="{{$d->image ? asset('uploads/' . $d->image()->first()->img) : null}}" class="btn btn-xs btn-xxs px-3 py-2 btn-facebook js-edit"><i class="nav-icon i-Pen-2"></i></a>
                     <a tabindex data-info="{{$d}}" class="btn btn-xs btn-xxs px-3 py-2 btn-danger js_delete"><i class="nav-icon i-Close-Window"></i></a>
                     <a tabindex="" class="btn btn-xs btn-xxs px-3 py-2 btn-info list_item"><i class="nav-icon i-Arrow-Cross"></i></a>
                 </div>

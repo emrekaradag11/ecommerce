@@ -35,28 +35,10 @@
 .dz-image img {width: 100%;height: 100%;object-fit: cover;object-position: center center;}
 .dropzone .dz-remove {position: absolute;left: 0;right: 0;bottom: 5px;z-index: 10;background: rgb(244 67 54 / 80%);border-radius: 19px;color: white;font-size: 12px;max-width: calc(100% - 30px);margin: 0 auto 0 auto;}
 
-.sortable {
-    padding: 0;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-.sortable li {
-    text-align: center;
-    margin:5px;
-    display: inline-block;
-}
-li.sortable-placeholder {
-    border: 1px dashed #CCC;
-    background: none;
-}
+.sortable {padding: 0;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
+.sortable li {text-align: center;margin:5px;display: inline-block;}
+li.sortable-placeholder {border: 1px dashed #CCC;background: none;}
 .text-underline{text-decoration: underline !important;}
-
-
-
-
-
-
+.minloader {position: fixed;left: 0;top: 0;width: 100vw;height: 100vh;z-index: 99999;text-align: center;justify-content: center;align-items: center;display: flex;background: rgb(255 255 255 / 64%);}
+.spinner {-webkit-animation: spin 0.4s infinite linear;animation: spin 0.4s infinite linear;}
+.table th, .table td {vertical-align: middle !important;}
