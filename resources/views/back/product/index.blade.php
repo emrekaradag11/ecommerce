@@ -8,7 +8,105 @@
 
     <div class="card mb-4">
         <div class="card-body">
-            <div class="table-responsive">
+
+            <div class="filterContent mb-5">
+                <form action="{{route("admin.product.index")}}" method="get" class="row">
+                    <div class="col-12">
+                        @if(request()->get('filter'))
+                            <a href="{{route("admin.product.index")}}" class="btn btn-success btn-lg btn-rounded btn-danger mr-3 btn-sm mb-4">Filtreleri Temizle</a>
+                        @endif
+                        <div class="row">
+                            <div class="col-lg form-group">
+                                <label class="d-block" id="">Ürün Adı</label>
+                                <input class="form-control" type="text" name="product_title" value="{{\request()->get('product_title') ?? ''}}" placeholder="Ürün Adı">
+                            </div>
+                            <div class="col-lg form-group">
+                                <label class="d-block" id="">Ürün Kodu</label>
+                                <input class="form-control" type="text" name="product_code" value="{{\request()->get('product_code') ?? ''}}" placeholder="Ürün Kodu">
+                            </div>
+                            <div class="col-lg form-group">
+                                <label class="d-block" id="">Ürün Barkod</label>
+                                <input class="form-control" type="text" placeholder="Ürün Barkodu">
+                            </div>
+                            <div class="col-lg form-group">
+                                <label class="d-block" id="">Varyant Durumu</label>
+                                <select id="inline-form-custom-select-pref1" class="custom-select">
+                                    <option value="">Tümü</option>
+                                    <option value="1">Varyantlı Ürünler</option>
+                                    <option value="2">Varyantsız Ürünler</option>
+                                </select>
+                            </div>
+                            <div class="col-lg form-group">
+                                <label class="d-block" id="">Aktif/Pasif Durumu</label>
+                                <select id="inline-form-custom-select-pref1" class="custom-select">
+                                    <option value="">Tümü</option>
+                                    <option value="1">Aktif Ürünler</option>
+                                    <option value="2">Pasif Ürünler</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-lg form-group">
+                                <label class="d-block" id="">Ürün Birimi</label>
+                                <select id="inline-form-custom-select-pref1" class="custom-select">
+                                    <option value="">Tümü</option>
+                                </select>
+                            </div>
+                            <div class="col-lg form-group">
+                                <label class="d-block" id="">Stok Durumu</label>
+                                <select id="inline-form-custom-select-pref1" class="custom-select">
+                                    <option value="">Tümü</option>
+                                    <option value="1">Stoklu Ürünler</option>
+                                    <option value="2">Stoksuz Ürünler</option>
+                                </select>
+                            </div>
+                            <div class="col-lg form-group">
+                                <label class="d-block" id="">Görsel Durumu</label>
+                                <select id="inline-form-custom-select-pref1" class="custom-select">
+                                    <option value="">Tümü</option>
+                                    <option value="1">Görseli Olan Ürünler</option>
+                                    <option value="2">Görseli Olmayan Ürünler</option>
+                                </select>
+                            </div>
+                            <div class="col-lg form-group">
+                                <label class="d-block" id="">Kategori</label>
+                                <select id="inline-form-custom-select-pref1" class="custom-select">
+                                    <option value="">Tümü</option>
+                                </select>
+                            </div>
+                            <div class="col-lg form-group">
+                                <label class="d-block" id="">Marka</label>
+                                <select id="inline-form-custom-select-pref1" class="custom-select">
+                                    <option value="">Tümü</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-lg form-group">
+                                <label class="d-block" id="">Para Birimi</label>
+                                <select id="inline-form-custom-select-pref1" class="custom-select">
+                                    <option value="">Tümü</option>
+                                </select>
+                            </div>
+                            <div class="col-lg form-group"></div>
+                            <div class="col-lg form-group"></div>
+                            <div class="col-lg form-group"></div>
+                            <div class="col-lg form-group"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center mt-5">
+                        <input type="hidden" name="filter" value="1">
+                        <button type="submit" class="btn btn-success btn-lg btn-rounded">Filtrele</button>
+                        <hr>
+                    </div>
+                </form>
+            </div>
+
+            <div class="table-responsive row">
                 <table class="display table table-striped datatable table-hover customDatatable">
                     <thead>
                     <tr>

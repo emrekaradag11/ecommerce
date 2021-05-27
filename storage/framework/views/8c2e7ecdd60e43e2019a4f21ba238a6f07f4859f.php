@@ -1,3 +1,4 @@
+
 <?php $__env->startSection("content"); ?>
     <div class="mx-auto max-w-[1920px] px-4 md:px-8 2xl:px-16">
         <div class="grid grid-cols-1 2xl:grid-cols-5 gap-5 xl:gap-7 mb-12 md:mb-14 xl:mb-16">

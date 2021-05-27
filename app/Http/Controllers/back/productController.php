@@ -28,7 +28,35 @@ class productController extends Controller
      */
     public function index()
     {
-        $products = products::all();
+
+        if (\request()->get('filter')){
+
+            $products = new products();
+
+            // product_title
+            if (\request()->get('product_title')){
+                $products = $products->where('title','like','%' . \request()->get('product_title') . '%');
+            }
+
+            // product_code
+            if (\request()->get('product_code')){
+                $products = $products
+                    ->join('product_dtl', 'product_dtl.product_id' , '=' , 'products.id')
+                    ->where([
+                        ['product_dtl.product_code', 'like', '%' . \request()->get('product_code') . '%'],
+                        ['product_dtl.type_id', '=', '1'],
+                    ])
+                    ->select('products.id','products.title','products.category_id','products.brand_id','product_dtl.price','product_dtl.stock');
+            }
+
+            $products = $products->get();
+
+
+        }else{
+            $products = products::all();
+        }
+
+
         return view('back.product.index',compact('products'));
     }
 
