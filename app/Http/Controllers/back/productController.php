@@ -32,32 +32,68 @@ class productController extends Controller
         if (\request()->get('filter')){
 
             $products = new products();
+            $products = $products->join('product_dtl', 'product_dtl.product_id' , '=' , 'products.id');
 
             // product_title
             if (\request()->get('product_title')){
-                $products = $products->where('title','like','%' . \request()->get('product_title') . '%');
+                $products = $products->where('products.title','like','%' . \request()->get('product_title') . '%');
+            }
+
+            // variant_status_id
+            if (\request()->has('variant_status_id') && trim(\request()->get('variant_status_id')) != ''){
+                $products = $products->where('products.variant_status_id','=',\request()->get('variant_status_id'));
+            }
+
+            // brand_id
+            if (\request()->get('brand_id')){
+                $products = $products->where('products.brand_id','=',\request()->get('brand_id'));
+            }
+
+            // product_unit_id
+            if (\request()->get('product_unit_id')){
+                $products = $products->where('products.product_unit_id','=',\request()->get('product_unit_id'));
             }
 
             // product_code
             if (\request()->get('product_code')){
                 $products = $products
-                    ->join('product_dtl', 'product_dtl.product_id' , '=' , 'products.id')
                     ->where([
                         ['product_dtl.product_code', 'like', '%' . \request()->get('product_code') . '%'],
                         ['product_dtl.type_id', '=', '1'],
-                    ])
-                    ->select('products.id','products.title','products.category_id','products.brand_id','product_dtl.price','product_dtl.stock');
+                    ]);
             }
 
-            $products = $products->get();
+            // currency_id
+            if (\request()->get('currency_id')){
+                $products = $products
+                    ->where([
+                        ['product_dtl.currency_id', '=',\request()->get('currency_id')],
+                        ['product_dtl.type_id', '=', '1'],
+                    ]);
+            }
 
+            $products = $products
+                ->select(
+                    'products.id as id',
+                    'products.title as title',
+                    'products.category_id as category_id',
+                    'products.brand_id as brand_id',
+                    'product_dtl.price as price',
+                    'product_dtl.stock as stock',
+                    'products.variant_status_id as variant_status_id'
+                )
+                ->groupBy('products.id')
+                ->get();
 
         }else{
             $products = products::all();
         }
 
+        $currency = currency::all();
+        $brands = brands::all();
+        $product_units = product_units::all();
 
-        return view('back.product.index',compact('products'));
+        return view('back.product.index',compact('products','currency','brands','product_units'));
     }
 
     /**
@@ -101,6 +137,7 @@ class productController extends Controller
                 }
             ],
             'stock' => 'bail|required|numeric',
+            'variant_status_id' => 'bail|required|numeric',
             'product_code' => 'bail|required|unique:product_dtl',
             'shipping_day' => 'bail|required|numeric',
         ];
@@ -216,6 +253,7 @@ class productController extends Controller
                 }
             ],
             'stock' => 'bail|required|numeric',
+            'variant_status_id' => 'bail|required|numeric',
             'product_code' => 'bail|required',
             'shipping_day' => 'bail|required|numeric',
         ];
@@ -265,6 +303,7 @@ class productController extends Controller
                 'category_id' => $request->post('category_id'),
                 'product_unit_id' => $request->post('product_unit_id'),
                 'status_id' => $request->post('status_id'),
+                'variant_status_id' => $request->post('variant_status_id'),
             ]);
 
 
@@ -282,6 +321,7 @@ class productController extends Controller
             'product_code' => $request->post('product_code'),
             'currency_id' => $request->post('currency_id'),
             'barcode' => $request->post('barcode'),
+            'stock_status_id' => $request->post('stock_status_id'),
         ]);
 
         $product_dtl_id = $product_dtl->first()->id;
@@ -528,6 +568,7 @@ class productController extends Controller
                 'variant_code' => $request->post('variant_code'),
                 'currency_id' => $request->post('currency_id'),
                 'barcode' => $request->post('barcode'),
+                'stock_status_id' => $request->post('stock_status_id'),
             ]);
 
         foreach ($request->product_discount as $k => $d) {

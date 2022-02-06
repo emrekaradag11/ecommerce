@@ -22,6 +22,7 @@ class products extends Model
         'category_id',
         'product_unit_id',
         'status_id',
+        'variant_status_id',
         'ord',
     ];
 

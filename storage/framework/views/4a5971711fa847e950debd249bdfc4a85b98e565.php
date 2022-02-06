@@ -29,15 +29,15 @@
                             </div>
                             <div class="col-lg form-group">
                                 <label class="d-block" id="">Varyant Durumu</label>
-                                <select id="inline-form-custom-select-pref1" class="custom-select">
+                                <select class="custom-select" name="variant_status_id">
                                     <option value="">Tümü</option>
-                                    <option value="1">Varyantlı Ürünler</option>
-                                    <option value="2">Varyantsız Ürünler</option>
+                                    <option value="1" <?php echo e(\request()->get('variant_status_id') == '1' ? 'selected' : null); ?>>Varyantlı Ürünler</option>
+                                    <option value="0" <?php echo e(\request()->get('variant_status_id') == '0' ? 'selected' : null); ?>>Varyantsız Ürünler</option>
                                 </select>
                             </div>
                             <div class="col-lg form-group">
-                                <label class="d-block" id="">Aktif/Pasif Durumu</label>
-                                <select id="inline-form-custom-select-pref1" class="custom-select">
+                                <label class="d-block" id="">/// Aktif/Pasif Durumu</label>
+                                <select class="custom-select">
                                     <option value="">Tümü</option>
                                     <option value="1">Aktif Ürünler</option>
                                     <option value="2">Pasif Ürünler</option>
@@ -49,36 +49,43 @@
                         <div class="row">
                             <div class="col-lg form-group">
                                 <label class="d-block" id="">Ürün Birimi</label>
-                                <select id="inline-form-custom-select-pref1" class="custom-select">
+                                <select name="product_unit_id" class="form-control">
                                     <option value="">Tümü</option>
+                                    <?php $__currentLoopData = $product_units; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option  <?php echo e(\request()->get('product_unit_id') == $p->id ? 'selected' : null); ?> value="<?php echo e($p->id); ?>"><?php echo e($p->title); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
                             <div class="col-lg form-group">
-                                <label class="d-block" id="">Stok Durumu</label>
-                                <select id="inline-form-custom-select-pref1" class="custom-select">
+                                <label class="d-block" id="">/// Stok Durumu</label>
+                                <select class="custom-select">
                                     <option value="">Tümü</option>
-                                    <option value="1">Stoklu Ürünler</option>
-                                    <option value="2">Stoksuz Ürünler</option>
+                                    <option value="1">Stokta Olan Ürünler</option>
+                                    <option value="2">Stok Biten Ürünler</option>
+                                    <option value="3">Stoksuz Satış Yapılan Ürünler</option>
                                 </select>
                             </div>
                             <div class="col-lg form-group">
-                                <label class="d-block" id="">Görsel Durumu</label>
-                                <select id="inline-form-custom-select-pref1" class="custom-select">
+                                <label class="d-block" id="">/// Görsel Durumu</label>
+                                <select class="custom-select">
                                     <option value="">Tümü</option>
                                     <option value="1">Görseli Olan Ürünler</option>
                                     <option value="2">Görseli Olmayan Ürünler</option>
                                 </select>
                             </div>
                             <div class="col-lg form-group">
-                                <label class="d-block" id="">Kategori</label>
-                                <select id="inline-form-custom-select-pref1" class="custom-select">
+                                <label class="d-block" id="">/// Kategori</label>
+                                <select class="custom-select">
                                     <option value="">Tümü</option>
                                 </select>
                             </div>
                             <div class="col-lg form-group">
                                 <label class="d-block" id="">Marka</label>
-                                <select id="inline-form-custom-select-pref1" class="custom-select">
+                                <select name="brand_id" class="form-control" id="">
                                     <option value="">Tümü</option>
+                                    <?php $__currentLoopData = $brands; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option <?php echo e(\request()->get('brand_id') == $b->id ? 'selected' : null); ?> value="<?php echo e($b->id); ?>"><?php echo e($b->title); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
                         </div>
@@ -87,8 +94,11 @@
                         <div class="row">
                             <div class="col-lg form-group">
                                 <label class="d-block" id="">Para Birimi</label>
-                                <select id="inline-form-custom-select-pref1" class="custom-select">
+                                <select name="currency_id" class="form-control" id="">
                                     <option value="">Tümü</option>
+                                    <?php $__currentLoopData = $currency; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option <?php echo e(\request()->get('currency_id') == $c->id ? 'selected' : null); ?> value="<?php echo e($c->id); ?>"><?php echo e($c->title); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
                             <div class="col-lg form-group"></div>
@@ -135,8 +145,8 @@
                             <td><?php echo e(priceFormat($p->getProductDetail->price) . " " . $p->getProductDetail->getProductCurrency->short_code); ?></td>
                             <td><?php echo e($p->getProductDetail->stock); ?></td>
                             <td class="text-right">
-                                <a href="<?php echo e(route('admin.product.addVariant',$p->id)); ?>" data-toggle="tooltip" data-placement="top" title="Varyantları Görüntüle" class="btn btn-xs btn-xxs px-3 py-2 btn-facebook text-white"><i class="nav-icon i-Windows-2"></i></a>
-                                <a href="<?php echo e(route('admin.product.edit',$p->id)); ?>" data-toggle="tooltip" data-placement="top" title="Düzenle" class="btn btn-xs btn-xxs px-3 py-2 btn-facebook js-edit"><i class="nav-icon i-Pen-2"></i></a>
+                                <a href="<?php echo e(route('admin.product.addVariant',$p->id)); ?>" data-toggle="tooltip" data-placement="top" title="Varyantları Görüntüle" class="btn btn-xs btn-xxs px-3 py-2 btn-facebook text-white<?php echo e($p->variant_status_id == '0' ? " disabled" : null); ?>"><i class="nav-icon i-Windows-2"></i></a>
+                                <a href="<?php echo e(route('admin.product.edit',$p->id)); ?>" data-toggle="tooltip" data-placement="top" title="Düzenle" class="btn btn-xs btn-xxs px-3 py-2 btn-facebook js-edit text-white"><i class="nav-icon i-Pen-2"></i></a>
                                 <a tabindex="" data-toggle="tooltip" data-placement="top" title="Sil" class="btn btn-xs btn-xxs px-3 py-2 btn-danger js_delete"><i class="nav-icon i-Close-Window"></i></a>
                                 <a tabindex="" data-toggle="tooltip" data-placement="top" title="Taşı" class="btn btn-xs btn-xxs px-3 py-2 btn-info list_item"><i class="nav-icon i-Arrow-Cross"></i></a>
                             </td>

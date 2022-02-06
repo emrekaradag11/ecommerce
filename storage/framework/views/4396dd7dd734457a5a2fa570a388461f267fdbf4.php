@@ -7,7 +7,7 @@
         <div class="card mb-4">
             <div class="card-body">
                 <div class="col-lg-7 px-0">
-                    <form action="<?php echo e(route("admin.users.update",$user->id)); ?>" enctype="multipart/form-data" class="row" method="post">
+                    <form action="<?php echo e(route("admin.panel_users.update",$user->id)); ?>" enctype="multipart/form-data" class="row" method="post">
                         <?php echo csrf_field(); ?>
                         <?php echo method_field("put "); ?>
                         <div class="form-group col-lg-6">

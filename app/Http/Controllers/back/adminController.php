@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
+use App\Models\panel_users;
 use App\Models\users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -25,7 +26,7 @@ class adminController extends Controller
     }
 
     public function postLogin(Request $request){
-        $user = users::where(['email' => $request->post('email')])->first();
+        $user = panel_users::where(['email' => $request->post('email')])->first();
         if($user && Hash::check($request->post('password'),$user->password)){
             $request->session()->put('adminUser', $user);
             return redirect()->route('admin.index');

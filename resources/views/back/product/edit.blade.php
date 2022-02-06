@@ -4,6 +4,7 @@
         <h1 class="mr-2">Ürün Düzenle</h1>
     </div>
     <div class="separator-breadcrumb border-top"></div>
+
     <div class="col-12 px-0">
         <div class="card text-left">
             <div class="card-body">
@@ -51,6 +52,13 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="col-lg-3 form-group">
+                                        <label>Varyant Durumu:</label>
+                                        <select name="variant_status_id" required class="form-control" id="">
+                                            <option {{$product->variant_status_id == '0' ? 'selected' : null}} value="0" selected>Varyantsız</option>
+                                            <option {{$product->variant_status_id == '1' ? 'selected' : null}} value="1">Varyantlı</option>
+                                        </select>
+                                    </div>
                                     <div class="col-12 form-group">
                                         <label>Ürün Adı:</label>
                                         <input type="text" value="{{$product->title}}" name="title" required class="form-control">
@@ -66,8 +74,29 @@
                                         </div>
                                     @endforeach
                                     <div class="col-lg-6 form-group">
+                                        <label>Stoksuz Satış:</label>
+                                        <div class="d-block">
+                                            <label class="switch pr-5 switch-success mr-3"><span>Aktif</span>
+                                                <input
+                                                    {{$product->getProductDetail->stock_status_id == '1' ? 'checked' : null }}
+                                                    type="radio"
+                                                    class="js-stock_status"
+                                                    name="stock_status_id"
+                                                    value="1"><span class="slider"></span>
+                                            </label>
+                                            <label class="switch pr-5 switch-danger mr-3"><span>Pasif</span>
+                                                <input
+                                                    {{$product->getProductDetail->stock_status_id == '0' ? 'checked' : null }}
+                                                    type="radio"
+                                                    class="js-stock_status"
+                                                    name="stock_status_id"
+                                                    value="0"><span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 form-group">
                                         <label>Stok:</label>
-                                        <input type="number" value="{{$product->getProductDetail->stock}}" name="stock" class="form-control">
+                                        <input type="number"  {{$product->getProductDetail->stock_status_id == '1' ? 'readonly' : null}}  value="{{$product->getProductDetail->stock}}" name="stock" class="form-control js-stock_input">
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label>Ürün Kodu:</label>

@@ -176,7 +176,7 @@
                                 <i class="i-Lock-User mr-1"></i> <?php echo e(session("adminUser")->name . " " . session("adminUser")->surname); ?>
 
                             </div>
-                            <a href="<?php echo e(route("admin.users.index")); ?>" class="dropdown-item">Kullanıcı Ayarları</a>
+                            <a href="<?php echo e(route("admin.panel_users.index")); ?>" class="dropdown-item">Kullanıcı Ayarları</a>
                             <a href="<?php echo e(route("admin.logout")); ?>" class="dropdown-item">Çıkış Yap</a>
                         </div>
                     </div>

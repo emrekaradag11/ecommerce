@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->integer('category_id');
             $table->integer('product_unit_id');
             $table->integer('status_id')->default('1');
+            $table->integer('variant_status_id')->default('0');
             $table->integer('ord')->nullable();
             $table->timestamps();
             $table->softDeletes();

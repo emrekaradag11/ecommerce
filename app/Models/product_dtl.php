@@ -23,6 +23,7 @@ class product_dtl extends Model
         'shipping_price',
         'old_prices',
         'currency_id',
+        'stock_status_id',
         'barcode',
     ];
 

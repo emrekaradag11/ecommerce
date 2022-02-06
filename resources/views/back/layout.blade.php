@@ -175,7 +175,7 @@
                             <div class="dropdown-header">
                                 <i class="i-Lock-User mr-1"></i> {{session("adminUser")->name . " " . session("adminUser")->surname}}
                             </div>
-                            <a href="{{route("admin.users.index")}}" class="dropdown-item">Kullanıcı Ayarları</a>
+                            <a href="{{route("admin.panel_users.index")}}" class="dropdown-item">Kullanıcı Ayarları</a>
                             <a href="{{route("admin.logout")}}" class="dropdown-item">Çıkış Yap</a>
                         </div>
                     </div>

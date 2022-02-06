@@ -27,6 +27,7 @@ class CreateProductDtlTable extends Migration
             $table->decimal('shipping_price',12,2);
             $table->json('old_prices')->nullable();
             $table->integer('currency_id');
+            $table->integer('stock_status_id')->default('0');
             $table->string('barcode')->nullable();
             $table->timestamps();
         });

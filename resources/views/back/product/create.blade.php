@@ -49,6 +49,13 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="col-lg-3 form-group">
+                                <label>Varyant Durumu:</label>
+                                <select name="variant_status_id" required class="form-control" id="">
+                                    <option value="0" selected>Varyantsız</option>
+                                    <option value="1">Varyantlı</option>
+                                </select>
+                            </div>
                             <div class="col-12 form-group">
                                 <label>Ürün Adı:</label>
                                 <input type="text" name="title" required class="form-control">

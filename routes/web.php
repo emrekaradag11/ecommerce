@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\back\{adminController,imageController,categoryController,brandController,productController,statusController,discountController,productUnitController,currencyController,userController,variantController};
+use App\Http\Controllers\back\{adminController,imageController,categoryController,brandController,productController,statusController,discountController,productUnitController,currencyController,panelUserController,variantController};
 use App\Http\Controllers\front\{siteController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\adminUserAuth;
@@ -49,12 +49,13 @@ Route::middleware(['adminUserAuth'])->group(function () {
         ]);
 
         //admin paneli kullanıcı işlemleri buradan yapılıyor.
-        Route::resource('/users', userController::class)->names([
-            'index' => 'users.index',
-            'create' => 'users.create',
-            'store' => 'users.store',
-            'update' => 'users.update',
-            'destroy' => 'users.destroy',
+        Route::resource('/panel-users', panelUserController::class)->names([
+            'index' => 'panel_users.index',
+            'create' => 'panel_users.create',
+            'edit' => 'panel_users.edit',
+            'store' => 'panel_users.store',
+            'update' => 'panel_users.update',
+            'destroy' => 'panel_users.destroy',
         ]);
 
         //ürün işlemleri buradan yapılıyor.
